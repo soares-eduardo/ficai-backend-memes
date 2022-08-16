@@ -18,6 +18,7 @@ public class BackendConfiguration {
             Aluno aluno1 = new Aluno();
 
             aluno1.setNome("Eduardo Soares");
+            aluno1.setCpf("60076180050");
             aluno1.setTelefone("51 998732729");
             aluno1.setResponsavelLegal("Daniela Soares");
             aluno1.setBeneficios("BPC");
@@ -27,6 +28,7 @@ public class BackendConfiguration {
             Aluno aluno2 = new Aluno();
 
             aluno2.setNome("Gabrielly Vedana");
+            aluno2.setCpf("67583040300");
             aluno2.setTelefone("51 996440312");
             aluno2.setResponsavelLegal("Kellen Vedana");
             aluno2.setBeneficios("BPC");

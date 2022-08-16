@@ -21,6 +21,7 @@ public class AlunoMapper {
         aluno.setResponsavelLegal(alunoDto.getResponsavelLegal());
         aluno.setBeneficios(alunoDto.getBeneficios());
         aluno.setSituacao(alunoDto.getSituacao());
+        aluno.setDataNascimento(alunoDto.getDataNascimento());
 
         return aluno;
     }
@@ -35,6 +36,7 @@ public class AlunoMapper {
         alunoDto.setResponsavelLegal(aluno.getResponsavelLegal());
         alunoDto.setBeneficios(aluno.getBeneficios());
         alunoDto.setSituacao(aluno.getSituacao());
+        alunoDto.setDataNascimento(aluno.getDataNascimento());
 
         return alunoDto;
     }
