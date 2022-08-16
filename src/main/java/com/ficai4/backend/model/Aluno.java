@@ -2,19 +2,52 @@ package com.ficai4.backend.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_aluno")
 public class Aluno {
     
     //TODO Efetuar validação dos campos nesta camada
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Long id; // Atribute created as an exemple for auto generating id
+
+    @Column(name = "cpf")
     private String cpf;
+
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "telefone")
     private String telefone;
+
+    @Column(name = "responsavelLegal")
     private String responsavelLegal;
+    
+    @Column(name = "beneficios")
     private String beneficios;
+
+    @Column(name = "situacao")
     private String situacao;
-    private Endereco endereco;
+
+    // private Endereco endereco;
+    
+    @Column(name = "dataNascimento")
     private LocalDate dataNascimento;
-    private Escola escola;
+
+    // private Escola escola;
+
+    public Long getId() {
+        return id;
+    }
 
     public String getCpf() {
         return cpf;
@@ -40,16 +73,20 @@ public class Aluno {
         return situacao;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
+    // public Endereco getEndereco() {
+    //     return endereco;
+    // }
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public Escola getEscola() {
-        return escola;
+    // public Escola getEscola() {
+    //     return escola;
+    // }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setCpf(String cpf) {
@@ -76,15 +113,15 @@ public class Aluno {
         this.situacao = situacao;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
+    // public void setEndereco(Endereco endereco) {
+    //     this.endereco = endereco;
+    // }
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public void setEscola(Escola escola) {
-        this.escola = escola;
-    }
+    // public void setEscola(Escola escola) {
+    //     this.escola = escola;
+    // }
 }

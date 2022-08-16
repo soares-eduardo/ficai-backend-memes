@@ -1,74 +1,74 @@
-package com.ficai4.backend.model;
+// package com.ficai4.backend.model;
 
-public class Endereco {
+// public class Endereco {
     
-    //TODO Efetuar validação dos campos nesta camada
+//     //TODO Efetuar validação dos campos nesta camada
 
-    private Long id;
-    private String rua;
-    private int numero;
-    private String bairro;
-    private String cep;
-    private String complemento;
+//     private Long id;
+//     private String rua;
+//     private int numero;
+//     private String bairro;
+//     private String cep;
+//     private String complemento;
 
-    public Endereco() {
+//     public Endereco() {
 
-    }
+//     }
 
-    public Endereco(Long id, String rua, int numero, String bairro, String cep, String complemento) {
-        this.id = id;
-        this.rua = rua;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.complemento = complemento;
-    }
+//     public Endereco(Long id, String rua, int numero, String bairro, String cep, String complemento) {
+//         this.id = id;
+//         this.rua = rua;
+//         this.numero = numero;
+//         this.bairro = bairro;
+//         this.cep = cep;
+//         this.complemento = complemento;
+//     }
 
-    public Long getId() {
-        return id;
-    }
+//     public Long getId() {
+//         return id;
+//     }
 
-    public String getRua() {
-        return rua;
-    }
+//     public String getRua() {
+//         return rua;
+//     }
 
-    public int getNumero() {
-        return numero;
-    }
+//     public int getNumero() {
+//         return numero;
+//     }
 
-    public String getBairro() {
-        return bairro;
-    }
+//     public String getBairro() {
+//         return bairro;
+//     }
 
-    public String getCep() {
-        return cep;
-    }
+//     public String getCep() {
+//         return cep;
+//     }
 
-    public String getComplemento() {
-        return complemento;
-    }
+//     public String getComplemento() {
+//         return complemento;
+//     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//     public void setId(Long id) {
+//         this.id = id;
+//     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
+//     public void setRua(String rua) {
+//         this.rua = rua;
+//     }
 
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
+//     public void setNumero(int numero) {
+//         this.numero = numero;
+//     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
+//     public void setBairro(String bairro) {
+//         this.bairro = bairro;
+//     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
+//     public void setCep(String cep) {
+//         this.cep = cep;
+//     }
 
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-}
+//     public void setComplemento(String complemento) {
+//         this.complemento = complemento;
+//     }
+// }
