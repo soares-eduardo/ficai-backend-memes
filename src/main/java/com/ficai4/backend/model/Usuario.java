@@ -2,6 +2,8 @@ package com.ficai4.backend.model;
 
 public class Usuario {
     
+    //TODO Efetuar validação dos campos nesta camada
+
     private String cpf;
     private String nome;
     private String perfil;

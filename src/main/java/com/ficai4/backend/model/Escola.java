@@ -2,6 +2,8 @@ package com.ficai4.backend.model;
 
 public class Escola {
     
+    //TODO Efetuar validação dos campos nesta camada
+
     private String nome;
     private String registroInep;
     private Endereco endereco;

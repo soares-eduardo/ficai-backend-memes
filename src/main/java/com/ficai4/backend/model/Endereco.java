@@ -2,6 +2,8 @@ package com.ficai4.backend.model;
 
 public class Endereco {
     
+    //TODO Efetuar validação dos campos nesta camada
+
     private Long id;
     private String rua;
     private int numero;
