@@ -6,8 +6,6 @@ spring:
     driver-class-name: org.h2.Driver
     ddl-auto: create-drop
   jpa:
-    show-sql: true
-    generate-ddl: true
     hibernate:
       ddl-auto: none
     database-platform: org.hibernate.dialect.H2Dialect
