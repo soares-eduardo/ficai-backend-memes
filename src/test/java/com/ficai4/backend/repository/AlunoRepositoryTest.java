@@ -19,7 +19,7 @@ public class AlunoRepositoryTest {
     private AlunoRepository underTest;
 
     @BeforeEach
-    void setup() {
+    void setUp() {
         Aluno aluno1 = new Aluno();
 
         aluno1.setNome("Eduardo Soares");
@@ -40,8 +40,6 @@ public class AlunoRepositoryTest {
 
         // when
         Optional<Aluno> expected = underTest.findByCpf(cpf);
-
-        System.out.println(expected.get());
 
         // then
         assertTrue(expected.isPresent());
