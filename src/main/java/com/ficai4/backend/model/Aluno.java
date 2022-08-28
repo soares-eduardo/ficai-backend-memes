@@ -15,6 +15,10 @@ public class Aluno {
     
     //TODO Efetuar validação dos campos nesta camada
 
+    public Aluno () {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
