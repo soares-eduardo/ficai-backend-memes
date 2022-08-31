@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.ficai4.backend.mapper.AlunoMapper;
-import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.AlunoAntiga;
 import com.ficai4.backend.model.dto.AlunoDTO;
 import com.ficai4.backend.repository.AlunoRepository;
 
@@ -36,10 +36,10 @@ class AlunoServiceTest {
     void itShouldReturnAllAlunos() {
         // given
         // when
-        Aluno aluno = createAluno();
+        AlunoAntiga aluno = createAluno();
         AlunoDTO alunoDto = createAlunoDTO();
 
-        List<Aluno> listAluno = List.of(aluno);
+        List<AlunoAntiga> listAluno = List.of(aluno);
         List<AlunoDTO> listAlunoDto = List.of(alunoDto);
 
         Mockito.when(alunoRepository.findAll()).thenReturn(listAluno);
@@ -69,7 +69,7 @@ class AlunoServiceTest {
         AlunoDTO alunoDto = createAlunoDTO();
 
         // when
-        Aluno aluno = createAluno();
+        AlunoAntiga aluno = createAluno();
 
         Mockito.when(alunoRepository.findByCpf(
                 alunoDto.getCpf())).thenReturn(Optional.empty());
@@ -82,7 +82,7 @@ class AlunoServiceTest {
         // then
         Mockito.verify(alunoRepository, Mockito
                 .times(1))
-                .save(ArgumentMatchers.any(Aluno.class));
+                .save(ArgumentMatchers.any(AlunoAntiga.class));
     }
 
     @Test
@@ -91,7 +91,7 @@ class AlunoServiceTest {
         AlunoDTO alunoDto = createAlunoDTO();
 
         // when
-        Aluno aluno = createAluno();
+        AlunoAntiga aluno = createAluno();
 
         Mockito.when(alunoRepository.findByCpf(
                 alunoDto.getCpf())).thenReturn(Optional.of(aluno));
@@ -101,8 +101,8 @@ class AlunoServiceTest {
                 "Aluno is already registered.");
     }
 
-    private Aluno createAluno() {
-        return Mockito.mock(Aluno.class);
+    private AlunoAntiga createAluno() {
+        return Mockito.mock(AlunoAntiga.class);
     }
 
     private AlunoDTO createAlunoDTO() {

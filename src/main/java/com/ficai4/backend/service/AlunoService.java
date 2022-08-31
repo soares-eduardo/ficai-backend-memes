@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ficai4.backend.mapper.AlunoMapper;
-import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.AlunoAntiga;
 import com.ficai4.backend.model.dto.AlunoDTO;
 import com.ficai4.backend.repository.AlunoRepository;
 
@@ -29,13 +29,13 @@ public class AlunoService {
 
     @Transactional
     public AlunoDTO createAluno(AlunoDTO alunoDto) {
-        Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
+        Optional<AlunoAntiga> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
 
         if (optionalAluno.isPresent()) {
             throw new IllegalStateException("Aluno is already registered.");
         }
 
-        Aluno aluno = alunoMapper.toEntity(alunoDto);
+        AlunoAntiga aluno = alunoMapper.toEntity(alunoDto);
 
         alunoRepository.save(aluno);
 

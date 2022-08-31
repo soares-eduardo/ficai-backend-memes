@@ -7,7 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.AlunoAntiga;
 import com.ficai4.backend.repository.AlunoRepository;
 
 @Configuration
@@ -15,7 +15,7 @@ public class BackendConfiguration {
     @Bean
     CommandLineRunner commandLineRunner(AlunoRepository alunoRepository) {
         return args -> {
-            Aluno aluno1 = new Aluno();
+            AlunoAntiga aluno1 = new AlunoAntiga();
 
             aluno1.setNome("Eduardo Soares");
             aluno1.setCpf("60076180050");
@@ -25,7 +25,7 @@ public class BackendConfiguration {
             aluno1.setSituacao("Não matriculado");
             aluno1.setDataNascimento(LocalDate.now());
 
-            Aluno aluno2 = new Aluno();
+            AlunoAntiga aluno2 = new AlunoAntiga();
 
             aluno2.setNome("Gabrielly Vedana");
             aluno2.setCpf("67583040300");

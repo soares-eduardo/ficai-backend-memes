@@ -5,14 +5,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.AlunoAntiga;
 import com.ficai4.backend.model.dto.AlunoDTO;
 
 @Component
 public class AlunoMapper {
 
-    public Aluno toEntity(AlunoDTO alunoDto) {
-        Aluno aluno = new Aluno();
+    public AlunoAntiga toEntity(AlunoDTO alunoDto) {
+        AlunoAntiga aluno = new AlunoAntiga();
 
         aluno.setId(alunoDto.getId());
         aluno.setCpf(alunoDto.getCpf());
@@ -26,7 +26,7 @@ public class AlunoMapper {
         return aluno;
     }
 
-    public AlunoDTO toDto(Aluno aluno) {
+    public AlunoDTO toDto(AlunoAntiga aluno) {
         AlunoDTO alunoDto = new AlunoDTO();
 
         alunoDto.setId(aluno.getId());
@@ -41,7 +41,7 @@ public class AlunoMapper {
         return alunoDto;
     }
 
-    public List<AlunoDTO> toDto(List<Aluno> listAluno) {
+    public List<AlunoDTO> toDto(List<AlunoAntiga> listAluno) {
         return listAluno.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

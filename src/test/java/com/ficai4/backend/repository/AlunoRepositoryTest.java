@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.AlunoAntiga;
 
 @DataJpaTest
 public class AlunoRepositoryTest {
@@ -20,7 +20,7 @@ public class AlunoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        Aluno aluno1 = new Aluno();
+        AlunoAntiga aluno1 = new AlunoAntiga();
 
         aluno1.setNome("Eduardo Soares");
         aluno1.setCpf("60076180050");
@@ -39,7 +39,7 @@ public class AlunoRepositoryTest {
         String cpf = "60076180050";
 
         // when
-        Optional<Aluno> expected = underTest.findByCpf(cpf);
+        Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
 
         // then
         assertTrue(expected.isPresent());
@@ -51,7 +51,7 @@ public class AlunoRepositoryTest {
         String cpf = "60076180051";
 
         // when
-        Optional<Aluno> expected = underTest.findByCpf(cpf);
+        Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
 
         // then
         assertTrue(expected.isEmpty());
