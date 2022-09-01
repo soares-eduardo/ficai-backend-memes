@@ -1,59 +1,59 @@
-package com.ficai4.backend.repository;
+// package com.ficai4.backend.repository;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDate;
-import java.util.Optional;
+// import java.time.LocalDate;
+// import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+// import org.junit.jupiter.api.BeforeEach;
+// import org.junit.jupiter.api.Test;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import com.ficai4.backend.model.AlunoAntiga;
+// import com.ficai4.backend.model.AlunoAntiga;
 
-@DataJpaTest
-public class AlunoRepositoryTest {
+// @DataJpaTest
+// public class AlunoRepositoryTest {
 
-    @Autowired
-    private AlunoRepository underTest;
+//     @Autowired
+//     private AlunoRepository underTest;
 
-    @BeforeEach
-    void setUp() {
-        AlunoAntiga aluno1 = new AlunoAntiga();
+//     @BeforeEach
+//     void setUp() {
+//         AlunoAntiga aluno1 = new AlunoAntiga();
 
-        aluno1.setNome("Eduardo Soares");
-        aluno1.setCpf("60076180050");
-        aluno1.setTelefone("51 998732729");
-        aluno1.setResponsavelLegal("Daniela Soares");
-        aluno1.setBeneficios("BPC");
-        aluno1.setSituacao("Não matriculado");
-        aluno1.setDataNascimento(LocalDate.now());
+//         aluno1.setNome("Eduardo Soares");
+//         aluno1.setCpf("60076180050");
+//         aluno1.setTelefone("51 998732729");
+//         aluno1.setResponsavelLegal("Daniela Soares");
+//         aluno1.setBeneficios("BPC");
+//         aluno1.setSituacao("Não matriculado");
+//         aluno1.setDataNascimento(LocalDate.now());
 
-        underTest.save(aluno1);
-    }
+//         underTest.save(aluno1);
+//     }
 
-    @Test
-    void itShouldCheckIfAlunoExistsCpf() {
-        // given
-        String cpf = "60076180050";
+//     @Test
+//     void itShouldCheckIfAlunoExistsCpf() {
+//         // given
+//         String cpf = "60076180050";
 
-        // when
-        Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
+//         // when
+//         Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
 
-        // then
-        assertTrue(expected.isPresent());
-    }
+//         // then
+//         assertTrue(expected.isPresent());
+//     }
 
-    @Test
-    void itShouldCheckIfAlunoDoesNotExistCpf() {
-        // given
-        String cpf = "60076180051";
+//     @Test
+//     void itShouldCheckIfAlunoDoesNotExistCpf() {
+//         // given
+//         String cpf = "60076180051";
 
-        // when
-        Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
+//         // when
+//         Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
 
-        // then
-        assertTrue(expected.isEmpty());
-    }
-}
+//         // then
+//         assertTrue(expected.isEmpty());
+//     }
+// }
