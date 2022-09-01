@@ -1,6 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,7 @@ public class Endereco implements Serializable {
     private UUID id;
 
     @Column(nullable = false, name = "data_cadastro")
-    private LocalDate dataCadastro;
+    private Instant dataCadastro;
 
     @Column(nullable = false, name = "cep", length = 8)
     private String cep;
@@ -60,9 +61,9 @@ public class Endereco implements Serializable {
     public Endereco() {
     }
 
-    public Endereco(LocalDate dataCadastro, String cep, String logradouro, String numero, String bairro,
+    public Endereco(String cep, String logradouro, String numero, String bairro,
             String complemento, Aluno aluno, Cidade cidade) {
-        this.dataCadastro = dataCadastro;
+        this.dataCadastro = Instant.now();
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -76,12 +77,8 @@ public class Endereco implements Serializable {
         return this.id;
     }
 
-    public LocalDate getDataCadastro() {
+    public Instant getDataCadastro() {
         return this.dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
     }
 
     public String getCep() {

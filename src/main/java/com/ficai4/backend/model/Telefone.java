@@ -1,6 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.UUID;
 
@@ -39,17 +40,17 @@ public class Telefone implements Serializable {
     private String numero;
 
     @Column(nullable = false, name = "data_cadastro")
-    private LocalDate dataCadastro;
+    private Instant dataCadastro;
 
     public Telefone() {
 
     }
 
-    public Telefone(Aluno aluno, String ddd, String numero, LocalDate dataCadastro) {
+    public Telefone(Aluno aluno, String ddd, String numero) {
         this.aluno = aluno;
         this.ddd = ddd;
         this.numero = numero;
-        this.dataCadastro = dataCadastro;
+        this.dataCadastro = Instant.now();
     }
 
     public UUID getId() {
@@ -80,11 +81,7 @@ public class Telefone implements Serializable {
         this.numero = numero;
     }
 
-    public LocalDate getDataCadastro() {
+    public Instant getDataCadastro() {
         return this.dataCadastro;
-    }
-
-    public void setDataCadastro(LocalDate dataCadastro) {
-        this.dataCadastro = dataCadastro;
     }
 }
