@@ -24,9 +24,9 @@ public class BackendConfiguration {
 
                         Aluno aluno1 = new Aluno("60076180050", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
                                         true);
-                        Aluno aluno2 = new Aluno("60076180050", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
+                        Aluno aluno2 = new Aluno("60076180051", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
                                         true);
-                        Aluno aluno3 = new Aluno("60076180050", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
+                        Aluno aluno3 = new Aluno("60076180052", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
                                         true);
 
                         Telefone telefone1 = new Telefone(aluno1, "051", "998732729");

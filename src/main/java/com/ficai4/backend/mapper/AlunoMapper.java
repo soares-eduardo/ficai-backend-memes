@@ -14,7 +14,7 @@ public class AlunoMapper {
     public Aluno toEntity(AlunoDTO alunoDto) {
         Aluno aluno = new Aluno();
 
-        aluno.setCpf(aluno.getCpf());
+        aluno.setCpf(alunoDto.getCpf());
         aluno.setNome(alunoDto.getNome());
         aluno.setTelefones(alunoDto.getTelefones());
         aluno.setResponsavelPrimario(alunoDto.getResponsavelPrimario());

@@ -1,7 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
@@ -27,7 +29,7 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinColumn(name = "aluno_id")
     @JsonBackReference
     private Aluno aluno;
@@ -39,7 +41,8 @@ public class Telefone implements Serializable {
     private String numero;
 
     @Column(nullable = false, name = "data_cadastro")
-    private Instant dataCadastro;
+    @CreationTimestamp
+    private LocalDateTime dataCadastro;
 
     public Telefone() {
 
@@ -49,7 +52,6 @@ public class Telefone implements Serializable {
         this.aluno = aluno;
         this.ddd = ddd;
         this.numero = numero;
-        this.dataCadastro = Instant.now();
     }
 
     public UUID getId() {
@@ -80,7 +82,7 @@ public class Telefone implements Serializable {
         this.numero = numero;
     }
 
-    public Instant getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return this.dataCadastro;
     }
 }

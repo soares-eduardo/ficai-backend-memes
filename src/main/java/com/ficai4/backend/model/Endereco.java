@@ -2,6 +2,7 @@ package com.ficai4.backend.model;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -29,7 +32,8 @@ public class Endereco implements Serializable {
     private UUID id;
 
     @Column(nullable = false, name = "data_cadastro")
-    private Instant dataCadastro;
+    @CreationTimestamp
+    private LocalDateTime dataCadastro;
 
     @Column(nullable = false, name = "cep", length = 8)
     private String cep;
@@ -46,12 +50,12 @@ public class Endereco implements Serializable {
     @Column(nullable = false, name = "complemento", length = 50)
     private String complemento;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "aluno_id")
     @JsonIgnore
     private Aluno aluno;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "cidade_id")
     @JsonIgnore
     private Cidade cidade;
@@ -61,7 +65,6 @@ public class Endereco implements Serializable {
 
     public Endereco(String cep, String logradouro, String numero, String bairro,
             String complemento, Aluno aluno, Cidade cidade) {
-        this.dataCadastro = Instant.now();
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -75,7 +78,7 @@ public class Endereco implements Serializable {
         return this.id;
     }
 
-    public Instant getDataCadastro() {
+    public LocalDateTime getDataCadastro() {
         return this.dataCadastro;
     }
 

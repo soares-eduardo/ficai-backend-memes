@@ -1,59 +1,66 @@
-// package com.ficai4.backend.repository;
+package com.ficai4.backend.repository;
 
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// import java.time.LocalDate;
-// import java.util.Optional;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-// import com.ficai4.backend.model.AlunoAntiga;
+import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.Cidade;
+import com.ficai4.backend.model.Endereco;
+import com.ficai4.backend.model.Telefone;
 
-// @DataJpaTest
-// public class AlunoRepositoryTest {
+@DataJpaTest
+public class AlunoRepositoryTest {
 
-//     @Autowired
-//     private AlunoRepository underTest;
+    @Autowired
+    private AlunoRepository underTest;
 
-//     @BeforeEach
-//     void setUp() {
-//         AlunoAntiga aluno1 = new AlunoAntiga();
+    @BeforeEach
+    void setUp() {
+        Aluno aluno1 = new Aluno("60076180050", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
+                true);
 
-//         aluno1.setNome("Eduardo Soares");
-//         aluno1.setCpf("60076180050");
-//         aluno1.setTelefone("51 998732729");
-//         aluno1.setResponsavelLegal("Daniela Soares");
-//         aluno1.setBeneficios("BPC");
-//         aluno1.setSituacao("Não matriculado");
-//         aluno1.setDataNascimento(LocalDate.now());
+        Telefone telefone1 = new Telefone(aluno1, "051", "998732729");
 
-//         underTest.save(aluno1);
-//     }
+        Cidade cidade1 = new Cidade("52345", "Porto Alegre", "Rio Grande do Sul", "RS");
 
-//     @Test
-//     void itShouldCheckIfAlunoExistsCpf() {
-//         // given
-//         String cpf = "60076180050";
+        Endereco endereco1 = new Endereco("91360220", "Rua Limoeiro", "135", "Bela Vista",
+                "AP 1709 B", aluno1, cidade1);
 
-//         // when
-//         Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
+        aluno1.getTelefones().add(telefone1);
+        aluno1.getEnderecos().add(endereco1);
 
-//         // then
-//         assertTrue(expected.isPresent());
-//     }
+        underTest.save(aluno1);
+    }
 
-//     @Test
-//     void itShouldCheckIfAlunoDoesNotExistCpf() {
-//         // given
-//         String cpf = "60076180051";
+    @Test
+    void itShouldCheckIfAlunoExistsCpf() {
+        // given
+        String cpf = "60076180050";
 
-//         // when
-//         Optional<AlunoAntiga> expected = underTest.findByCpf(cpf);
+        // when
+        Optional<Aluno> expected = underTest.findByCpf(cpf);
 
-//         // then
-//         assertTrue(expected.isEmpty());
-//     }
-// }
+        // then
+        assertTrue(expected.isPresent());
+    }
+
+    @Test
+    void itShouldCheckIfAlunoDoesNotExistCpf() {
+        // given
+        String cpf = "60076180051";
+
+        // when
+        Optional<Aluno> expected = underTest.findByCpf(cpf);
+
+        // then
+        assertTrue(expected.isEmpty());
+    }
+}

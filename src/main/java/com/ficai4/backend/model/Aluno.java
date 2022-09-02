@@ -44,10 +44,10 @@ public class Aluno implements Serializable {
     @Column(nullable = false, name = "beneficiario_bpc")
     private Boolean beneficiarioBpc;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Telefone> telefones = new ArrayList<Telefone>();
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Aluno() {
