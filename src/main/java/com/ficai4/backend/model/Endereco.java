@@ -2,9 +2,6 @@ package com.ficai4.backend.model;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -16,11 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -53,12 +48,12 @@ public class Endereco implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
     @JoinColumn(name = "aluno_id")
-    @JsonBackReference
+    @JsonIgnore
     private Aluno aluno;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
     @JoinColumn(name = "cidade_id")
-    @JsonBackReference
+    @JsonIgnore
     private Cidade cidade;
 
     public Endereco() {

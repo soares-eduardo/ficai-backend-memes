@@ -18,7 +18,6 @@ public class AlunoDTO {
     @NotNull
     private String responsavelPrimario;
 
-    @NotNull
     private String responsavelSecundario;
 
     @NotNull
