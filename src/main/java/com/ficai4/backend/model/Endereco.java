@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -52,10 +53,12 @@ public class Endereco implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
     @JoinColumn(name = "aluno_id")
+    @JsonBackReference
     private Aluno aluno;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
     @JoinColumn(name = "cidade_id")
+    @JsonBackReference
     private Cidade cidade;
 
     public Endereco() {

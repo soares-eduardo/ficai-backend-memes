@@ -15,23 +15,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ficai4.backend.model.dto.AlunoDTO;
-// import com.ficai4.backend.service.AlunoService;
+import com.ficai4.backend.service.AlunoService;
 
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping(value = "/aluno")
 public class AlunoController {
 
-    // @Autowired
-    // private AlunoService alunoService;
+    @Autowired
+    private AlunoService alunoService;
 
-    // @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    // public ResponseEntity<List<AlunoDTO>> findAll() {
-    //     return ResponseEntity.ok(alunoService.findAll());
-    // }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AlunoDTO>> findAll() {
+        return ResponseEntity.ok(alunoService.findAll());
+    }
 
-    // @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    // public ResponseEntity<AlunoDTO> createAluno(@Valid @RequestBody AlunoDTO alunoDto) { 
-    //     return ResponseEntity.ok(alunoService.createAluno(alunoDto));
-    // }
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AlunoDTO> createAluno(@Valid @RequestBody AlunoDTO alunoDto) { 
+        return ResponseEntity.ok(alunoService.createAluno(alunoDto));
+    }
 }

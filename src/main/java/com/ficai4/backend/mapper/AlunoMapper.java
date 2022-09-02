@@ -1,47 +1,47 @@
-// package com.ficai4.backend.mapper;
+package com.ficai4.backend.mapper;
 
-// import java.util.List;
-// import java.util.stream.Collectors;
+import java.util.List;
+import java.util.stream.Collectors;
 
-// import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Component;
 
-// import com.ficai4.backend.model.AlunoAntiga;
-// import com.ficai4.backend.model.dto.AlunoDTO;
+import com.ficai4.backend.model.Aluno;
+import com.ficai4.backend.model.dto.AlunoDTO;
 
-// @Component
-// public class AlunoMapper {
+@Component
+public class AlunoMapper {
 
-//     public AlunoAntiga toEntity(AlunoDTO alunoDto) {
-//         AlunoAntiga aluno = new AlunoAntiga();
+    public Aluno toEntity(AlunoDTO alunoDto) {
+        Aluno aluno = new Aluno();
 
-//         aluno.setId(alunoDto.getId());
-//         aluno.setCpf(alunoDto.getCpf());
-//         aluno.setNome(alunoDto.getNome());
-//         aluno.setTelefone(alunoDto.getTelefone());
-//         aluno.setResponsavelLegal(alunoDto.getResponsavelLegal());
-//         aluno.setBeneficios(alunoDto.getBeneficios());
-//         aluno.setSituacao(alunoDto.getSituacao());
-//         aluno.setDataNascimento(alunoDto.getDataNascimento());
+        aluno.setCpf(aluno.getCpf());
+        aluno.setNome(alunoDto.getNome());
+        aluno.setTelefones(alunoDto.getTelefones());
+        aluno.setResponsavelPrimario(alunoDto.getResponsavelPrimario());
+        aluno.setResponsavelSecundario(alunoDto.getResponsavelSecundario());
+        aluno.setBeneficiarioRenda(alunoDto.getBeneficiarioRenda());
+        aluno.setBeneficiarioBpc(alunoDto.getBeneficiarioBpc());
+        aluno.setEnderecos(alunoDto.getEnderecos());
 
-//         return aluno;
-//     }
+        return aluno;
+    }
 
-//     public AlunoDTO toDto(AlunoAntiga aluno) {
-//         AlunoDTO alunoDto = new AlunoDTO();
+    public AlunoDTO toDto(Aluno aluno) {
+        AlunoDTO alunoDto = new AlunoDTO();
 
-//         alunoDto.setId(aluno.getId());
-//         alunoDto.setCpf(aluno.getCpf());
-//         alunoDto.setNome(aluno.getNome());
-//         alunoDto.setTelefone(aluno.getTelefone());
-//         alunoDto.setResponsavelLegal(aluno.getResponsavelLegal());
-//         alunoDto.setBeneficios(aluno.getBeneficios());
-//         alunoDto.setSituacao(aluno.getSituacao());
-//         alunoDto.setDataNascimento(aluno.getDataNascimento());
+        alunoDto.setCpf(aluno.getCpf());
+        alunoDto.setNome(aluno.getNome());
+        alunoDto.setTelefones(aluno.getTelefones());
+        alunoDto.setResponsavelPrimario(aluno.getResponsavelPrimario());
+        alunoDto.setResponsavelSecundario(aluno.getResponsavelSecundario());
+        alunoDto.setBeneficiarioRenda(aluno.getBeneficiarioRenda());
+        alunoDto.setBeneficiarioBpc(aluno.getBeneficiarioBpc());
+        alunoDto.setEnderecos(aluno.getEnderecos());
 
-//         return alunoDto;
-//     }
+        return alunoDto;
+    }
 
-//     public List<AlunoDTO> toDto(List<AlunoAntiga> listAluno) {
-//         return listAluno.stream().map(this::toDto).collect(Collectors.toList());
-//     }
-// }
+    public List<AlunoDTO> toDto(List<Aluno> listAluno) {
+        return listAluno.stream().map(this::toDto).collect(Collectors.toList());
+    }
+}

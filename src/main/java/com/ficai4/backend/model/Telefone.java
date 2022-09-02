@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -31,6 +32,7 @@ public class Telefone implements Serializable {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH })
     @JoinColumn(name = "aluno_id")
+    @JsonBackReference
     private Aluno aluno;
 
     @Column(nullable = false, name = "ddd", length = 3)
