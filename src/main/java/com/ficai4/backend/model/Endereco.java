@@ -1,7 +1,6 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
