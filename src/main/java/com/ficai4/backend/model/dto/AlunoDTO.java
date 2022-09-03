@@ -83,19 +83,11 @@ public class AlunoDTO {
         return this.beneficiarioRenda;
     }
 
-    public Boolean getBeneficiarioRenda() {
-        return this.beneficiarioRenda;
-    }
-
     public void setBeneficiarioRenda(Boolean beneficiarioRenda) {
         this.beneficiarioRenda = beneficiarioRenda;
     }
 
     public Boolean isBeneficiarioBpc() {
-        return this.beneficiarioBpc;
-    }
-
-    public Boolean getBeneficiarioBpc() {
         return this.beneficiarioBpc;
     }
 

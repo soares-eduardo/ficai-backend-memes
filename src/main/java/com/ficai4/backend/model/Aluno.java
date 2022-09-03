@@ -103,19 +103,11 @@ public class Aluno implements Serializable {
         return this.beneficiarioRenda;
     }
 
-    public Boolean getBeneficiarioRenda() {
-        return this.beneficiarioRenda;
-    }
-
     public void setBeneficiarioRenda(Boolean beneficiarioRenda) {
         this.beneficiarioRenda = beneficiarioRenda;
     }
 
     public Boolean isBeneficiarioBpc() {
-        return this.beneficiarioBpc;
-    }
-
-    public Boolean getBeneficiarioBpc() {
         return this.beneficiarioBpc;
     }
 
@@ -126,9 +118,7 @@ public class Aluno implements Serializable {
     public List<Telefone> getTelefones() {
         return this.telefones;
     }
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
     }
