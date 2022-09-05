@@ -4,9 +4,6 @@ import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
-import com.ficai4.backend.model.Endereco;
-import com.ficai4.backend.model.Telefone;
-
 public class AlunoDTO {
 
     @NotNull
@@ -27,16 +24,17 @@ public class AlunoDTO {
     private Boolean beneficiarioBpc;
 
     @NotNull
-    private List<Telefone> telefones;
+    private List<TelefoneDTO> telefones;
 
     @NotNull
-    private List<Endereco> enderecos;
+    private List<EnderecoDTO> enderecos;
 
     public AlunoDTO() {
     }
 
     public AlunoDTO(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
-            Boolean beneficiarioRenda, Boolean beneficiarioBpc, List<Telefone> telefones, List<Endereco> enderecos) {
+            Boolean beneficiarioRenda, Boolean beneficiarioBpc, List<TelefoneDTO> telefones,
+            List<EnderecoDTO> enderecos) {
         this.cpf = cpf;
         this.nome = nome;
         this.responsavelPrimario = responsavelPrimario;
@@ -83,6 +81,10 @@ public class AlunoDTO {
         return this.beneficiarioRenda;
     }
 
+    public Boolean getBeneficiarioRenda() {
+        return this.beneficiarioRenda;
+    }
+
     public void setBeneficiarioRenda(Boolean beneficiarioRenda) {
         this.beneficiarioRenda = beneficiarioRenda;
     }
@@ -91,23 +93,27 @@ public class AlunoDTO {
         return this.beneficiarioBpc;
     }
 
+    public Boolean getBeneficiarioBpc() {
+        return this.beneficiarioBpc;
+    }
+
     public void setBeneficiarioBpc(Boolean beneficiarioBpc) {
         this.beneficiarioBpc = beneficiarioBpc;
     }
 
-    public List<Telefone> getTelefones() {
+    public List<TelefoneDTO> getTelefones() {
         return this.telefones;
     }
 
-    public void setTelefones(List<Telefone> telefones) {
+    public void setTelefones(List<TelefoneDTO> telefones) {
         this.telefones = telefones;
     }
 
-    public List<Endereco> getEnderecos() {
+    public List<EnderecoDTO> getEnderecos() {
         return this.enderecos;
     }
 
-    public void setEnderecos(List<Endereco> enderecos) {
+    public void setEnderecos(List<EnderecoDTO> enderecos) {
         this.enderecos = enderecos;
     }
 }
