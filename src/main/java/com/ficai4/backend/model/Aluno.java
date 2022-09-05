@@ -1,131 +1,136 @@
 package com.ficai4.backend.model;
 
-import java.time.LocalDate;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_aluno")
-public class Aluno {
-    
-    //TODO Efetuar validação dos campos nesta camada
+public class Aluno implements Serializable {
 
-    public Aluno () {
-
-    }
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id; // Atribute created as an exemple for auto generating id
+    private UUID id;
 
-    @Column(name = "cpf")
+    @Column(nullable = false, name = "cpf", length = 11)
     private String cpf;
 
-    @Column(name = "nome")
+    @Column(nullable = false, name = "nome", length = 80)
     private String nome;
 
-    @Column(name = "telefone")
-    private String telefone;
+    @Column(nullable = false, name = "responsavel_primario", length = 80)
+    private String responsavelPrimario;
 
-    @Column(name = "responsavelLegal")
-    private String responsavelLegal;
-    
-    @Column(name = "beneficios")
-    private String beneficios;
+    @Column(name = "responsavel_secundario", length = 80)
+    private String responsavelSecundario;
 
-    @Column(name = "situacao")
-    private String situacao;
+    @Column(nullable = false, name = "beneficiario_renda")
+    private Boolean beneficiarioRenda;
 
-    // private Endereco endereco;
-    
-    @Column(name = "dataNascimento")
-    private LocalDate dataNascimento;
+    @Column(nullable = false, name = "beneficiario_bpc")
+    private Boolean beneficiarioBpc;
 
-    // private Escola escola;
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "aluno")
+    private List<Telefone> telefones = new ArrayList<Telefone>();
 
-    public Long getId() {
-        return id;
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "aluno")
+    private List<Endereco> enderecos = new ArrayList<Endereco>();
+
+    public Aluno() {
+    }
+
+    public Aluno(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
+            Boolean beneficiarioRenda, Boolean beneficiarioBpc) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.responsavelPrimario = responsavelPrimario;
+        this.responsavelSecundario = responsavelSecundario;
+        this.beneficiarioRenda = beneficiarioRenda;
+        this.beneficiarioBpc = beneficiarioBpc;
+    }
+
+    public UUID getId() {
+        return this.id;
     }
 
     public String getCpf() {
-        return cpf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public String getResponsavelLegal() {
-        return responsavelLegal;
-    }
-
-    public String getBeneficios() {
-        return beneficios;
-    }
-
-    public String getSituacao() {
-        return situacao;
-    }
-
-    // public Endereco getEndereco() {
-    //     return endereco;
-    // }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    // public Escola getEscola() {
-    //     return escola;
-    // }
-
-    public void setId(Long id) {
-        this.id = id;
+        return this.cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    public String getNome() {
+        return this.nome;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public String getResponsavelPrimario() {
+        return this.responsavelPrimario;
     }
 
-    public void setResponsavelLegal(String responsavelLegal) {
-        this.responsavelLegal = responsavelLegal;
+    public void setResponsavelPrimario(String responsavelPrimario) {
+        this.responsavelPrimario = responsavelPrimario;
     }
 
-    public void setBeneficios(String beneficios) {
-        this.beneficios = beneficios;
+    public String getResponsavelSecundario() {
+        return this.responsavelSecundario;
     }
 
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
+    public void setResponsavelSecundario(String responsavelSecundario) {
+        this.responsavelSecundario = responsavelSecundario;
     }
 
-    // public void setEndereco(Endereco endereco) {
-    //     this.endereco = endereco;
-    // }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public Boolean isBeneficiarioRenda() {
+        return this.beneficiarioRenda;
     }
 
-    // public void setEscola(Escola escola) {
-    //     this.escola = escola;
-    // }
+    public void setBeneficiarioRenda(Boolean beneficiarioRenda) {
+        this.beneficiarioRenda = beneficiarioRenda;
+    }
+
+    public Boolean isBeneficiarioBpc() {
+        return this.beneficiarioBpc;
+    }
+
+    public void setBeneficiarioBpc(Boolean beneficiarioBpc) {
+        this.beneficiarioBpc = beneficiarioBpc;
+    }
+
+    public List<Telefone> getTelefones() {
+        return this.telefones;
+    }
+
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
+    public List<Endereco> getEnderecos() {
+        return this.enderecos;
+    }
+
+    public void setEnderecos(List<Endereco> enderecos) {
+        this.enderecos = enderecos;
+    }
 }
