@@ -15,7 +15,7 @@ import com.ficai4.backend.repository.AlunoRepository;
 
 @Service
 public class AlunoService {
-    
+
     @Autowired
     private AlunoRepository alunoRepository;
 

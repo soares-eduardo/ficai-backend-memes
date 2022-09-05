@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.ficai4.backend.model.Cidade;
 
 @Repository
-public interface CidadeRepository extends JpaRepository<Cidade, UUID>{
-    
+public interface CidadeRepository extends JpaRepository<Cidade, UUID> {
+
 }

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.ficai4.backend.model.Telefone;
 
 @Repository
-public interface TelefoneRepository extends JpaRepository<Telefone, UUID>{
-    
+public interface TelefoneRepository extends JpaRepository<Telefone, UUID> {
+
 }

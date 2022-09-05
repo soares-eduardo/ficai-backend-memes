@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/ficha")
 public class FichaController {
-    
+
     @GetMapping
     public String helloWorld() {
         return "Hello World";

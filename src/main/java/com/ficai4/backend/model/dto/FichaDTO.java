@@ -3,43 +3,43 @@
 // import com.ficai4.backend.model.Aluno;
 
 // public class FichaDTO {
-    
-//     //TODO Efetuar validação dos campos nesta camada
 
-//     private Long id;
-//     private Aluno aluno;
-//     private String versao;
-//     private String motivoInfrequencia;
+// //TODO Efetuar validação dos campos nesta camada
 
-//     public Long getId() {
-//         return id;
-//     }
+// private Long id;
+// private Aluno aluno;
+// private String versao;
+// private String motivoInfrequencia;
 
-//     public Aluno getAluno() {
-//         return aluno;
-//     }
+// public Long getId() {
+// return id;
+// }
 
-//     public String getVersao() {
-//         return versao;
-//     }
+// public Aluno getAluno() {
+// return aluno;
+// }
 
-//     public String getMotivoInfrequencia() {
-//         return motivoInfrequencia;
-//     }
+// public String getVersao() {
+// return versao;
+// }
 
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
+// public String getMotivoInfrequencia() {
+// return motivoInfrequencia;
+// }
 
-//     public void setAluno(Aluno aluno) {
-//         this.aluno = aluno;
-//     }
-    
-//     public void setVersao(String versao) {
-//         this.versao = versao;
-//     }
+// public void setId(Long id) {
+// this.id = id;
+// }
 
-//     public void setMotivoInfrequencia(String motivoInfrequencia) {
-//         this.motivoInfrequencia = motivoInfrequencia;
-//     }
+// public void setAluno(Aluno aluno) {
+// this.aluno = aluno;
+// }
+
+// public void setVersao(String versao) {
+// this.versao = versao;
+// }
+
+// public void setMotivoInfrequencia(String motivoInfrequencia) {
+// this.motivoInfrequencia = motivoInfrequencia;
+// }
 // }

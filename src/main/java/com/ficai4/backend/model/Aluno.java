@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -44,10 +45,12 @@ public class Aluno implements Serializable {
     @Column(nullable = false, name = "beneficiario_bpc")
     private Boolean beneficiarioBpc;
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "aluno")
     private List<Telefone> telefones = new ArrayList<Telefone>();
 
-    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "aluno")
     private List<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Aluno() {
@@ -118,7 +121,7 @@ public class Aluno implements Serializable {
     public List<Telefone> getTelefones() {
         return this.telefones;
     }
-    
+
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
     }

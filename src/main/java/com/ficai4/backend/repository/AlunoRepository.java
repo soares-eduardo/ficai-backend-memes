@@ -11,7 +11,7 @@ import com.ficai4.backend.model.Aluno;
 
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, UUID> {
-    
+
     @Query("SELECT aluno FROM Aluno aluno WHERE aluno.cpf = :cpf ")
     Optional<Aluno> findByCpf(String cpf);
 }

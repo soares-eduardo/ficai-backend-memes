@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_cidade")
 public class Cidade implements Serializable {
@@ -38,7 +40,8 @@ public class Cidade implements Serializable {
     @Column(nullable = false, name = "uf_sigla", length = 2)
     private String ufSigla;
 
-    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY, cascade = { CascadeType.DETACH })
+    @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JsonIgnore
     private List<Endereco> endereco = new ArrayList<Endereco>();
 
     public Cidade() {

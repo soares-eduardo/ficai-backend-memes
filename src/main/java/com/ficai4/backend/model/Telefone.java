@@ -1,7 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -17,7 +17,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tb_telefone")
@@ -29,11 +30,6 @@ public class Telefone implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "aluno_id")
-    @JsonBackReference
-    private Aluno aluno;
-
     @Column(nullable = false, name = "ddd", length = 3)
     private String ddd;
 
@@ -42,7 +38,13 @@ public class Telefone implements Serializable {
 
     @Column(nullable = false, name = "data_cadastro")
     @CreationTimestamp
-    private LocalDateTime dataCadastro;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private Date dataCadastro;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @JoinColumn(name = "aluno_id")
+    @JsonIgnore
+    private Aluno aluno;
 
     public Telefone() {
 
@@ -82,7 +84,7 @@ public class Telefone implements Serializable {
         this.numero = numero;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public Date getDataCadastro() {
         return this.dataCadastro;
     }
 }

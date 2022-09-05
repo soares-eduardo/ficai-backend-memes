@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,6 +33,7 @@ public class Endereco implements Serializable {
 
     @Column(nullable = false, name = "data_cadastro")
     @CreationTimestamp
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDateTime dataCadastro;
 
     @Column(nullable = false, name = "cep", length = 8)
@@ -54,9 +56,8 @@ public class Endereco implements Serializable {
     @JsonIgnore
     private Aluno aluno;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinColumn(name = "cidade_id")
-    @JsonIgnore
     private Cidade cidade;
 
     public Endereco() {
