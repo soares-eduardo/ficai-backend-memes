@@ -14,6 +14,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.ficai4.backend.exceptions.BusinessException;
 import com.ficai4.backend.mapper.AlunoMapper;
 import com.ficai4.backend.model.Aluno;
 import com.ficai4.backend.model.dto.AlunoDTO;
@@ -97,8 +98,8 @@ class AlunoServiceTest {
                 alunoDto.getCpf())).thenReturn(Optional.of(aluno));
 
         // than
-        assertThrows(IllegalStateException.class, () -> underTest.createAluno(alunoDto),
-                "Aluno is already registered.");
+        assertThrows(BusinessException.class, () -> underTest.createAluno(alunoDto),
+                "Aluno já cadastrado.");
     }
 
     private Aluno createAluno() {

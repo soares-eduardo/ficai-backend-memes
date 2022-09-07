@@ -2,31 +2,42 @@ package com.ficai4.backend.model.dto;
 
 import java.util.List;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
 
 public class AlunoDTO {
 
-    @NotNull
+    @NotNull(message = "CPF " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 11, min = 11, message = LengthMessages.CPF_LENGTH_VALIDATION)
     private String cpf;
 
-    @NotNull
+    @NotNull(message = "Nome " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 80, message = LengthMessages.NOME_LENGTH_VALIDATION)
     private String nome;
 
-    @NotNull
+    @NotNull(message = "Responsavel Primario " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 80, message = LengthMessages.RESPONSAVEL_PRIMARIO_VALIDATION)
     private String responsavelPrimario;
 
     private String responsavelSecundario;
 
-    @NotNull
+    @NotNull(message = "Beneficiario Renda " + NullMessages.NULL_NOT_ALLOWED)
     private Boolean beneficiarioRenda;
 
-    @NotNull
+    @NotNull(message = "Beneficiario BPC " + NullMessages.NULL_NOT_ALLOWED)
     private Boolean beneficiarioBpc;
 
-    @NotNull
+    @Valid
+    @NotNull(message = "Telefone " + NullMessages.NULL_NOT_ALLOWED)
     private List<TelefoneDTO> telefones;
 
-    @NotNull
+    @Valid
+    @NotNull(message = "Endereco " + NullMessages.NULL_NOT_ALLOWED)
     private List<EnderecoDTO> enderecos;
 
     public AlunoDTO() {

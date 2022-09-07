@@ -1,17 +1,37 @@
 package com.ficai4.backend.model.dto;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
+
 public class EnderecoDTO {
 
+    @NotNull(message = "CEP " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 8, min = 8, message = LengthMessages.CEP_LENGTH_VALIDATION)
     private String cep;
 
+    @NotNull(message = "Logradouro " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 80, message = LengthMessages.LOGRADOURO_LENGTH_VALIDATION)
     private String logradouro;
 
+    @NotNull(message = "Número " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 9, message = LengthMessages.NUMERO_ENDERECO_LENGTH_VALIDATION)
     private String numero;
 
+    @NotNull(message = "Bairro " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 50, message = LengthMessages.BAIRRO_LENGTH_VALIDATION)
     private String bairro;
 
+    @NotNull(message = "Complemento " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 50, message = LengthMessages.COMPLEMENTO_LENGTH_VALIDATION)
     private String complemento;
 
+    @Valid
+    @NotNull(message = "Cidade " + NullMessages.NULL_NOT_ALLOWED)
     private CidadeDTO cidade;
 
     public EnderecoDTO() {
