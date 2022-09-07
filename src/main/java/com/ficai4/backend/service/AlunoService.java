@@ -42,4 +42,21 @@ public class AlunoService {
 
         return alunoMapper.toDto(aluno);
     }
+
+    @Transactional
+    public AlunoDTO update(AlunoDTO alunoDto) {
+        Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
+
+        if (optionalAluno.isEmpty()) {
+            throw new BusinessException("Aluno não encontrado com o CPF informado.");
+        }
+
+        Aluno aluno = alunoMapper.toEntity(alunoDto);
+
+        aluno.setId(optionalAluno.get().getId());
+
+        alunoRepository.save(aluno);
+
+        return alunoMapper.toDto(aluno);
+    }
 }

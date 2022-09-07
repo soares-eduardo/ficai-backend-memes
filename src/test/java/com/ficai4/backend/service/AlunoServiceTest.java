@@ -102,6 +102,42 @@ class AlunoServiceTest {
                 "Aluno já cadastrado.");
     }
 
+    @Test
+    void itShouldUpdateAnAluno() {
+        // given
+        AlunoDTO alunoDto = createAlunoDTO();
+
+        // when
+        Aluno aluno = createAluno();
+
+        Mockito.when(alunoRepository.findByCpf(
+                alunoDto.getCpf())).thenReturn(Optional.of(aluno));
+        Mockito.when(alunoMapper.toEntity(alunoDto)).thenReturn(aluno);
+        Mockito.when(alunoRepository.save(aluno)).thenReturn(aluno);
+        Mockito.when(alunoMapper.toDto(aluno)).thenReturn(alunoDto);
+
+        underTest.update(alunoDto);
+
+        // then
+        Mockito.verify(alunoRepository, Mockito
+                .times(1))
+                .save(ArgumentMatchers.any(Aluno.class));
+    }
+
+    @Test
+    void itShouldThrowAnExceptionWhenUpdatingAluno() {
+        // given
+        AlunoDTO alunoDto = createAlunoDTO();
+
+        // when
+        Mockito.when(alunoRepository.findByCpf(
+                alunoDto.getCpf())).thenReturn(Optional.empty());
+
+        // than
+        assertThrows(BusinessException.class, () -> underTest.update(alunoDto),
+        "Aluno não encontrado com o CPF informado.");
+    }
+
     private Aluno createAluno() {
         return Mockito.mock(Aluno.class);
     }

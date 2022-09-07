@@ -21,6 +21,7 @@ public class AlunoMapper {
     public Aluno toEntity(AlunoDTO alunoDto) {
         Aluno aluno = new Aluno();
 
+        aluno.setId(alunoDto.getId());
         aluno.setCpf(alunoDto.getCpf());
         aluno.setNome(alunoDto.getNome());
         aluno.setTelefones(telefoneMapper.toEntity(alunoDto.getTelefones()));
@@ -36,6 +37,7 @@ public class AlunoMapper {
     public AlunoDTO toDto(Aluno aluno) {
         AlunoDTO alunoDto = new AlunoDTO();
 
+        alunoDto.setId(aluno.getId());
         alunoDto.setCpf(aluno.getCpf());
         alunoDto.setNome(aluno.getNome());
         alunoDto.setTelefones(telefoneMapper.toDto(aluno.getTelefones()));
