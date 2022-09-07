@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ficai4.backend.exceptions.BusinessException;
 import com.ficai4.backend.mapper.AlunoMapper;
 import com.ficai4.backend.model.Aluno;
 import com.ficai4.backend.model.dto.AlunoDTO;
@@ -32,7 +33,7 @@ public class AlunoService {
         Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
 
         if (optionalAluno.isPresent()) {
-            throw new IllegalStateException("Aluno is already registered.");
+            throw new BusinessException("Aluno já cadastrado.");
         }
 
         Aluno aluno = alunoMapper.toEntity(alunoDto);
