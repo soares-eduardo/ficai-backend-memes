@@ -12,7 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -46,11 +45,9 @@ public class Aluno implements Serializable {
     private Boolean beneficiarioBpc;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "aluno")
     private List<Telefone> telefones = new ArrayList<Telefone>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "aluno")
     private List<Endereco> enderecos = new ArrayList<Endereco>();
 
     public Aluno() {
@@ -68,6 +65,10 @@ public class Aluno implements Serializable {
 
     public UUID getId() {
         return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getCpf() {

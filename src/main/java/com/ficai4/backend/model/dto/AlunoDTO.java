@@ -1,6 +1,7 @@
 package com.ficai4.backend.model.dto;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,8 @@ import com.ficai4.utils.LengthMessages;
 import com.ficai4.utils.NullMessages;
 
 public class AlunoDTO {
+
+    private UUID id;
 
     @NotNull(message = "CPF " + NullMessages.NULL_NOT_ALLOWED)
     @Length(max = 11, min = 11, message = LengthMessages.CPF_LENGTH_VALIDATION)
@@ -54,6 +57,14 @@ public class AlunoDTO {
         this.beneficiarioBpc = beneficiarioBpc;
         this.telefones = telefones;
         this.enderecos = enderecos;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getCpf() {

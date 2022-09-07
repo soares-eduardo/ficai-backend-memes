@@ -43,9 +43,6 @@ public class BackendConfiguration {
                         aluno2.getEnderecos().add(endereco2);
 
                         alunoRepository.saveAll(List.of(aluno1, aluno2));
-                        cidadeRepository.saveAll(List.of(cidade1));
-                        enderecoRepository.saveAll(List.of(endereco1, endereco2));
-                        telefoneRepository.saveAll(List.of(telefone1, telefone2));
                 };
         }
 }
