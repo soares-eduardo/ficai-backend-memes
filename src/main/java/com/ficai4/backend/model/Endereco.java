@@ -36,7 +36,7 @@ public class Endereco implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
-    @Column(nullable = false, name = "cep", length = 8)
+    @Column(nullable = false, name = "cep", length = 9)
     private String cep;
 
     @Column(nullable = false, name = "logradouro", length = 80)
