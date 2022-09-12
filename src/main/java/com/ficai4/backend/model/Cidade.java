@@ -28,7 +28,7 @@ public class Cidade implements Serializable {
     @Column(name = "id")
     private UUID id;
 
-    @Column(nullable = false, name = "codigo_ibge", length = 5)
+    @Column(nullable = false, name = "codigo_ibge", length = 7)
     private String codigoIbge;
 
     @Column(nullable = false, name = "nome", length = 30)
@@ -42,7 +42,7 @@ public class Cidade implements Serializable {
 
     @OneToMany(mappedBy = "cidade", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JsonIgnore
-    private List<Endereco> endereco = new ArrayList<Endereco>();
+    private List<Endereco> endereco = new ArrayList<>();
 
     public Cidade() {
     }

@@ -12,7 +12,7 @@ import com.ficai4.utils.NullMessages;
 public class CidadeDTO {
 
     @NotNull(message = "Código IBGE " + NullMessages.NULL_NOT_ALLOWED)
-    @Length(min = 5, max = 5, message = LengthMessages.CODIGO_IBGE_VALIDATION)
+    @Length(min = 7, max = 7, message = LengthMessages.CODIGO_IBGE_VALIDATION)
     private String codigoIbge;
 
     @NotNull(message = "Nome " + NullMessages.NULL_NOT_ALLOWED)

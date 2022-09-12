@@ -45,10 +45,10 @@ public class Aluno implements Serializable {
     private Boolean beneficiarioBpc;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    private List<Telefone> telefones = new ArrayList<Telefone>();
+    private List<Telefone> telefones = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    private List<Endereco> enderecos = new ArrayList<Endereco>();
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Aluno() {
     }

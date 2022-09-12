@@ -23,7 +23,7 @@ public class LengthMessages {
 
     // CidadeDTO
 
-    public static final String CODIGO_IBGE_VALIDATION = "Código IBGE deve ter 5 caracteres.";
+    public static final String CODIGO_IBGE_VALIDATION = "Código IBGE deve ter 7 caracteres.";
     public static final String NOME_CIDADE_VALIDATION = "Nome da cidade deve ter no máximo 80 caracteres.";
     public static final String UF_NOME_VALIDATION = "UF deve ter no máximo 80 caracteres.";
     public static final String UF_SIGLA_VALIDATION = "Sigla da UF deve ter 2 caracteres.";

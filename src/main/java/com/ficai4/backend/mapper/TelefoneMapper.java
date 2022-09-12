@@ -14,8 +14,10 @@ public class TelefoneMapper {
     public Telefone toEntity (TelefoneDTO telefoneDto) {
         Telefone telefone = new Telefone();
 
+        telefone.setId(telefoneDto.getId());
         telefone.setDdd(telefoneDto.getDdd());
         telefone.setNumero(telefoneDto.getNumero());
+        telefone.setDataCadastro(telefoneDto.getDataCadastro());
         
         return telefone;
     }
@@ -27,9 +29,11 @@ public class TelefoneMapper {
     public TelefoneDTO toDto (Telefone telefone) {
         TelefoneDTO telefoneDto = new TelefoneDTO();
 
+        telefoneDto.setId(telefone.getId());
         telefoneDto.setDdd(telefone.getDdd());
         telefoneDto.setNumero(telefone.getNumero());
-        
+        telefoneDto.setDataCadastro(telefone.getDataCadastro());
+
         return telefoneDto;
     }
 
