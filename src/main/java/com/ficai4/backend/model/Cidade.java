@@ -34,9 +34,6 @@ public class Cidade implements Serializable {
     @Column(nullable = false, name = "nome", length = 30)
     private String nome;
 
-    @Column(nullable = false, name = "uf_nome", length = 20)
-    private String ufNome;
-
     @Column(nullable = false, name = "uf_sigla", length = 2)
     private String ufSigla;
 
@@ -47,10 +44,9 @@ public class Cidade implements Serializable {
     public Cidade() {
     }
 
-    public Cidade(String codigoIbge, String nome, String ufNome, String ufSigla) {
+    public Cidade(String codigoIbge, String nome, String ufSigla) {
         this.codigoIbge = codigoIbge;
         this.nome = nome;
-        this.ufNome = ufNome;
         this.ufSigla = ufSigla;
     }
 
@@ -72,14 +68,6 @@ public class Cidade implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getUfNome() {
-        return this.ufNome;
-    }
-
-    public void setUfNome(String ufNome) {
-        this.ufNome = ufNome;
     }
 
     public String getUfSigla() {

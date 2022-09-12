@@ -16,7 +16,6 @@ public class CidadeMapper {
 
         cidade.setCodigoIbge(cidadeDto.getCodigoIbge());
         cidade.setNome(cidadeDto.getNome());
-        cidade.setUfNome(cidadeDto.getUfNome());
         cidade.setUfSigla(cidadeDto.getUfSigla());
 
         return cidade;
@@ -27,7 +26,6 @@ public class CidadeMapper {
 
         cidadeDto.setCodigoIbge(cidade.getCodigoIbge());
         cidadeDto.setNome(cidade.getNome());
-        cidadeDto.setUfNome(cidade.getUfNome());
         cidadeDto.setUfSigla(cidade.getUfSigla());
 
         return cidadeDto;
