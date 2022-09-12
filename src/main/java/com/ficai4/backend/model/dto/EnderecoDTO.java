@@ -17,7 +17,7 @@ public class EnderecoDTO {
     private UUID id;
 
     @NotNull(message = "CEP " + NullMessages.NULL_NOT_ALLOWED)
-    @Length(max = 8, min = 8, message = LengthMessages.CEP_LENGTH_VALIDATION)
+    @Length(max = 9, min = 9, message = LengthMessages.CEP_LENGTH_VALIDATION)
     private String cep;
 
     @NotNull(message = "Logradouro " + NullMessages.NULL_NOT_ALLOWED)

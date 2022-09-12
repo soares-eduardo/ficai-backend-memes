@@ -104,7 +104,7 @@ public class AlunoRepositoryTest {
         Optional<List<Aluno>> expected = underTest.findByAnyWord(name);
 
         // then
-        //assertNull(expected);
+        // assertNull(expected);
         assertTrue(expected.get().isEmpty());
     }
 
@@ -129,7 +129,7 @@ public class AlunoRepositoryTest {
         Optional<List<Aluno>> expected = underTest.findByAnyWord(cpf);
 
         // then
-        //assertNull(expected);
+        // assertNull(expected);
         assertTrue(expected.get().isEmpty());
     }
 
@@ -154,7 +154,7 @@ public class AlunoRepositoryTest {
         Optional<List<Aluno>> expected = underTest.findByAnyWord(cidade);
 
         // then
-        //assertNull(expected);
+        // assertNull(expected);
         assertTrue(expected.get().isEmpty());
     }
 }
