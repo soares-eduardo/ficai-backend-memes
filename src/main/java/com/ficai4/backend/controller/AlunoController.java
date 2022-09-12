@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
+import org.springframework.web.bind.annotation.*;
+
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,7 +43,13 @@ public class AlunoController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AlunoDTO> createAluno(@Valid @RequestBody AlunoDTO alunoDto) {
-        return ResponseEntity.ok(alunoService.createAluno(alunoDto));
+        return ResponseEntity.status(HttpStatus.CREATED).body(alunoService.createAluno(alunoDto));
+    }
+
+    @GetMapping(value = "/buscarAluno", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<AlunoDTO>> findByAnyWord(@RequestParam("palavra") String palavra) {
+        String wordLowerCase = palavra.toLowerCase();
+        return ResponseEntity.ok().body(alunoService.findByAnyWord(wordLowerCase));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -59,5 +68,6 @@ public class AlunoController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
+
     }
 }
