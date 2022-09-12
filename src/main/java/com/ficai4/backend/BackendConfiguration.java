@@ -42,9 +42,9 @@ public class BackendConfiguration {
                         aluno2.getTelefones().add(telefone2);
 
 
-                        Cidade cidade1 = new Cidade("52345", "Porto Alegre", "Rio Grande do Sul", "RS");
-                        Cidade cidade2 = new Cidade("52345", "Caxias Do Sul", "Rio Grande do Sul", "RS");
-                        Cidade cidade3 = new Cidade("52345", "Anta Gorda", "Rio Grande do Sul", "RS");
+                        Cidade cidade1 = new Cidade("52345", "Porto Alegre", "RS");
+                        Cidade cidade2 = new Cidade("52345", "Caxias Do Sul", "RS");
+                        Cidade cidade3 = new Cidade("52345", "Anta Gorda", "RS");
 
                         //Cidade cidade1 = new Cidade("43149", "Porto Alegre", "Rio Grande do Sul", "RS");
 
