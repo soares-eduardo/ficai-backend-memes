@@ -1,7 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -39,7 +39,7 @@ public class Telefone implements Serializable {
     @Column(nullable = false, name = "data_cadastro")
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dataCadastro;
+    private LocalDate dataCadastro;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "aluno_id")
@@ -58,6 +58,10 @@ public class Telefone implements Serializable {
 
     public UUID getId() {
         return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public Aluno getAluno() {
@@ -84,7 +88,11 @@ public class Telefone implements Serializable {
         this.numero = numero;
     }
 
-    public Date getDataCadastro() {
+    public LocalDate getDataCadastro() {
         return this.dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 }

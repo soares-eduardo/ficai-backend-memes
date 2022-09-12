@@ -18,12 +18,14 @@ public class EnderecoMapper {
     public Endereco toEntity (EnderecoDTO enderecoDto) {
         Endereco endereco = new Endereco();
 
+        endereco.setId(enderecoDto.getId());
         endereco.setBairro(enderecoDto.getBairro());
         endereco.setCep(enderecoDto.getCep());
         endereco.setComplemento(enderecoDto.getComplemento());
         endereco.setLogradouro(enderecoDto.getLogradouro());
         endereco.setNumero(enderecoDto.getNumero());
         endereco.setCidade(cidadeMapper.toEntity(enderecoDto.getCidade()));
+        endereco.setDataCadastro(enderecoDto.getDataCadastro());
 
         return endereco;
     }
@@ -35,12 +37,14 @@ public class EnderecoMapper {
     public EnderecoDTO toDto (Endereco endereco) {
         EnderecoDTO enderecoDto = new EnderecoDTO();
 
+        enderecoDto.setId(endereco.getId());
         enderecoDto.setBairro(endereco.getBairro());
         enderecoDto.setCep(endereco.getCep());
         enderecoDto.setComplemento(endereco.getComplemento());
         enderecoDto.setLogradouro(endereco.getLogradouro());
         enderecoDto.setNumero(endereco.getNumero());
         enderecoDto.setCidade(cidadeMapper.toDto(endereco.getCidade()));
+        enderecoDto.setDataCadastro(endereco.getDataCadastro());
 
         return enderecoDto;
     }

@@ -1,7 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -34,7 +34,7 @@ public class Endereco implements Serializable {
     @Column(nullable = false, name = "data_cadastro")
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private LocalDateTime dataCadastro;
+    private LocalDate dataCadastro;
 
     @Column(nullable = false, name = "cep", length = 8)
     private String cep;
@@ -78,8 +78,16 @@ public class Endereco implements Serializable {
         return this.id;
     }
 
-    public LocalDateTime getDataCadastro() {
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public LocalDate getDataCadastro() {
         return this.dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
 
     public String getCep() {

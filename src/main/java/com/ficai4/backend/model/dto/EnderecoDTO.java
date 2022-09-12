@@ -1,14 +1,20 @@
 package com.ficai4.backend.model.dto;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ficai4.utils.LengthMessages;
 import com.ficai4.utils.NullMessages;
 
 public class EnderecoDTO {
+
+    private UUID id;
 
     @NotNull(message = "CEP " + NullMessages.NULL_NOT_ALLOWED)
     @Length(max = 8, min = 8, message = LengthMessages.CEP_LENGTH_VALIDATION)
@@ -30,6 +36,9 @@ public class EnderecoDTO {
     @Length(max = 50, message = LengthMessages.COMPLEMENTO_LENGTH_VALIDATION)
     private String complemento;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dataCadastro;
+
     @Valid
     @NotNull(message = "Cidade " + NullMessages.NULL_NOT_ALLOWED)
     private CidadeDTO cidade;
@@ -44,6 +53,14 @@ public class EnderecoDTO {
         this.bairro = bairro;
         this.complemento = complemento;
         this.cidade = cidade;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public String getCep() {
@@ -94,4 +111,11 @@ public class EnderecoDTO {
         this.cidade = cidade;
     }
 
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
 }
