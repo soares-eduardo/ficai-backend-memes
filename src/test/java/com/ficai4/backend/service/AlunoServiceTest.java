@@ -5,7 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.List;
 import java.util.Optional;
 
+import com.ficai4.backend.exceptions.EntityNotFoundException;
+import com.ficai4.backend.exceptions.NotFoundException;
 import org.assertj.core.api.Assertions;
+import org.hibernate.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
@@ -134,8 +137,41 @@ class AlunoServiceTest {
                 alunoDto.getCpf())).thenReturn(Optional.empty());
 
         // than
-        assertThrows(BusinessException.class, () -> underTest.update(alunoDto),
+        assertThrows(NotFoundException.class, () -> underTest.update(alunoDto),
         "Aluno não encontrado com o CPF informado.");
+    }
+
+    @Test
+    void itShouldReturnAllAlunosWithAnyWord() {
+        // given
+        // when
+        Aluno aluno = createAluno();
+        AlunoDTO alunoDto = createAlunoDTO();
+
+        Optional<List<Aluno>> listAluno = Optional.of(List.of(aluno));
+        Optional<List<AlunoDTO>> listAlunoDto = Optional.of(List.of(alunoDto));
+
+        Mockito.when(alunoRepository.findByAnyWord(aluno.getNome())).thenReturn(listAluno);
+        Mockito.when(alunoMapper.toDto(listAluno.get())).thenReturn(listAlunoDto.get());
+
+        underTest.findByAnyWord(aluno.getNome());
+
+        // then
+        Mockito.verify(alunoRepository, Mockito.times(1)).findByAnyWord(aluno.getNome());
+    }
+
+    @Test
+    void itShouldThrowAnExceptionWhenDoesNotFindingAlunoByAnyWord() {
+        // given
+        AlunoDTO alunoDto = createAlunoDTO();
+
+        //when
+        Mockito.when(alunoRepository.findByAnyWord(
+                alunoDto.getCpf())).thenReturn(Optional.empty());
+
+        // than
+        assertThrows(EntityNotFoundException.class, () -> underTest.findByAnyWord(alunoDto.getCpf()),
+                "Aluno não encontrado.");
     }
 
     private Aluno createAluno() {
@@ -144,5 +180,9 @@ class AlunoServiceTest {
 
     private AlunoDTO createAlunoDTO() {
         return Mockito.mock(AlunoDTO.class);
+    }
+
+    private Aluno createAlunoWithFields() {
+        return new Aluno();
     }
 }

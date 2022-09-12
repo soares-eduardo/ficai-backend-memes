@@ -1,10 +1,13 @@
 package com.ficai4.backend.service;
 
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import com.ficai4.backend.exceptions.NotFoundException;
+import com.ficai4.backend.exceptions.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -44,11 +47,22 @@ public class AlunoService {
     }
 
     @Transactional
+    public List<AlunoDTO> findByAnyWord(String word) {
+
+        Optional<List<Aluno>> response = alunoRepository.findByAnyWord(word);
+
+       if(response.isEmpty() || response.get().isEmpty()){
+          throw new EntityNotFoundException("Aluno não encontrado.");
+        }
+
+        return alunoMapper.toDto(response.get());
+    }
+
     public AlunoDTO update(AlunoDTO alunoDto) {
         Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
 
         if (optionalAluno.isEmpty()) {
-            throw new BusinessException("Aluno não encontrado com o CPF informado.");
+            throw new NotFoundException("Aluno não encontrado com o CPF informado.");
         }
 
         Aluno aluno = alunoMapper.toEntity(alunoDto);
@@ -58,5 +72,6 @@ public class AlunoService {
         alunoRepository.save(aluno);
 
         return alunoMapper.toDto(aluno);
+
     }
 }
