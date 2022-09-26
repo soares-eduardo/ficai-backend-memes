@@ -44,10 +44,10 @@ public class Aluno implements Serializable {
     @Column(nullable = false, name = "beneficiario_bpc")
     private Boolean beneficiarioBpc;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Telefone> telefones = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Endereco> enderecos = new ArrayList<>();
 
     public Aluno() {
@@ -125,6 +125,9 @@ public class Aluno implements Serializable {
 
     public void setTelefones(List<Telefone> telefones) {
         this.telefones = telefones;
+        for (Telefone telefone : telefones) {
+            telefone.setAluno(this);
+        }
     }
 
     public List<Endereco> getEnderecos() {
@@ -133,5 +136,8 @@ public class Aluno implements Serializable {
 
     public void setEnderecos(List<Endereco> enderecos) {
         this.enderecos = enderecos;
+        for (Endereco endereco : enderecos) {
+            endereco.setAluno(this);
+        }
     }
 }
