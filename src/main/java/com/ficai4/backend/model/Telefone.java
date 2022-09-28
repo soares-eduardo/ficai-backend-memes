@@ -36,6 +36,9 @@ public class Telefone implements Serializable {
     @Column(nullable = false, name = "numero", length = 9)
     private String numero;
 
+    @Column(nullable = false, name = "responsavel", length = 80)
+    private String responsavel;
+
     @Column(nullable = false, name = "data_cadastro")
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -50,10 +53,11 @@ public class Telefone implements Serializable {
 
     }
 
-    public Telefone(Aluno aluno, String ddd, String numero) {
+    public Telefone(Aluno aluno, String ddd, String numero, String responsavel) {
         this.aluno = aluno;
         this.ddd = ddd;
         this.numero = numero;
+        this.responsavel = responsavel;
     }
 
     public UUID getId() {
@@ -94,5 +98,13 @@ public class Telefone implements Serializable {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 }

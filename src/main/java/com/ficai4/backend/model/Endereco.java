@@ -51,6 +51,9 @@ public class Endereco implements Serializable {
     @Column(nullable = false, name = "complemento", length = 50)
     private String complemento;
 
+    @Column(name = "pontoReferencia", length = 500)
+    private String pontoReferencia;
+
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "aluno_id")
     @JsonIgnore
@@ -64,7 +67,7 @@ public class Endereco implements Serializable {
     }
 
     public Endereco(String cep, String logradouro, String numero, String bairro,
-            String complemento, Aluno aluno, Cidade cidade) {
+            String complemento, Aluno aluno, Cidade cidade, String pontoReferencia) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
@@ -72,6 +75,7 @@ public class Endereco implements Serializable {
         this.complemento = complemento;
         this.aluno = aluno;
         this.cidade = cidade;
+        this.pontoReferencia = pontoReferencia;
     }
 
     public UUID getId() {
@@ -146,4 +150,11 @@ public class Endereco implements Serializable {
         this.cidade = cidade;
     }
 
+    public void setPontoReferencia(String pontoReferencia) {
+        this.pontoReferencia = pontoReferencia;
+    }
+
+    public String getPontoReferencia() {
+        return pontoReferencia;
+    }
 }

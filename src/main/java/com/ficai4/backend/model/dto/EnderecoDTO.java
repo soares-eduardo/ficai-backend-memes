@@ -36,6 +36,9 @@ public class EnderecoDTO {
     @Length(max = 50, message = LengthMessages.COMPLEMENTO_LENGTH_VALIDATION)
     private String complemento;
 
+    @Length(max = 500, message = LengthMessages.PONTO_REFERENCIA_LENGTH_VALIDATION)
+    private String pontoReferencia;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
@@ -46,13 +49,14 @@ public class EnderecoDTO {
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(String cep, String logradouro, String numero, String bairro, String complemento, CidadeDTO cidade) {
+    public EnderecoDTO(String cep, String logradouro, String numero, String bairro, String complemento, CidadeDTO cidade, String pontoReferencia) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;
         this.bairro = bairro;
         this.complemento = complemento;
         this.cidade = cidade;
+        this.pontoReferencia = pontoReferencia;
     }
 
     public UUID getId() {
@@ -117,5 +121,13 @@ public class EnderecoDTO {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public void setPontoReferencia(String pontoReferencia) {
+        this.pontoReferencia = pontoReferencia;
+    }
+
+    public String getPontoReferencia() {
+        return pontoReferencia;
     }
 }

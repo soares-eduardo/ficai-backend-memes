@@ -17,7 +17,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, UUID> {
     @Query("SELECT aluno FROM Aluno aluno WHERE aluno.cpf = :cpf ")
     Optional<Aluno> findByCpf(String cpf);
 
-    @Query("SELECT aluno FROM Aluno aluno " +
+    @Query("SELECT distinct aluno FROM Aluno aluno " +
             "inner join Endereco ende on ende.aluno.id = aluno.id " +
             "inner join Cidade cid on cid.id = ende.cidade.id " +
             "WHERE (aluno.cpf  like %:word% " +

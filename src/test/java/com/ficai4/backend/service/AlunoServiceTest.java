@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import com.ficai4.backend.exceptions.EntityNotFoundException;
 import com.ficai4.backend.exceptions.NotFoundException;
 import org.assertj.core.api.Assertions;
-import org.hibernate.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
@@ -53,6 +53,38 @@ class AlunoServiceTest {
 
         // then
         Mockito.verify(alunoRepository, Mockito.times(1)).findAll();
+    }
+
+    @Test
+    void itShouldReturnAnAlunoById() {
+        // given
+        UUID id = UUID.fromString("9321d951-230f-48e5-8e95-02d74064c413");
+
+        // when
+        Aluno aluno = createAluno();
+        AlunoDTO alunoDto = createAlunoDTO();
+
+        Mockito.when(alunoRepository.findById(id)).thenReturn(Optional.of(aluno));
+        Mockito.when(alunoMapper.toDto(aluno)).thenReturn(alunoDto);
+
+        underTest.findAlunoById(id);
+
+        // then
+        Mockito.verify(alunoRepository, Mockito.times(1)).findById(id);
+    }
+
+    @Test
+    void itShouldThrowAnExceptionWhenFindingById() {
+        // given
+        UUID id = UUID.fromString("9321d951-230f-48e5-8e95-02d74064c413");
+        Aluno aluno = createAluno();
+
+        // when
+        Mockito.when(alunoRepository.findById(id)).thenReturn(Optional.empty());
+
+        // than
+        assertThrows(NotFoundException.class, () -> underTest.findAlunoById(id),
+                "Aluno não encontrado.");
     }
 
     @Test
