@@ -3,6 +3,7 @@ package com.ficai4.backend.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -39,6 +40,11 @@ public class AlunoController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<AlunoDTO>> findAll() {
         return ResponseEntity.ok(alunoService.findAll());
+    }
+
+    @GetMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AlunoDTO> findAlunoById(@RequestParam("id") UUID id) {
+        return ResponseEntity.ok(alunoService.findAlunoById(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -18,6 +18,7 @@ public class TelefoneMapper {
         telefone.setDdd(telefoneDto.getDdd());
         telefone.setNumero(telefoneDto.getNumero());
         telefone.setDataCadastro(telefoneDto.getDataCadastro());
+        telefone.setResponsavel(telefoneDto.getResponsavel());
         
         return telefone;
     }
@@ -33,6 +34,7 @@ public class TelefoneMapper {
         telefoneDto.setDdd(telefone.getDdd());
         telefoneDto.setNumero(telefone.getNumero());
         telefoneDto.setDataCadastro(telefone.getDataCadastro());
+        telefoneDto.setResponsavel(telefone.getResponsavel());
 
         return telefoneDto;
     }

@@ -29,7 +29,7 @@ public class AlunoRepositoryTest {
                 true);
         Cidade cidade = new Cidade("52345", "Caxias Do Sul", "RS");
         Endereco endereco = new Endereco("91360220", "Rua Limoeiro", "135", "Bela Vista",
-                "AP 1709 B", aluno1, cidade);
+                "AP 1709 B", aluno1, cidade, null);
         aluno1.getEnderecos().add(endereco);
 
         underTest.save(aluno1);

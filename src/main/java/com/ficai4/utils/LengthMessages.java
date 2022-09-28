@@ -12,6 +12,7 @@ public class LengthMessages {
 
     public static final String DDD_LENGTH_VALIDATION = "DDD deve ter 3 caracteres.";
     public static final String NUMERO_LENGTH_VALIDATION = "Número do telefone deve ter 9 caracteres.";
+    public static final String RESPONSAVEL_LENGTH_VALIDATION = "Responsável deve ter no máximo 80 caracteres.";
     
     // EnderecoDTO
 
@@ -20,6 +21,7 @@ public class LengthMessages {
     public static final String NUMERO_ENDERECO_LENGTH_VALIDATION = "Logradouro deve ter no máximo 80 caracteres.";
     public static final String BAIRRO_LENGTH_VALIDATION = "Bairro deve ter no máximo 50 caracteres.";
     public static final String COMPLEMENTO_LENGTH_VALIDATION = "Complemento deve ter no máximo 50 caracteres.";
+    public static final String PONTO_REFERENCIA_LENGTH_VALIDATION = "Ponto de referencia deve ter no máximo 500 caracteres.";
 
     // CidadeDTO
 

@@ -3,6 +3,7 @@ package com.ficai4.backend.service;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
@@ -29,6 +30,17 @@ public class AlunoService {
     @Transactional
     public List<AlunoDTO> findAll() {
         return alunoMapper.toDto(alunoRepository.findAll());
+    }
+
+    @Transactional
+    public AlunoDTO findAlunoById(UUID id) {
+        Optional<Aluno> optionalAluno = alunoRepository.findById(id);
+
+        if (optionalAluno.isEmpty()) {
+            throw new NotFoundException("Aluno não encontrado.");
+        }
+        
+        return alunoMapper.toDto(optionalAluno.get());
     }
 
     @Transactional
