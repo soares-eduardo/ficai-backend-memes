@@ -4,8 +4,6 @@ server:
         context-path: /ficai
 
 spring:
-  profiles:
-    active: @activatedProperties@
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
