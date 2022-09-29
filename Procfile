@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVA_OPTS -Pprod -jar target/backend-0.0.1-SNAPSHOT.jar
