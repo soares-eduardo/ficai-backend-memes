@@ -1,26 +1,28 @@
 package com.ficai4.backend;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
+import com.ficai4.backend.enums.SituacaoAluno;
+import com.ficai4.backend.enums.Status;
+import com.ficai4.backend.enums.TipoPerfil;
+import com.ficai4.backend.model.*;
+import com.ficai4.backend.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.ficai4.backend.model.Aluno;
-import com.ficai4.backend.model.Cidade;
-import com.ficai4.backend.model.Endereco;
-import com.ficai4.backend.model.Telefone;
-import com.ficai4.backend.repository.AlunoRepository;
-import com.ficai4.backend.repository.CidadeRepository;
-import com.ficai4.backend.repository.EnderecoRepository;
-import com.ficai4.backend.repository.TelefoneRepository;
 
 @Configuration
 public class BackendConfiguration {
         @Bean
         CommandLineRunner commandLineRunner(AlunoRepository alunoRepository, CidadeRepository cidadeRepository,
-                        EnderecoRepository enderecoRepository, TelefoneRepository telefoneRepository) {
+                                            EnderecoRepository enderecoRepository, TelefoneRepository telefoneRepository, FichaRepository fichaRepository) {
                 return args -> {
+
+                        UUID idUsuario = UUID.fromString("42024b9e-4363-11ed-b878-0242ac120002");
+                        UUID idEscola = UUID.fromString("5eb2f2d4-4363-11ed-b878-0242ac120002");
+                        UUID idMotivo = UUID.fromString("6c3aeb3c-4363-11ed-b878-0242ac120002");
 
                         Aluno aluno1 = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
                                         true);
@@ -57,12 +59,40 @@ public class BackendConfiguration {
                         Endereco endereco4 = new Endereco("91360230", "Rua Jardineiro", "835", "Bela Vista",
                                         "AP 1709 B", aluno1, cidade1, "Em frente ao posto Ipiranga");
 
+                        //Escolas
+                        Escola escola1 = new Escola("12345678", "Dr. martins Costa Jr.", "91234332",
+                                "Rua das Andorinhas", "434", "Prédio", "Cascata", "Caxias do Sul", "RS");
+
+
+                        //Usuarios
+                        Usuario usuario1 = new Usuario("Secretária de Escola", TipoPerfil.CONSELHO_TUTELAR);
+
+
+
+                        //motivoInfrequencia
+                        MotivoInfrequencia motivoInfrequencia = new MotivoInfrequencia("Evasão", "Teste", 2);
+
+                        //Ficha
+                        Ficha ficha1 = new Ficha(SituacaoAluno.EVADIDO, Status.AGUARDANDO_VISITA, "Aluno falta demais",  aluno1, idEscola, idUsuario, idMotivo);
+
+                        //historicoFicha
+                        HistoricoFicha historicoFicha = new HistoricoFicha(LocalDate.now(), "Status teste", "Responsavel teste", ficha1);
+
+                        //visitas
+                        Visita visita = new Visita("Visita teste", "Secretaria teste", false, ficha1, usuario1, LocalDate.now());
+
+                        ficha1.getHistoricoFichas().add(historicoFicha);
+                        ficha1.getVisitas().add(visita);
+
+                        aluno1.getFichas().add(ficha1);
+
                         aluno1.getEnderecos().add(endereco4);
                         aluno1.getEnderecos().add(endereco1);
                         aluno2.getEnderecos().add(endereco2);
                         aluno3.getEnderecos().add(endereco3);
 
                         alunoRepository.saveAll(List.of(aluno1, aluno2, aluno3));
+                        fichaRepository.save(ficha1);
                 };
         }
 }

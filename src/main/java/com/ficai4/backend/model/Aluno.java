@@ -50,6 +50,10 @@ public class Aluno implements Serializable {
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Endereco> enderecos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    private List<Ficha> fichas = new ArrayList<>();
+
+
     public Aluno() {
     }
 
@@ -138,6 +142,17 @@ public class Aluno implements Serializable {
         this.enderecos = enderecos;
         for (Endereco endereco : enderecos) {
             endereco.setAluno(this);
+        }
+    }
+
+    public List<Ficha> getFichas() {
+        return fichas;
+    }
+
+    public void setFichas(List<Ficha> fichas) {
+        this.fichas = fichas;
+        for(Ficha ficha : fichas){
+            ficha.setAluno(this);
         }
     }
 }
