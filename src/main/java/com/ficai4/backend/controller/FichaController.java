@@ -1,6 +1,7 @@
 package com.ficai4.backend.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ficai4.backend.model.dto.FichaDTO;
@@ -33,6 +35,11 @@ public class FichaController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<FichaDTO>> findAll() {
         return ResponseEntity.ok(fichaService.findAll());
+    }
+
+    @GetMapping(value = "/alunoId", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaDTO> findFichaByAlunoId(@RequestParam("alunoId") UUID alunoId) {
+        return ResponseEntity.ok(fichaService.findFichaByAlunoId(alunoId));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
