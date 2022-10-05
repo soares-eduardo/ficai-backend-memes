@@ -43,6 +43,8 @@ public class AlunoDTO {
     @NotNull(message = "Endereco " + NullMessages.NULL_NOT_ALLOWED)
     private List<EnderecoDTO> enderecos;
 
+    // private List<FichaDTO> fichas;
+
     public AlunoDTO() {
     }
 
