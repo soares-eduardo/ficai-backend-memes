@@ -77,7 +77,6 @@ class AlunoServiceTest {
     void itShouldThrowAnExceptionWhenFindingById() {
         // given
         UUID id = UUID.fromString("9321d951-230f-48e5-8e95-02d74064c413");
-        Aluno aluno = createAluno();
 
         // when
         Mockito.when(alunoRepository.findById(id)).thenReturn(Optional.empty());
@@ -212,9 +211,5 @@ class AlunoServiceTest {
 
     private AlunoDTO createAlunoDTO() {
         return Mockito.mock(AlunoDTO.class);
-    }
-
-    private Aluno createAlunoWithFields() {
-        return new Aluno();
     }
 }

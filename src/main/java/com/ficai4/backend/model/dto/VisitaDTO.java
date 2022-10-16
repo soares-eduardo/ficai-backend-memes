@@ -3,33 +3,37 @@ package com.ficai4.backend.model.dto;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class VisitaDTO {
+import javax.validation.constraints.NotNull;
 
-    //TODO Validar os campos
+import org.hibernate.validator.constraints.Length;
+
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
+
+public class VisitaDTO {
 
     private UUID id;
 
+    @NotNull(message = "Descrição " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 200, message = LengthMessages.CEP_LENGTH_VALIDATION)
     private String descricao;
 
-    private String responvelVisita;
+    @NotNull(message = "Responsável pela vista " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 80, message = LengthMessages.CEP_LENGTH_VALIDATION)
+    private String responsavelVisita;
 
+    @NotNull(message = "Teve sucesso " + NullMessages.NULL_NOT_ALLOWED)
     private Boolean teveSucesso;
-
-    private FichaDTO ficha;
-
-    private UsuarioDTO usuario;
 
     private LocalDate dataVisita;
 
     public VisitaDTO() {
     }
 
-    public VisitaDTO(String descricao, String responvelVisita, Boolean teveSucesso, FichaDTO ficha, UsuarioDTO usuario, LocalDate dataVisita) {
+    public VisitaDTO(String descricao, String responsavelVisita, Boolean teveSucesso, LocalDate dataVisita) {
         this.descricao = descricao;
-        this.responvelVisita = responvelVisita;
+        this.responsavelVisita = responsavelVisita;
         this.teveSucesso = teveSucesso;
-        this.ficha = ficha;
-        this.usuario = usuario;
         this.dataVisita = dataVisita;
     }
 
@@ -49,12 +53,12 @@ public class VisitaDTO {
         this.descricao = descricao;
     }
 
-    public String getResponvelVisita() {
-        return this.responvelVisita;
+    public String getResponsavelVisita() {
+        return this.responsavelVisita;
     }
 
-    public void setResponvelVisita(String responvelVisita) {
-        this.responvelVisita = responvelVisita;
+    public void setResponsavelVisita(String responsavelVisita) {
+        this.responsavelVisita = responsavelVisita;
     }
 
     public Boolean isTeveSucesso() {
@@ -67,22 +71,6 @@ public class VisitaDTO {
 
     public void setTeveSucesso(Boolean teveSucesso) {
         this.teveSucesso = teveSucesso;
-    }
-
-    public FichaDTO getFicha() {
-        return this.ficha;
-    }
-
-    public void setFicha(FichaDTO ficha) {
-        this.ficha = ficha;
-    }
-
-    public UsuarioDTO getUsuario() {
-        return this.usuario;
-    }
-
-    public void setUsuario(UsuarioDTO usuario) {
-        this.usuario = usuario;
     }
 
     public LocalDate getDataVisita() {

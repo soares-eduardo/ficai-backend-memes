@@ -30,6 +30,9 @@ public class Ficha implements Serializable {
     @Column(nullable = false, name = "motivo_complemento")
     private String motivoComplemento;
 
+    @Column(nullable = false, name = "responsavel")
+    private Integer responsavel;
+
     @Column(nullable = false, name = "data_cadastro")
     @UpdateTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -41,9 +44,6 @@ public class Ficha implements Serializable {
 
     @Column(nullable = true, name = "id_escola")
     private UUID idEscola;
-
-    @Column(nullable = false, name = "id_usuario")
-    private UUID idUsuario;
 
     @Column(nullable = true, name = "id_motivo_infrequencia")
     private UUID idMotivoInfrequencia;
@@ -57,16 +57,14 @@ public class Ficha implements Serializable {
     public Ficha() {
     }
 
-    public Ficha(SituacaoAluno situacaoAluno, Status status, String motivoComplemento, Aluno aluno, UUID idEscola,
-            UUID idUsuario, UUID idMotivoInfrequencia) {
+    public Ficha(SituacaoAluno situacaoAluno, Status status, String motivoComplemento, Aluno aluno, UUID idEscola, UUID idMotivoInfrequencia, Integer responsavel) {
         setSituacaoAluno(situacaoAluno);
         setStatus(status);
         this.motivoComplemento = motivoComplemento;
-        // this.dataCadastro = dataCadastro;
         this.aluno = aluno;
         this.idEscola = idEscola;
-        this.idUsuario = idUsuario;
         this.idMotivoInfrequencia = idMotivoInfrequencia;
+        this.responsavel = responsavel;
     }
 
     public UUID getId() {
@@ -137,14 +135,6 @@ public class Ficha implements Serializable {
         this.idEscola = idEscola;
     }
 
-    public UUID getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public List<Visita> getVisitas() {
         return visitas;
     }
@@ -173,5 +163,13 @@ public class Ficha implements Serializable {
                 historico.setFicha(this);
             }
         }
+    }
+
+    public Integer getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Integer responsavel) {
+        this.responsavel = responsavel;
     }
 }

@@ -30,6 +30,7 @@ public class AlunoMapper {
         aluno.setBeneficiarioRenda(alunoDto.isBeneficiarioRenda());
         aluno.setBeneficiarioBpc(alunoDto.isBeneficiarioBpc());
         aluno.setEnderecos(enderecoMapper.toEntity(alunoDto.getEnderecos()));
+        aluno.setDataNascimento(alunoDto.getDataNascimento());
 
         return aluno;
     }
@@ -46,6 +47,7 @@ public class AlunoMapper {
         alunoDto.setBeneficiarioRenda(aluno.isBeneficiarioRenda());
         alunoDto.setBeneficiarioBpc(aluno.isBeneficiarioBpc());
         alunoDto.setEnderecos(enderecoMapper.toDto(aluno.getEnderecos()));
+        alunoDto.setDataNascimento(aluno.getDataNascimento());
 
         return alunoDto;
     }

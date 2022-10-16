@@ -3,28 +3,34 @@ package com.ficai4.backend.model.dto;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class HistoricoFichaDTO {
+import javax.validation.constraints.NotNull;
 
-    //TODO Validar os campos
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
+
+public class HistoricoFichaDTO {
 
     private UUID id;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
-    private String status;
+    @NotNull(message = "Status " + NullMessages.NULL_NOT_ALLOWED)
+    private Integer status;
 
-    private String responsavel;
-
-    private FichaDTO ficha;
+    @NotNull(message = "Responsável " + NullMessages.NULL_NOT_ALLOWED)
+    private Integer responsavel;
 
     public HistoricoFichaDTO() {
     }
 
-    public HistoricoFichaDTO(LocalDate dataCadastro, String status, String responsavel, FichaDTO ficha) {
+    public HistoricoFichaDTO(LocalDate dataCadastro, Integer status, Integer responsavel) {
         this.dataCadastro = dataCadastro;
         this.status = status;
         this.responsavel = responsavel;
-        this.ficha = ficha;
     }
 
     public UUID getId() {
@@ -43,28 +49,19 @@ public class HistoricoFichaDTO {
         this.dataCadastro = dataCadastro;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return this.status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getResponsavel() {
+    public Integer getResponsavel() {
         return this.responsavel;
     }
 
-    public void setResponsavel(String responsavel) {
+    public void setResponsavel(Integer responsavel) {
         this.responsavel = responsavel;
-    }
-
-    public FichaDTO getFicha() {
-        return this.ficha;
-    }
-
-    public void setFicha(FichaDTO ficha) {
-        this.ficha = ficha;
-    }
-        
+    }   
 }

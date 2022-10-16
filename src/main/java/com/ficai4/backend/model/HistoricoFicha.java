@@ -23,10 +23,10 @@ public class HistoricoFicha implements Serializable {
     private LocalDate dataCadastro;
 
     @Column(nullable = false, name = "status", length = 80)
-    private String status;
+    private Integer status;
 
     @Column(nullable = false, name = "responsavel", length = 80)
-    private String responsavel;
+    private Integer responsavel;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     @JoinColumn(name = "ficha_id")
@@ -35,7 +35,7 @@ public class HistoricoFicha implements Serializable {
     public HistoricoFicha() {
     }
 
-    public HistoricoFicha(LocalDate dataCadastro, String status, String responsavel, Ficha ficha) {
+    public HistoricoFicha(LocalDate dataCadastro, Integer status, Integer responsavel, Ficha ficha) {
         this.dataCadastro = dataCadastro;
         this.status = status;
         this.responsavel = responsavel;
@@ -58,19 +58,19 @@ public class HistoricoFicha implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
-    public String getResponsavel() {
+    public Integer getResponsavel() {
         return responsavel;
     }
 
-    public void setResponsavel(String responsavel) {
+    public void setResponsavel(Integer responsavel) {
         this.responsavel = responsavel;
     }
 

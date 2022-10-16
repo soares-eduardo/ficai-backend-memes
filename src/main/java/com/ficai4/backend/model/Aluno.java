@@ -1,6 +1,7 @@
 package com.ficai4.backend.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -14,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "tb_aluno")
@@ -44,6 +47,9 @@ public class Aluno implements Serializable {
     @Column(nullable = false, name = "beneficiario_bpc")
     private Boolean beneficiarioBpc;
 
+    @Column(nullable = false, name = "data_nascimento")
+    private LocalDate dataNascimento;
+
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Telefone> telefones = new ArrayList<>();
 
@@ -58,13 +64,14 @@ public class Aluno implements Serializable {
     }
 
     public Aluno(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
-            Boolean beneficiarioRenda, Boolean beneficiarioBpc) {
+            Boolean beneficiarioRenda, Boolean beneficiarioBpc, LocalDate dataNascimento) {
         this.cpf = cpf;
         this.nome = nome;
         this.responsavelPrimario = responsavelPrimario;
         this.responsavelSecundario = responsavelSecundario;
         this.beneficiarioRenda = beneficiarioRenda;
         this.beneficiarioBpc = beneficiarioBpc;
+        this.dataNascimento = dataNascimento;
     }
 
     public UUID getId() {
@@ -154,5 +161,13 @@ public class Aluno implements Serializable {
         for(Ficha ficha : fichas){
             ficha.setAluno(this);
         }
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }
