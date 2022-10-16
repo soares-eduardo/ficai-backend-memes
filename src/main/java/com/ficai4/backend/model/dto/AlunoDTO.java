@@ -1,5 +1,6 @@
 package com.ficai4.backend.model.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ficai4.utils.LengthMessages;
 import com.ficai4.utils.NullMessages;
 
@@ -35,6 +37,10 @@ public class AlunoDTO {
     @NotNull(message = "Beneficiario BPC " + NullMessages.NULL_NOT_ALLOWED)
     private Boolean beneficiarioBpc;
 
+    @NotNull(message = "Data de nascimento " + NullMessages.NULL_NOT_ALLOWED)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate dataNascimento;
+
     @Valid
     @NotNull(message = "Telefone " + NullMessages.NULL_NOT_ALLOWED)
     private List<TelefoneDTO> telefones;
@@ -42,8 +48,6 @@ public class AlunoDTO {
     @Valid
     @NotNull(message = "Endereco " + NullMessages.NULL_NOT_ALLOWED)
     private List<EnderecoDTO> enderecos;
-
-    // private List<FichaDTO> fichas;
 
     public AlunoDTO() {
     }
@@ -139,5 +143,13 @@ public class AlunoDTO {
 
     public void setEnderecos(List<EnderecoDTO> enderecos) {
         this.enderecos = enderecos;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 }

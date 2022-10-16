@@ -36,11 +36,11 @@ public class FichaMapper {
         ficha.setId(fichaDto.getId());
         ficha.setIdEscola(fichaDto.getIdEscola());
         ficha.setIdMotivoInfrequencia(fichaDto.getIdMotivoInfrequencia());
-        ficha.setIdUsuario(fichaDto.getIdUsuario());
         ficha.setMotivoComplemento(fichaDto.getMotivoComplemento());
         ficha.setSituacaoAluno(SituacaoAluno.valueOf(fichaDto.getSituacaoAluno()));
         ficha.setStatus(Status.valueOf(fichaDto.getStatus()));
         ficha.setVisitas(visitaMapper.toEntity(fichaDto.getVisitas()));
+        ficha.setResponsavel(fichaDto.getResponsavel());
 
         return ficha;
     }
@@ -58,11 +58,11 @@ public class FichaMapper {
         fichaDto.setId(ficha.getId());
         fichaDto.setIdEscola(ficha.getIdEscola());
         fichaDto.setIdMotivoInfrequencia(ficha.getIdMotivoInfrequencia());
-        fichaDto.setIdUsuario(ficha.getIdUsuario());
         fichaDto.setMotivoComplemento(ficha.getMotivoComplemento());
         fichaDto.setSituacaoAluno(ficha.getSituacaoAluno().getCode());
         fichaDto.setStatus(ficha.getStatus().getCode());
         fichaDto.setVisitas(visitaMapper.toDto(ficha.getVisitas()));
+        fichaDto.setResponsavel(ficha.getResponsavel());
 
         return fichaDto;
     }

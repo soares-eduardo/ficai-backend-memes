@@ -3,7 +3,6 @@ package com.ficai4.backend.mapper;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ficai4.backend.model.Visita;
@@ -18,7 +17,7 @@ public class VisitaMapper {
         visita.setDataVisita(visitaDto.getDataVisita());
         visita.setDescricao(visitaDto.getDescricao());
         visita.setId(visitaDto.getId());
-        visita.setResponvelVisita(visitaDto.getResponvelVisita());
+        visita.setResponsavelVisita(visitaDto.getResponsavelVisita());
         visita.setTeveSucesso(visitaDto.getTeveSucesso());
 
         return visita;
@@ -34,7 +33,7 @@ public class VisitaMapper {
         visitaDto.setDataVisita(visita.getDataVisita());
         visitaDto.setDescricao(visita.getDescricao());
         visitaDto.setId(visita.getId());
-        visitaDto.setResponvelVisita(visita.getResponvelVisita());
+        visitaDto.setResponsavelVisita(visita.getResponsavelVisita());
         visitaDto.setTeveSucesso(visita.getTeveSucesso());
 
         return visitaDto;

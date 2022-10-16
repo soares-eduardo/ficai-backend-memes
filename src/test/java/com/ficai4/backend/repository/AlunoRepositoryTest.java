@@ -1,11 +1,11 @@
 package com.ficai4.backend.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import com.ficai4.backend.model.Cidade;
 import com.ficai4.backend.model.Endereco;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,8 +25,8 @@ public class AlunoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        Aluno aluno1 = new Aluno("60076180050", "Eduardo Soares", "Vinicio Muller", "Maria Souto", true,
-                true);
+        Aluno aluno1 = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
+                                        true, LocalDate.now());
         Cidade cidade = new Cidade("52345", "Caxias Do Sul", "RS");
         Endereco endereco = new Endereco("91360220", "Rua Limoeiro", "135", "Bela Vista",
                 "AP 1709 B", aluno1, cidade, null);

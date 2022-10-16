@@ -2,7 +2,6 @@ package com.ficai4.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -24,7 +23,7 @@ public class Visita implements Serializable {
     private String descricao;
 
     @Column(nullable = false, name = "responsavel_visita", length = 80)
-    private String responvelVisita;
+    private String responsavelVisita;
 
     @Column(nullable = false, name = "teve_sucesso")
     private Boolean teveSucesso;
@@ -34,11 +33,6 @@ public class Visita implements Serializable {
     @JsonBackReference
     private Ficha ficha;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
-    @JoinColumn(name = "usuario_id")
-    @JsonBackReference
-    private Usuario usuario;
-
     @Column(nullable = false, name = "data_visita")
     @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
@@ -47,12 +41,11 @@ public class Visita implements Serializable {
     public Visita() {
     }
 
-    public Visita(String descricao, String responvelVisita, Boolean teveSucesso, Ficha ficha, Usuario usuario, LocalDate dataVisita) {
+    public Visita(String descricao, String responsavelVisita, Boolean teveSucesso, Ficha ficha, LocalDate dataVisita) {
         this.descricao = descricao;
-        this.responvelVisita = responvelVisita;
+        this.responsavelVisita = responsavelVisita;
         this.teveSucesso = teveSucesso;
         this.ficha = ficha;
-        this.usuario = usuario;
         this.dataVisita = dataVisita;
     }
 
@@ -72,12 +65,12 @@ public class Visita implements Serializable {
         this.descricao = descricao;
     }
 
-    public String getResponvelVisita() {
-        return responvelVisita;
+    public String getResponsavelVisita() {
+        return responsavelVisita;
     }
 
-    public void setResponvelVisita(String responvelVisita) {
-        this.responvelVisita = responvelVisita;
+    public void setResponsavelVisita(String responsavelVisita) {
+        this.responsavelVisita = responsavelVisita;
     }
 
     public Boolean getTeveSucesso() {
@@ -94,14 +87,6 @@ public class Visita implements Serializable {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public LocalDate getDataVisita() {

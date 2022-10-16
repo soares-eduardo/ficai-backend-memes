@@ -2,28 +2,50 @@ package com.ficai4.backend.model.dto;
 
 import java.util.UUID;
 
-public class EscolaDTO {
+import javax.validation.constraints.NotNull;
 
-    // TODO Validar os campos
+import org.hibernate.validator.constraints.Length;
+
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
+
+public class EscolaDTO {
 
     private UUID id;
 
+    @NotNull(message = "Escola INEP " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 8, min = 8, message = LengthMessages.ESCOLA_INEP_VALIDATION)
     private String escolaInep;
 
+    @NotNull(message = "Nome " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 50, message = LengthMessages.NOME_ESCOLA_VALIDATION)
     private String nome;
 
+    @NotNull(message = "CEP " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 9, min = 9, message = LengthMessages.CEP_LENGTH_VALIDATION)
     private String cep;
 
+    @NotNull(message = "Logradouro " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 80, message = LengthMessages.LOGRADOURO_LENGTH_VALIDATION)
     private String logradouro;
 
+    @NotNull(message = "Número " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 9, message = LengthMessages.NUMERO_LENGTH_VALIDATION)
     private String numero;
 
+    @Length(max = 50, message = LengthMessages.COMPLEMENTO_LENGTH_VALIDATION)
     private String complemento;
 
+    @NotNull(message = "Bairro " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 50, message = LengthMessages.BAIRRO_LENGTH_VALIDATION)
     private String bairro;
 
+    @NotNull(message = "Cidade " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 50, message = LengthMessages.CIDADE_VALIDATION)
     private String cidade;
 
+    @NotNull(message = "Estado " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 2, message = LengthMessages.ESTADO_VALIDATION)
     private String estado;
 
     public EscolaDTO() {

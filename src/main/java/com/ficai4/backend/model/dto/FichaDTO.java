@@ -5,48 +5,66 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class FichaDTO {
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
-    //TODO Validar os campos
+import org.hibernate.validator.constraints.Length;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ficai4.utils.LengthMessages;
+import com.ficai4.utils.NullMessages;
+
+public class FichaDTO {
 
     private UUID id;
 
+    @NotNull(message = "Situação do aluno " + NullMessages.NULL_NOT_ALLOWED)
     private Integer situacaoAluno;
 
+    @NotNull(message = "Status " + NullMessages.NULL_NOT_ALLOWED)
     private Integer status;
 
+    @NotNull(message = "Responsável " + NullMessages.NULL_NOT_ALLOWED)
+    private Integer responsavel;
+
+    @NotNull(message = "Motivo do complemento " + NullMessages.NULL_NOT_ALLOWED)
+    @Length(max = 255, message = LengthMessages.MOTIVO_COMPLEMENTO_VALIDATION)
     private String motivoComplemento;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataCadastro;
 
+    @NotNull(message = "ID do aluno " + NullMessages.NULL_NOT_ALLOWED)
     private UUID aluno;
 
+    @NotNull(message = "ID da escola " + NullMessages.NULL_NOT_ALLOWED)
     private UUID idEscola;
 
-    private UUID idUsuario;
-
+    @NotNull(message = "ID do motivo da infrequencia " + NullMessages.NULL_NOT_ALLOWED)
     private UUID idMotivoInfrequencia;
 
+    @Valid
     private List<VisitaDTO> visitas = new ArrayList<>();
 
+    @Valid
     private List<HistoricoFichaDTO> historicoFichas = new ArrayList<>();
 
     public FichaDTO() {
     }
 
     public FichaDTO(Integer situacaoAluno, Integer status, String motivoComplemento, LocalDate dataCadastro,
-            UUID aluno, UUID idEscola, UUID idUsuario, UUID idMotivoInfrequencia, List<VisitaDTO> visitas,
-            List<HistoricoFichaDTO> historicoFichas) {
+            UUID aluno, UUID idEscola, UUID idMotivoInfrequencia, List<VisitaDTO> visitas,
+            List<HistoricoFichaDTO> historicoFichas, Integer responsavel) {
         this.situacaoAluno = situacaoAluno;
         this.status = status;
         this.motivoComplemento = motivoComplemento;
         this.dataCadastro = dataCadastro;
         this.aluno = aluno;
         this.idEscola = idEscola;
-        this.idUsuario = idUsuario;
         this.idMotivoInfrequencia = idMotivoInfrequencia;
         this.visitas = visitas;
         this.historicoFichas = historicoFichas;
+        this.responsavel = responsavel;
     }
 
     public UUID getId() {
@@ -105,14 +123,6 @@ public class FichaDTO {
         this.idEscola = idEscola;
     }
 
-    public UUID getIdUsuario() {
-        return this.idUsuario;
-    }
-
-    public void setIdUsuario(UUID idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
     public UUID getIdMotivoInfrequencia() {
         return this.idMotivoInfrequencia;
     }
@@ -135,5 +145,13 @@ public class FichaDTO {
 
     public void setHistoricoFichas(List<HistoricoFichaDTO> historicoFichas) {
         this.historicoFichas = historicoFichas;
+    }
+
+    public Integer getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(Integer responsavel) {
+        this.responsavel = responsavel;
     }
 }

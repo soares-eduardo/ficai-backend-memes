@@ -74,6 +74,5 @@ public class AlunoController {
             errors.put(fieldName, errorMessage);
         });
         return errors;
-
     }
 }
