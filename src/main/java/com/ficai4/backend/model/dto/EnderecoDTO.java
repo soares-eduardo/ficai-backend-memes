@@ -32,7 +32,6 @@ public class EnderecoDTO {
     @Length(max = 50, message = LengthMessages.BAIRRO_LENGTH_VALIDATION)
     private String bairro;
 
-    @NotNull(message = "Complemento " + NullMessages.NULL_NOT_ALLOWED)
     @Length(max = 50, message = LengthMessages.COMPLEMENTO_LENGTH_VALIDATION)
     private String complemento;
 
