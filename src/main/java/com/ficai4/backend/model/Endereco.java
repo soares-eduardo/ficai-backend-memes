@@ -48,7 +48,7 @@ public class Endereco implements Serializable {
     @Column(nullable = false, name = "bairro", length = 50)
     private String bairro;
 
-    @Column(nullable = false, name = "complemento", length = 50)
+    @Column(name = "complemento", length = 50)
     private String complemento;
 
     @Column(name = "pontoReferencia", length = 500)
