@@ -2,11 +2,9 @@ package com.ficai4.backend;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import com.ficai4.backend.enums.SituacaoAluno;
 import com.ficai4.backend.enums.Status;
-import com.ficai4.backend.enums.TipoPerfil;
 import com.ficai4.backend.model.*;
 import com.ficai4.backend.repository.*;
 import org.springframework.boot.CommandLineRunner;
@@ -46,7 +44,7 @@ public class BackendConfiguration {
                         Endereco endereco3 = new Endereco("91360-220", "Avenida Ipiranga", "344", "Bom Fim",
                                         "AP 1709 B", aluno3, cidade3, null);
 
-                        Endereco endereco4 = new Endereco("91360230", "Rua Jardineiro", "835", "Bela Vista",
+                        Endereco endereco4 = new Endereco("91360-230", "Rua Jardineiro", "835", "Bela Vista",
                                         "AP 1709 B", aluno1, cidade1, "Em frente ao posto Ipiranga");
 
                         //Escolas

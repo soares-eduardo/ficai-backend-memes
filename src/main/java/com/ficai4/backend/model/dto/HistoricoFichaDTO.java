@@ -5,10 +5,7 @@ import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ficai4.utils.LengthMessages;
 import com.ficai4.utils.NullMessages;
 
 public class HistoricoFichaDTO {
