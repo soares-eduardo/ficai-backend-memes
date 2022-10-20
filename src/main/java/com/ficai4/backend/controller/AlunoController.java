@@ -44,7 +44,7 @@ public class AlunoController {
 
     @GetMapping(value = "/id", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AlunoDTO> findAlunoById(@RequestParam("id") UUID id) {
-        return ResponseEntity.ok(alunoService.findAlunoById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(alunoService.findAlunoById(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -60,7 +60,7 @@ public class AlunoController {
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AlunoDTO> update(@Valid @RequestBody AlunoDTO dto) {
-        return ResponseEntity.ok(alunoService.update(dto));
+        return ResponseEntity.status(HttpStatus.OK).body(alunoService.update(dto));
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

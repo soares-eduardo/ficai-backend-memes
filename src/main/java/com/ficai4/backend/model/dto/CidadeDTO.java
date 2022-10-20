@@ -26,7 +26,7 @@ public class CidadeDTO {
     public CidadeDTO() {
     }
 
-    public CidadeDTO(String codigoIbge, String nome, String ufSigla, List<EnderecoDTO> endereco) {
+    public CidadeDTO(String codigoIbge, String nome, String ufSigla) {
         this.codigoIbge = codigoIbge;
         this.nome = nome;
         this.ufSigla = ufSigla;
