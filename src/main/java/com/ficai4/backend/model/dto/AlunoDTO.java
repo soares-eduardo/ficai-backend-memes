@@ -54,7 +54,7 @@ public class AlunoDTO {
 
     public AlunoDTO(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
             Boolean beneficiarioRenda, Boolean beneficiarioBpc, List<TelefoneDTO> telefones,
-            List<EnderecoDTO> enderecos) {
+            List<EnderecoDTO> enderecos, LocalDate dataNascimento) {
         this.cpf = cpf;
         this.nome = nome;
         this.responsavelPrimario = responsavelPrimario;
@@ -63,6 +63,7 @@ public class AlunoDTO {
         this.beneficiarioBpc = beneficiarioBpc;
         this.telefones = telefones;
         this.enderecos = enderecos;
+        this.dataNascimento = dataNascimento;
     }
 
     public UUID getId() {

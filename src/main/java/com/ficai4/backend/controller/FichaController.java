@@ -45,7 +45,7 @@ public class FichaController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaDTO> createFicha(@Valid @RequestBody FichaDTO fichaDto) {
-       return ResponseEntity.ok(fichaService.createFicha(fichaDto)); 
+       return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto)); 
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
