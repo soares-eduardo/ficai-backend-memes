@@ -11,6 +11,7 @@
 	<groupId>com.ficai4</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>backend</name>
 	<description>Backend project for FICAI 4.0</description>
 	<properties>
@@ -55,19 +56,28 @@
 
 	<profiles>
         <profile>
-            <id>remote</id>
+            <id>dev</id>
             <properties>
-                <activatedProperties>remote</activatedProperties>
+                <activatedProperties>dev</activatedProperties>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
 		<profile>
+            <id>prod</id>
+            <properties>
+                <activatedProperties>prod</activatedProperties>
+            </properties>
+        </profile>
+		<profile>
             <id>local</id>
             <properties>
                 <activatedProperties>local</activatedProperties>
             </properties>
+			<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 
