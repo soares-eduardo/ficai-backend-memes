@@ -142,9 +142,11 @@ public class Ficha implements Serializable {
     public void setVisitas(List<Visita> visitas) {
 
         if (!visitas.isEmpty()) {
-            this.visitas = visitas;
+            getVisitas().addAll(visitas);
+            
+            this.visitas = getVisitas();
 
-            for (Visita visita : visitas) {
+            for (Visita visita : getVisitas()) {
                 visita.setFicha(this);
             }
         }

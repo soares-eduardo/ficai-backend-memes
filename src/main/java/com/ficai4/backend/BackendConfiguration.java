@@ -66,12 +66,8 @@ public class BackendConfiguration {
                         HistoricoFicha historicoFicha = new HistoricoFicha(LocalDate.now(), 2,
                                         1, ficha1);
 
-                        // visitas
-                        Visita visita = new Visita("Visita teste", "Secretaria teste", false, ficha1,
-                                        LocalDate.now());
 
                         ficha1.getHistoricoFichas().add(historicoFicha);
-                        ficha1.getVisitas().add(visita);
 
                         aluno1.getFichas().add(ficha1);
 

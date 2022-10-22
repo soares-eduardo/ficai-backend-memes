@@ -54,4 +54,8 @@ public class LengthMessages {
     // FichaDTO
 
     public static final String MOTIVO_COMPLEMENTO_VALIDATION = "Motivo do complemento deve ter no máximo 255.";
+
+    // UUID
+
+    public static final String UUID_LENGTH_VALIDATION = "Id deve conter 32 digitos.";
 }
