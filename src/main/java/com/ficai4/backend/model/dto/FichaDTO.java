@@ -24,7 +24,6 @@ public class FichaDTO {
     @NotNull(message = "Status " + NullMessages.NULL_NOT_ALLOWED)
     private Integer status;
 
-    @NotNull(message = "Responsável " + NullMessages.NULL_NOT_ALLOWED)
     private Integer responsavel;
 
     @NotNull(message = "Motivo do complemento " + NullMessages.NULL_NOT_ALLOWED)
@@ -37,10 +36,8 @@ public class FichaDTO {
     @NotNull(message = "ID do aluno " + NullMessages.NULL_NOT_ALLOWED)
     private UUID aluno;
 
-    @NotNull(message = "ID da escola " + NullMessages.NULL_NOT_ALLOWED)
     private UUID idEscola;
 
-    @NotNull(message = "ID do motivo da infrequencia " + NullMessages.NULL_NOT_ALLOWED)
     private UUID idMotivoInfrequencia;
 
     @Valid

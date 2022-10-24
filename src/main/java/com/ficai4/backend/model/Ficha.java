@@ -30,7 +30,7 @@ public class Ficha implements Serializable {
     @Column(nullable = false, name = "motivo_complemento")
     private String motivoComplemento;
 
-    @Column(nullable = false, name = "responsavel")
+    @Column(nullable = true, name = "responsavel")
     private Integer responsavel;
 
     @Column(nullable = false, name = "data_cadastro")
