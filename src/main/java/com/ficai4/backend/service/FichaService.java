@@ -3,12 +3,9 @@ package com.ficai4.backend.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.exceptions.NotFoundException;
 import com.ficai4.backend.mapper.FichaMapper;
@@ -67,11 +64,23 @@ public class FichaService {
     }
 
     @Transactional
+    public FichaDTO updateStatusFicha(UUID idFicha, Status statusFicha) {  
+
+        Optional<Ficha> ficha = fichaRepository.findById(idFicha);
+        
+        if(ficha.isEmpty()){
+            throw new NotFoundException("Ficha não encontrada com o id informado.");
+        }
+        
+        ficha.get().setStatus(statusFicha);
+
+        return fichaMapper.toDto(ficha.get());
+
     public VisitaDTO createVisita(VisitaDTO visitaDto) {
 
         Ficha ficha = fichaRepository.findById(visitaDto.getFichaId())
                 .orElseThrow(() -> new NotFoundException("Ficha não encontrada com o id informado."));
-        
+
         ficha.setVisitas(List.of(visitaMapper.toEntity(visitaDto)));
 
         int sizeVisitaList = ficha.getVisitas().size();
