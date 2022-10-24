@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.FichaService;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +48,11 @@ public class FichaController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaDTO> createFicha(@Valid @RequestBody FichaDTO fichaDto) {
        return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto)); 
+    }
+
+    @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VisitaDTO> createVisita(@Valid @RequestBody VisitaDTO visitaDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createVisita(visitaDto));
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

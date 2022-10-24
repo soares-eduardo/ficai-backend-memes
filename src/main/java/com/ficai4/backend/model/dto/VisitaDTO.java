@@ -14,6 +14,8 @@ public class VisitaDTO {
 
     private UUID id;
 
+    private UUID fichaId;
+
     @NotNull(message = "Descrição " + NullMessages.NULL_NOT_ALLOWED)
     @Length(max = 200, message = LengthMessages.CEP_LENGTH_VALIDATION)
     private String descricao;
@@ -35,6 +37,14 @@ public class VisitaDTO {
         this.responsavelVisita = responsavelVisita;
         this.teveSucesso = teveSucesso;
         this.dataVisita = dataVisita;
+    }
+
+    public VisitaDTO(String descricao, String responsavelVisita, Boolean teveSucesso, LocalDate dataVisita, UUID fichaId) {
+        this.descricao = descricao;
+        this.responsavelVisita = responsavelVisita;
+        this.teveSucesso = teveSucesso;
+        this.dataVisita = dataVisita;
+        this.fichaId = fichaId;
     }
 
     public UUID getId() {
@@ -80,4 +90,12 @@ public class VisitaDTO {
     public void setDataVisita(LocalDate dataVisita) {
         this.dataVisita = dataVisita;
     }    
+
+    public UUID getFichaId() {
+        return fichaId;
+    }
+
+    public void setFichaId(UUID fichaId) {
+        this.fichaId = fichaId;
+    }
 }
