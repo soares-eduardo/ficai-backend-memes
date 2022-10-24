@@ -75,6 +75,7 @@ public class FichaService {
         ficha.get().setStatus(statusFicha);
 
         return fichaMapper.toDto(ficha.get());
+    }
 
     public VisitaDTO createVisita(VisitaDTO visitaDto) {
 
