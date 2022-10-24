@@ -48,16 +48,16 @@ public class FichaService {
     @Transactional
     public FichaDTO createFicha(FichaDTO fichaDto) {
 
-        Optional<Escola> escola = escolaRepository.findById(fichaDto.getIdEscola());
-        if (escola.isEmpty()) {
-            throw new NotFoundException("Escola não encontrada com o id informado.");
-        }
+        // Optional<Escola> escola = escolaRepository.findById(fichaDto.getIdEscola());
+        // if (escola.isEmpty()) {
+        //     throw new NotFoundException("Escola não encontrada com o id informado.");
+        // }
 
-        Optional<MotivoInfrequencia> motivoInfrequencia = motivoInfrequenciaRepositoy
-                .findById(fichaDto.getIdMotivoInfrequencia());
-        if (motivoInfrequencia.isEmpty()) {
-            throw new NotFoundException("Motivo da infrequencia não encontrado com o id informado.");
-        }
+        // Optional<MotivoInfrequencia> motivoInfrequencia = motivoInfrequenciaRepositoy
+        //         .findById(fichaDto.getIdMotivoInfrequencia());
+        // if (motivoInfrequencia.isEmpty()) {
+        //     throw new NotFoundException("Motivo da infrequencia não encontrado com o id informado.");
+        // }
 
         Ficha ficha = fichaMapper.toEntity(fichaDto);
 
