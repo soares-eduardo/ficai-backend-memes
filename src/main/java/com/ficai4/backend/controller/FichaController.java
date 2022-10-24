@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.model.dto.FichaDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.FichaService;
@@ -53,6 +54,11 @@ public class FichaController {
     @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VisitaDTO> createVisita(@Valid @RequestBody VisitaDTO visitaDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createVisita(visitaDto));
+    }
+
+    @PostMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaDTO> updateStatusFicha(@Valid @RequestParam UUID idFicha, Status statusFicha) {
+       return ResponseEntity.ok(fichaService.updateStatusFicha(idFicha, statusFicha)); 
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
