@@ -9,5 +9,5 @@ import com.ficai4.backend.model.Visita;
 
 @Repository
 public interface VisitaRepository extends JpaRepository<Visita, UUID> {
-    
+
 }

@@ -41,11 +41,11 @@ public class Escola implements Serializable {
     @Column(nullable = false, name = "estado", length = 2)
     private String estado;
 
-
     public Escola() {
     }
 
-    public Escola(String escolaInep, String nome, String cep, String logradouro, String numero, String complemento, String bairro, String cidade, String estado) {
+    public Escola(String escolaInep, String nome, String cep, String logradouro, String numero, String complemento,
+            String bairro, String cidade, String estado) {
         this.escolaInep = escolaInep;
         this.nome = nome;
         this.cep = cep;

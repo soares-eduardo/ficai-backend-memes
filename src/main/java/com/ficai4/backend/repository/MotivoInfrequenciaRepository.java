@@ -9,5 +9,5 @@ import com.ficai4.backend.model.MotivoInfrequencia;
 
 @Repository
 public interface MotivoInfrequenciaRepository extends JpaRepository<MotivoInfrequencia, UUID> {
-    
+
 }

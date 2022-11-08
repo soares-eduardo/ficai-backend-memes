@@ -57,7 +57,6 @@ public class Aluno implements Serializable {
     @OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Ficha> fichas = new ArrayList<>();
 
-
     public Aluno() {
     }
 
@@ -156,7 +155,7 @@ public class Aluno implements Serializable {
 
     public void setFichas(List<Ficha> fichas) {
         this.fichas = fichas;
-        for(Ficha ficha : fichas){
+        for (Ficha ficha : fichas) {
             ficha.setAluno(this);
         }
     }

@@ -28,11 +28,11 @@ public class EscolaMapper {
         return escola;
     }
 
-    public List<Escola> toEntity (List<EscolaDTO> listEscolaDto) {
+    public List<Escola> toEntity(List<EscolaDTO> listEscolaDto) {
         return listEscolaDto.stream().map(this::toEntity).collect(Collectors.toList());
     }
 
-    public EscolaDTO toDto (Escola escola) {
+    public EscolaDTO toDto(Escola escola) {
         EscolaDTO escolaDto = new EscolaDTO();
 
         escolaDto.setBairro(escola.getBairro());
@@ -49,7 +49,7 @@ public class EscolaMapper {
         return escolaDto;
     }
 
-    public List<EscolaDTO> toDto (List<Escola> listEscola) {
+    public List<EscolaDTO> toDto(List<Escola> listEscola) {
         return listEscola.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

@@ -39,7 +39,8 @@ public class VisitaDTO {
         this.dataVisita = dataVisita;
     }
 
-    public VisitaDTO(String descricao, String responsavelVisita, Boolean teveSucesso, LocalDate dataVisita, UUID fichaId) {
+    public VisitaDTO(String descricao, String responsavelVisita, Boolean teveSucesso, LocalDate dataVisita,
+            UUID fichaId) {
         this.descricao = descricao;
         this.responsavelVisita = responsavelVisita;
         this.teveSucesso = teveSucesso;
@@ -89,7 +90,7 @@ public class VisitaDTO {
 
     public void setDataVisita(LocalDate dataVisita) {
         this.dataVisita = dataVisita;
-    }    
+    }
 
     public UUID getFichaId() {
         return fichaId;

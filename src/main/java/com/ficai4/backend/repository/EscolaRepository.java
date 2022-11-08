@@ -9,5 +9,5 @@ import com.ficai4.backend.model.Escola;
 
 @Repository
 public interface EscolaRepository extends JpaRepository<Escola, UUID> {
-    
+
 }

@@ -1,7 +1,7 @@
 package com.ficai4.utils;
 
 public class LengthMessages {
-    
+
     // AlunoDTO
 
     public static final String CPF_LENGTH_VALIDATION = "CPF deve conter 11 caracteres.";
@@ -13,7 +13,7 @@ public class LengthMessages {
     public static final String DDD_LENGTH_VALIDATION = "DDD deve ter 3 caracteres.";
     public static final String NUMERO_LENGTH_VALIDATION = "Número do telefone deve ter 9 caracteres.";
     public static final String RESPONSAVEL_LENGTH_VALIDATION = "Responsável deve ter no máximo 80 caracteres.";
-    
+
     // EnderecoDTO
 
     public static final String CEP_LENGTH_VALIDATION = "CEP deve ter 9 caracteres.";

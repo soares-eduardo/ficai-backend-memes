@@ -12,12 +12,15 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ficai4.backend.exceptions.NotFoundException;
@@ -27,6 +30,7 @@ import com.ficai4.backend.model.dto.CidadeDTO;
 import com.ficai4.backend.model.dto.EnderecoDTO;
 import com.ficai4.backend.model.dto.TelefoneDTO;
 import com.ficai4.backend.service.AlunoService;
+import org.springframework.data.domain.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(AlunoController.class)
@@ -46,10 +50,19 @@ public class AlunoControllerTest {
 
     @Test
     void itShouldReturnOkStatusWhenFindingAllAlunos() throws Exception {
-        Mockito.when(alunoService.findAll()).thenReturn(List.of(new AlunoDTO()));
+
+        int page = 0;
+        int size = 10;
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+
+        Mockito.when(alunoService.findAll()).thenReturn(new PageImpl<>(List.of(new AlunoDTO()),
+                pageRequest, size));
+
         RequestBuilder request = MockMvcRequestBuilders.get("/aluno");
         MvcResult result = mvc.perform(request).andReturn();
+
         assertEquals(200, result.getResponse().getStatus());
+
     }
 
     @Test
@@ -109,10 +122,22 @@ public class AlunoControllerTest {
 
     @Test
     void itShouldReturnOkWhenFindingAlunoByAnyWord() throws Exception {
-        String param = "Jose";
 
-        Mockito.when(alunoService.findByAnyWord(param)).thenReturn(List.of(new AlunoDTO()));
-        RequestBuilder request = MockMvcRequestBuilders.get("/aluno/buscarAluno").param("palavra", param);
+        int page = 0;
+        int size = 10;
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+
+        Mockito.when(alunoService.findByAnyWord("teste", 3, 3, Sort.Direction.ASC, "teste")).thenReturn(new PageImpl<>(
+                List.of(new AlunoDTO()),
+                pageRequest, 3));
+
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+
+        params.add("palavra", "Bill & Jow");
+        params.add("direction", String.valueOf(Sort.Direction.ASC));
+        params.add("atributo", "teste");
+
+        RequestBuilder request = MockMvcRequestBuilders.get("/aluno/buscarAluno").params(params);
         MvcResult result = mvc.perform(request).andReturn();
         assertEquals(200, result.getResponse().getStatus());
     }

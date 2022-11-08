@@ -1,13 +1,14 @@
 package com.ficai4.backend.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +39,7 @@ public class AlunoController {
     private AlunoService alunoService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AlunoDTO>> findAll() {
+    public ResponseEntity<Page<AlunoDTO>> findAll() {
         return ResponseEntity.ok(alunoService.findAll());
     }
 
@@ -53,9 +54,14 @@ public class AlunoController {
     }
 
     @GetMapping(value = "/buscarAluno", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<AlunoDTO>> findByAnyWord(@RequestParam("palavra") String palavra) {
-        String wordLowerCase = palavra.toLowerCase();
-        return ResponseEntity.ok().body(alunoService.findByAnyWord(wordLowerCase));
+    public ResponseEntity<Page<AlunoDTO>> findByAnyWord(@RequestParam("palavra") String palavra,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            @RequestParam("direction") Sort.Direction direction,
+            @RequestParam("atributo") String atributo) {
+
+        return ResponseEntity.ok()
+                .body(alunoService.findByAnyWord(palavra.toLowerCase(), page, size, direction, atributo));
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

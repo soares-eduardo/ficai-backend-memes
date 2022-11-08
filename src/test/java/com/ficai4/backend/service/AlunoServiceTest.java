@@ -16,12 +16,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 
 import com.ficai4.backend.exceptions.BusinessException;
 import com.ficai4.backend.mapper.AlunoMapper;
 import com.ficai4.backend.model.Aluno;
 import com.ficai4.backend.model.dto.AlunoDTO;
 import com.ficai4.backend.repository.AlunoRepository;
+
+import org.springframework.data.domain.*;
 
 @SpringBootTest(properties = "spring.main.lazy-initialization=true", classes = { AlunoService.class })
 @AutoConfigureMockMvc
@@ -92,7 +95,7 @@ class AlunoServiceTest {
         // when
         Mockito.when(alunoRepository.findAll()).thenReturn(List.of());
 
-        List<AlunoDTO> expected = underTest.findAll();
+        Page<AlunoDTO> expected = underTest.findAll();
 
         // then
         Assertions.assertThat(expected.isEmpty()).isTrue();
@@ -169,26 +172,7 @@ class AlunoServiceTest {
 
         // than
         assertThrows(NotFoundException.class, () -> underTest.update(alunoDto),
-        "Aluno não encontrado com o CPF informado.");
-    }
-
-    @Test
-    void itShouldReturnAllAlunosWithAnyWord() {
-        // given
-        // when
-        Aluno aluno = createAluno();
-        AlunoDTO alunoDto = createAlunoDTO();
-
-        Optional<List<Aluno>> listAluno = Optional.of(List.of(aluno));
-        Optional<List<AlunoDTO>> listAlunoDto = Optional.of(List.of(alunoDto));
-
-        Mockito.when(alunoRepository.findByAnyWord(aluno.getNome())).thenReturn(listAluno);
-        Mockito.when(alunoMapper.toDto(listAluno.get())).thenReturn(listAlunoDto.get());
-
-        underTest.findByAnyWord(aluno.getNome());
-
-        // then
-        Mockito.verify(alunoRepository, Mockito.times(1)).findByAnyWord(aluno.getNome());
+                "Aluno não encontrado com o CPF informado.");
     }
 
     @Test
@@ -196,12 +180,13 @@ class AlunoServiceTest {
         // given
         AlunoDTO alunoDto = createAlunoDTO();
 
-        //when
+        // when
         Mockito.when(alunoRepository.findByAnyWord(
-                alunoDto.getCpf())).thenReturn(Optional.empty());
+                alunoDto.getCpf(), Pageable.ofSize(3))).thenReturn(Optional.empty());
 
         // than
-        assertThrows(EntityNotFoundException.class, () -> underTest.findByAnyWord(alunoDto.getCpf()),
+        assertThrows(EntityNotFoundException.class,
+                () -> underTest.findByAnyWord(alunoDto.getCpf(), 3, 3, Sort.Direction.ASC, "nome"),
                 "Aluno não encontrado.");
     }
 

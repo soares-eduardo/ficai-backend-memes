@@ -4,6 +4,7 @@ public enum SituacaoAluno {
     INFREQUENTE(1),
     NAO_MATRICULADO(2),
     EVADIDO(3);
+
     private int code;
 
     private SituacaoAluno(int code) {

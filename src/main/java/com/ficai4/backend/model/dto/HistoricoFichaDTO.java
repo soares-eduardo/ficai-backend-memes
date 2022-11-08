@@ -60,5 +60,5 @@ public class HistoricoFichaDTO {
 
     public void setResponsavel(Integer responsavel) {
         this.responsavel = responsavel;
-    }   
+    }
 }

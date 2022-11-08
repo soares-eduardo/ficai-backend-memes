@@ -57,7 +57,8 @@ public class Ficha implements Serializable {
     public Ficha() {
     }
 
-    public Ficha(SituacaoAluno situacaoAluno, Status status, String motivoComplemento, Aluno aluno, UUID idEscola, UUID idMotivoInfrequencia, Integer responsavel) {
+    public Ficha(SituacaoAluno situacaoAluno, Status status, String motivoComplemento, Aluno aluno, UUID idEscola,
+            UUID idMotivoInfrequencia, Integer responsavel) {
         setSituacaoAluno(situacaoAluno);
         setStatus(status);
         this.motivoComplemento = motivoComplemento;
@@ -143,7 +144,7 @@ public class Ficha implements Serializable {
 
         if (!visitas.isEmpty()) {
             getVisitas().addAll(visitas);
-            
+
             this.visitas = getVisitas();
 
             for (Visita visita : getVisitas()) {

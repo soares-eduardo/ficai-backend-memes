@@ -4,7 +4,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.exceptions.NotFoundException;
@@ -38,23 +43,35 @@ public class FichaService {
     VisitaMapper visitaMapper;
 
     @Transactional
-    public List<FichaDTO> findAll() {
-        return fichaMapper.toDto(fichaRepository.findAll());
+    public Page<FichaDTO> findAll() {
+        int page = 0;
+        int size = 10;
+
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+
+        return new PageImpl<>(
+                fichaMapper.toDto((List<Ficha>) fichaRepository.findAll()),
+                pageRequest, size);
+
     }
 
     @Transactional
     public FichaDTO createFicha(FichaDTO fichaDto) {
 
-        // Optional<Escola> escola = escolaRepository.findById(fichaDto.getIdEscola());
-        // if (escola.isEmpty()) {
-        //     throw new NotFoundException("Escola não encontrada com o id informado.");
-        // }
+        if (fichaDto.getIdEscola() != null) {
+            Optional<Escola> escola = escolaRepository.findById(fichaDto.getIdEscola());
+            if (escola.isEmpty()) {
+                throw new NotFoundException("Escola não encontrada com o id informado.");
+            }
+        }
 
-        // Optional<MotivoInfrequencia> motivoInfrequencia = motivoInfrequenciaRepositoy
-        //         .findById(fichaDto.getIdMotivoInfrequencia());
-        // if (motivoInfrequencia.isEmpty()) {
-        //     throw new NotFoundException("Motivo da infrequencia não encontrado com o id informado.");
-        // }
+        if (fichaDto.getIdMotivoInfrequencia() != null) {
+            Optional<MotivoInfrequencia> motivoInfrequencia = motivoInfrequenciaRepositoy
+                    .findById(fichaDto.getIdMotivoInfrequencia());
+            if (motivoInfrequencia.isEmpty()) {
+                throw new NotFoundException("Motivo da infrequencia não encontrado com o id informado.");
+            }
+        }
 
         Ficha ficha = fichaMapper.toEntity(fichaDto);
 
@@ -64,14 +81,14 @@ public class FichaService {
     }
 
     @Transactional
-    public FichaDTO updateStatusFicha(UUID idFicha, Status statusFicha) {  
+    public FichaDTO updateStatusFicha(UUID idFicha, Status statusFicha) {
 
         Optional<Ficha> ficha = fichaRepository.findById(idFicha);
-        
-        if(ficha.isEmpty()){
+
+        if (ficha.isEmpty()) {
             throw new NotFoundException("Ficha não encontrada com o id informado.");
         }
-        
+
         ficha.get().setStatus(statusFicha);
 
         return fichaMapper.toDto(ficha.get());

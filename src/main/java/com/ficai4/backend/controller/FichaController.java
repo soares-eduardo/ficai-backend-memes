@@ -1,7 +1,6 @@
 package com.ficai4.backend.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -9,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.validation.FieldError;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ public class FichaController {
     FichaService fichaService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<FichaDTO>> findAll() {
+    public ResponseEntity<Page<FichaDTO>> findAll() {
         return ResponseEntity.ok(fichaService.findAll());
     }
 
@@ -48,7 +48,7 @@ public class FichaController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaDTO> createFicha(@Valid @RequestBody FichaDTO fichaDto) {
-       return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto)); 
+        return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto));
     }
 
     @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,7 +58,7 @@ public class FichaController {
 
     @PostMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaDTO> updateStatusFicha(@Valid @RequestParam UUID idFicha, Status statusFicha) {
-       return ResponseEntity.ok(fichaService.updateStatusFicha(idFicha, statusFicha)); 
+        return ResponseEntity.ok(fichaService.updateStatusFicha(idFicha, statusFicha));
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

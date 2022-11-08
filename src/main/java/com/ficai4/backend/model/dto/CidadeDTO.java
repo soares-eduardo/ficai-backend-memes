@@ -1,7 +1,5 @@
 package com.ficai4.backend.model.dto;
 
-import java.util.List;
-
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;

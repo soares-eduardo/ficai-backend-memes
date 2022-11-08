@@ -48,7 +48,8 @@ public class EnderecoDTO {
     public EnderecoDTO() {
     }
 
-    public EnderecoDTO(String cep, String logradouro, String numero, String bairro, String complemento, CidadeDTO cidade, String pontoReferencia) {
+    public EnderecoDTO(String cep, String logradouro, String numero, String bairro, String complemento,
+            CidadeDTO cidade, String pontoReferencia) {
         this.cep = cep;
         this.logradouro = logradouro;
         this.numero = numero;

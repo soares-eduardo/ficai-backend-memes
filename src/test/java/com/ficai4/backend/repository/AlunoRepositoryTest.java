@@ -1,7 +1,6 @@
 package com.ficai4.backend.repository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 import com.ficai4.backend.model.Cidade;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.*;
 
 import com.ficai4.backend.model.Aluno;
 
@@ -26,7 +26,7 @@ public class AlunoRepositoryTest {
     @BeforeEach
     void setUp() {
         Aluno aluno1 = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
-                                        true, LocalDate.now());
+                true, LocalDate.now());
         Cidade cidade = new Cidade("52345", "Caxias Do Sul", "RS");
         Endereco endereco = new Endereco("91360220", "Rua Limoeiro", "135", "Bela Vista",
                 "AP 1709 B", aluno1, cidade, null);
@@ -65,7 +65,7 @@ public class AlunoRepositoryTest {
         String name = "edu";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(name);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(name, Pageable.ofSize(3));
 
         // then
         assertTrue(expected.isPresent());
@@ -77,7 +77,7 @@ public class AlunoRepositoryTest {
         String name = "claudio";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(name);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(name, Pageable.ofSize(3));
 
         // then
         assertTrue(expected.get().isEmpty());
@@ -89,7 +89,7 @@ public class AlunoRepositoryTest {
         String name = "vini";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(name);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(name, Pageable.ofSize(3));
 
         // then
         assertTrue(expected.isPresent());
@@ -101,7 +101,7 @@ public class AlunoRepositoryTest {
         String name = "claudio";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(name);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(name, Pageable.ofSize(3));
 
         // then
         // assertNull(expected);
@@ -114,7 +114,7 @@ public class AlunoRepositoryTest {
         String cpf = "60076180050";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(cpf);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(cpf, Pageable.ofSize(3));
 
         // then
         assertTrue(expected.isPresent());
@@ -126,7 +126,7 @@ public class AlunoRepositoryTest {
         String cpf = "60076185450";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(cpf);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(cpf, Pageable.ofSize(3));
 
         // then
         // assertNull(expected);
@@ -139,7 +139,7 @@ public class AlunoRepositoryTest {
         String cidade = "caxias";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(cidade);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(cidade, Pageable.ofSize(3));
 
         // then
         assertTrue(expected.isPresent());
@@ -151,7 +151,7 @@ public class AlunoRepositoryTest {
         String cidade = "viamao";
 
         // when
-        Optional<List<Aluno>> expected = underTest.findByAnyWord(cidade);
+        Optional<Page<Aluno>> expected = underTest.findByAnyWord(cidade, Pageable.ofSize(3));
 
         // then
         // assertNull(expected);

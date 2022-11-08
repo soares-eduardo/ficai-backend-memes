@@ -20,13 +20,13 @@ import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ficai4.backend.exceptions.NotFoundException;
 import com.ficai4.backend.mapper.FichaMapper;
 import com.ficai4.backend.model.dto.FichaDTO;
-import com.ficai4.backend.model.dto.HistoricoFichaDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.AlunoService;
 import com.ficai4.backend.service.FichaService;
+
+import org.springframework.data.domain.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(FichaController.class)
@@ -49,7 +49,15 @@ public class FichaControllerTest {
 
     @Test
     void itShouldReturnOkStatusWhenFindingAllFichas() throws Exception {
-        Mockito.when(fichaService.findAll()).thenReturn(List.of(new FichaDTO()));
+
+        int page = 0;
+        int size = 10;
+
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+
+        Mockito.when(fichaService.findAll()).thenReturn(new PageImpl<>(
+                List.of(new FichaDTO()),
+                pageRequest, size));
         RequestBuilder request = MockMvcRequestBuilders.get("/ficha");
         MvcResult result = mockMvc.perform(request).andReturn();
         assertEquals(200, result.getResponse().getStatus());
@@ -58,7 +66,7 @@ public class FichaControllerTest {
     @Test
     void itShouldReturnOkStatusWhenFindingFichaByAlunoId() throws Exception {
         UUID id = UUID.randomUUID();
-        
+
         Mockito.when(fichaService.findFichaByAlunoId(id)).thenReturn(new FichaDTO());
         RequestBuilder request = MockMvcRequestBuilders.get("/ficha/alunoId").param("alunoId", String.valueOf(id));
         MvcResult result = mockMvc.perform(request).andReturn();
@@ -67,8 +75,6 @@ public class FichaControllerTest {
 
     @Test
     void itShouldReturnCreatedStatusWhenCreatingFicha() throws Exception {
-        // HistoricoFichaDTO historicoFicha = new HistoricoFichaDTO(LocalDate.now(), 1,
-        // 2);
         FichaDTO fichaDTO = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
@@ -96,10 +102,11 @@ public class FichaControllerTest {
     @Test
     void itShouldReturnCreatedStatusWhenCreatingVisita() throws Exception {
         VisitaDTO visitaDto = new VisitaDTO("Teste", "Teste", true, LocalDate.now());
-        
+
         Mockito.when(fichaService.createVisita(visitaDto)).thenReturn(new VisitaDTO());
-        RequestBuilder request = MockMvcRequestBuilders.patch("/ficha/visita").contentType(MediaType.APPLICATION_JSON_VALUE)
-        .content(objectMapper.writeValueAsString(visitaDto));
+        RequestBuilder request = MockMvcRequestBuilders.patch("/ficha/visita")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(visitaDto));
         MvcResult result = mockMvc.perform(request).andReturn();
         assertEquals(201, result.getResponse().getStatus());
     }
