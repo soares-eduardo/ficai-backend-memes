@@ -29,8 +29,8 @@ public class FichaMapper {
 
     public Ficha toEntity(FichaDTO fichaDto) {
         Ficha ficha = new Ficha();
-
-        ficha.setAluno(alunoRepository.findById(fichaDto.getAluno()).get());
+        
+        ficha.setAluno(alunoMapper.toEntity(fichaDto.getAluno()));
         ficha.setDataCadastro(fichaDto.getDataCadastro());
         ficha.setHistoricoFichas(historicoFichaMapper.toEntity(fichaDto.getHistoricoFichas()));
         ficha.setId(fichaDto.getId());
@@ -51,8 +51,8 @@ public class FichaMapper {
 
     public FichaDTO toDto(Ficha ficha) {
         FichaDTO fichaDto = new FichaDTO();
-
-        fichaDto.setAluno(ficha.getAluno().getId());
+        
+        fichaDto.setAluno(alunoMapper.toDto(ficha.getAluno()));
         fichaDto.setDataCadastro(ficha.getDataCadastro());
         fichaDto.setHistoricoFichas(historicoFichaMapper.toDto(ficha.getHistoricoFichas()));
         fichaDto.setId(ficha.getId());

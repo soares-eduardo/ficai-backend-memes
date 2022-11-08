@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ficai4.utils.LengthMessages;
 import com.ficai4.utils.NullMessages;
 
-public class FichaDTO {
+public class FichaInsertDTO {
 
     private UUID id;
 
@@ -34,7 +34,7 @@ public class FichaDTO {
     private LocalDate dataCadastro;
 
     @NotNull(message = "ID do aluno " + NullMessages.NULL_NOT_ALLOWED)
-    private AlunoDTO aluno;
+    private UUID aluno;
 
     private UUID idEscola;
 
@@ -46,11 +46,11 @@ public class FichaDTO {
     @Valid
     private List<HistoricoFichaDTO> historicoFichas = new ArrayList<>();
 
-    public FichaDTO() {
+    public FichaInsertDTO() {
     }
 
-    public FichaDTO(Integer situacaoAluno, Integer status, String motivoComplemento, LocalDate dataCadastro,
-            AlunoDTO aluno, UUID idEscola, UUID idMotivoInfrequencia, List<VisitaDTO> visitas,
+    public FichaInsertDTO(Integer situacaoAluno, Integer status, String motivoComplemento, LocalDate dataCadastro,
+            UUID aluno, UUID idEscola, UUID idMotivoInfrequencia, List<VisitaDTO> visitas,
             List<HistoricoFichaDTO> historicoFichas, Integer responsavel) {
         this.situacaoAluno = situacaoAluno;
         this.status = status;
@@ -104,11 +104,11 @@ public class FichaDTO {
         this.dataCadastro = dataCadastro;
     }
 
-    public AlunoDTO getAluno() {
+    public UUID getAluno() {
         return aluno;
     }
 
-    public void setAluno(AlunoDTO aluno) {
+    public void setAluno(UUID aluno) {
         this.aluno = aluno;
     }
 
