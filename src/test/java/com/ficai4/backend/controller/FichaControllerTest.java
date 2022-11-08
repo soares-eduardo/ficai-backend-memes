@@ -21,7 +21,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ficai4.backend.mapper.FichaMapper;
+import com.ficai4.backend.model.dto.AlunoDTO;
+import com.ficai4.backend.model.dto.CidadeDTO;
+import com.ficai4.backend.model.dto.EnderecoDTO;
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.TelefoneDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.AlunoService;
 import com.ficai4.backend.service.FichaService;
@@ -88,7 +92,14 @@ public class FichaControllerTest {
 
     @Test
     void itShouldReturnBadRequestStatusWhenCreatingFicha() throws Exception {
-        FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), UUID.randomUUID(), UUID.randomUUID(),
+        EnderecoDTO enderecoDto = new EnderecoDTO("91360-220", "Rua Limoeiro", "135", "Cristo Redentor", "AP 1608",
+                new CidadeDTO("5234565", "Porto Alegre", "RS"), "Perto da Elevato");
+        TelefoneDTO telefoneDto = new TelefoneDTO("051", "998732729", "Eduardo");
+
+        AlunoDTO alunoDto = new AlunoDTO("60076180050", "Jose  Soares", "Vinicio Muller", "Maria Souto", true,
+                true, List.of(telefoneDto), List.of(enderecoDto), LocalDate.now());
+
+        FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), alunoDto, UUID.randomUUID(),
                 UUID.randomUUID(), null, null, 1);
 
         RequestBuilder request = MockMvcRequestBuilders.post("/ficha").contentType(MediaType.APPLICATION_JSON_VALUE)

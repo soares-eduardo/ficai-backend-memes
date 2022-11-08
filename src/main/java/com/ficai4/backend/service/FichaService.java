@@ -12,13 +12,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.ficai4.backend.enums.Status;
+import com.ficai4.backend.exceptions.EntityNotFoundException;
 import com.ficai4.backend.exceptions.NotFoundException;
+import com.ficai4.backend.mapper.FichaInsertMapper;
 import com.ficai4.backend.mapper.FichaMapper;
 import com.ficai4.backend.mapper.VisitaMapper;
-import com.ficai4.backend.model.Escola;
 import com.ficai4.backend.model.Ficha;
-import com.ficai4.backend.model.MotivoInfrequencia;
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.FichaInsertDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.repository.EscolaRepository;
 import com.ficai4.backend.repository.FichaRepository;
@@ -40,6 +41,9 @@ public class FichaService {
     FichaMapper fichaMapper;
 
     @Autowired
+    FichaInsertMapper fichaInsertMapper;
+
+    @Autowired
     VisitaMapper visitaMapper;
 
     @Transactional
@@ -56,7 +60,19 @@ public class FichaService {
     }
 
     @Transactional
-    public FichaDTO createFicha(FichaDTO fichaDto) {
+    public List<FichaDTO> findByAnyWord(String word) {
+
+        Optional<List<Ficha>> response = fichaRepository.findByAnyWord(word);
+
+       if(response.isEmpty() || response.get().isEmpty()){
+          throw new EntityNotFoundException("Ficha não encontrada.");
+        }
+
+        return fichaMapper.toDto(response.get());
+    }
+
+    @Transactional
+    public FichaInsertDTO createFicha(FichaInsertDTO fichaDto) {
 
         if (fichaDto.getIdEscola() != null) {
             Optional<Escola> escola = escolaRepository.findById(fichaDto.getIdEscola());
@@ -73,11 +89,11 @@ public class FichaService {
             }
         }
 
-        Ficha ficha = fichaMapper.toEntity(fichaDto);
+        Ficha ficha = fichaInsertMapper.toEntity(fichaDto);
 
         fichaRepository.save(ficha);
 
-        return fichaMapper.toDto(ficha);
+        return fichaInsertMapper.toDto(ficha);
     }
 
     @Transactional

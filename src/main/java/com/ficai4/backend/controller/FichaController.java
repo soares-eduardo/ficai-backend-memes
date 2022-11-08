@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.FichaInsertDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.FichaService;
 
@@ -41,14 +42,20 @@ public class FichaController {
         return ResponseEntity.ok(fichaService.findAll());
     }
 
+    @GetMapping(value = "/buscarFicha", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<FichaDTO>> findByAnyWord(@RequestParam("palavra") String palavra) {
+        String wordLowerCase = palavra.toLowerCase();
+        return ResponseEntity.ok().body(fichaService.findByAnyWord(wordLowerCase));
+    }
+
     @GetMapping(value = "/alunoId", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaDTO> findFichaByAlunoId(@RequestParam("alunoId") UUID alunoId) {
         return ResponseEntity.ok(fichaService.findFichaByAlunoId(alunoId));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FichaDTO> createFicha(@Valid @RequestBody FichaDTO fichaDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto));
+    public ResponseEntity<FichaInsertDTO> createFicha(@Valid @RequestBody FichaInsertDTO fichaInsertDTO) {
+       return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaInsertDTO)); 
     }
 
     @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -20,6 +20,7 @@ import org.springframework.data.domain.Page;
 import com.ficai4.backend.enums.SituacaoAluno;
 import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.exceptions.NotFoundException;
+import com.ficai4.backend.mapper.FichaInsertMapper;
 import com.ficai4.backend.mapper.FichaMapper;
 import com.ficai4.backend.mapper.VisitaMapper;
 import com.ficai4.backend.model.Aluno;
@@ -28,6 +29,7 @@ import com.ficai4.backend.model.Ficha;
 import com.ficai4.backend.model.MotivoInfrequencia;
 import com.ficai4.backend.model.Visita;
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.FichaInsertDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.repository.EscolaRepository;
 import com.ficai4.backend.repository.FichaRepository;
@@ -52,6 +54,9 @@ class FichaServiceTest {
 
     @MockBean
     private FichaMapper fichaMapper;
+
+    @MockBean
+    private FichaInsertMapper fichaInsertMapper;
 
     @MockBean
     private VisitaMapper visitaMapper;
@@ -92,7 +97,7 @@ class FichaServiceTest {
     @Test
     void itShouldCreateFicha() {
         // given
-        FichaDTO fichaDto = createFichaDTO();
+        FichaInsertDTO fichaInsertDTO = createFichaInsertDTO();
         Ficha ficha = createFicha();
         Escola escola = createEscola();
         MotivoInfrequencia motivoInfrequencia = createMotivoInfrequencia();
@@ -103,9 +108,9 @@ class FichaServiceTest {
                 .thenReturn(Optional.of(motivoInfrequencia));
         Mockito.when(fichaMapper.toEntity(fichaDto)).thenReturn(ficha);
         Mockito.when(fichaRepository.save(ficha)).thenReturn(ficha);
-        Mockito.when(fichaMapper.toDto(ficha)).thenReturn(fichaDto);
+        Mockito.when(fichaInsertMapper.toDto(ficha)).thenReturn(fichaInsertDTO);
 
-        underTest.createFicha(fichaDto);
+        underTest.createFicha(fichaInsertDTO);
 
         // then
         Mockito.verify(fichaRepository, Mockito.times(1)).save(ArgumentMatchers.any(Ficha.class));
@@ -118,7 +123,7 @@ class FichaServiceTest {
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
-        Mockito.when(escolaRepository.findById(fichaDto.getIdEscola())).thenReturn(Optional.empty());
+        Mockito.when(escolaRepository.findById(fichaInsertDto.getIdEscola())).thenReturn(Optional.empty());
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
@@ -151,13 +156,13 @@ class FichaServiceTest {
         List<Ficha> listFicha = List.of(ficha);
 
         // when
-        Mockito.when(fichaRepository.findFichaByAlunoId(fichaDto.getAluno())).thenReturn(listFicha);
+        Mockito.when(fichaRepository.findFichaByAlunoId(fichaDto.getAluno().getId())).thenReturn(listFicha);
         Mockito.when(fichaMapper.toDto(ficha)).thenReturn(fichaDto);
 
-        underTest.findFichaByAlunoId(fichaDto.getAluno());
+        underTest.findFichaByAlunoId(fichaDto.getAluno().getId());
 
         // then
-        Mockito.verify(fichaRepository, Mockito.times(1)).findFichaByAlunoId(fichaDto.getAluno());
+        Mockito.verify(fichaRepository, Mockito.times(1)).findFichaByAlunoId(fichaDto.getAluno().getId());
     }
 
     @Test
@@ -167,7 +172,7 @@ class FichaServiceTest {
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
-        Mockito.when(fichaRepository.findFichaByAlunoId(fichaDto.getAluno())).thenReturn(List.of());
+        Mockito.when(fichaRepository.findFichaByAlunoId(fichaInsertDTO.getAluno())).thenReturn(List.of());
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
@@ -229,12 +234,15 @@ class FichaServiceTest {
         return Mockito.mock(FichaDTO.class);
     }
 
+    private FichaInsertDTO createFichaInsertDTO() {
+        return Mockito.mock(FichaInsertDTO.class);
+    }
+
     private VisitaDTO createVisitaDTO() {
         return Mockito.mock(VisitaDTO.class);
     }
 
     private Visita createVisita() {
-
         return Mockito.mock(Visita.class);
     }
 }
