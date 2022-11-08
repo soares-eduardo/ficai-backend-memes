@@ -10,7 +10,7 @@ import com.ficai4.backend.model.dto.VisitaDTO;
 
 @Component
 public class VisitaMapper {
-    
+
     public Visita toEntity(VisitaDTO visitaDto) {
         Visita visita = new Visita();
 

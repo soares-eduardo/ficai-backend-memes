@@ -14,8 +14,8 @@ public class EnderecoMapper {
 
     @Autowired
     CidadeMapper cidadeMapper;
-    
-    public Endereco toEntity (EnderecoDTO enderecoDto) {
+
+    public Endereco toEntity(EnderecoDTO enderecoDto) {
         Endereco endereco = new Endereco();
 
         endereco.setId(enderecoDto.getId());
@@ -31,11 +31,11 @@ public class EnderecoMapper {
         return endereco;
     }
 
-    public List<Endereco> toEntity (List<EnderecoDTO> listEnderecoDto) {
+    public List<Endereco> toEntity(List<EnderecoDTO> listEnderecoDto) {
         return listEnderecoDto.stream().map(this::toEntity).collect(Collectors.toList());
     }
 
-    public EnderecoDTO toDto (Endereco endereco) {
+    public EnderecoDTO toDto(Endereco endereco) {
         EnderecoDTO enderecoDto = new EnderecoDTO();
 
         enderecoDto.setId(endereco.getId());

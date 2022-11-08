@@ -22,7 +22,7 @@ public class HistoricoFichaMapper {
         return historicoFicha;
     }
 
-    public List<HistoricoFicha> toEntity (List<HistoricoFichaDTO> listHistoricoFichaDto) {
+    public List<HistoricoFicha> toEntity(List<HistoricoFichaDTO> listHistoricoFichaDto) {
         return listHistoricoFichaDto.stream().map(this::toEntity).collect(Collectors.toList());
     }
 
@@ -37,7 +37,7 @@ public class HistoricoFichaMapper {
         return historicoFichaDto;
     }
 
-    public List<HistoricoFichaDTO> toDto (List<HistoricoFicha> listHistoricoFicha) {
+    public List<HistoricoFichaDTO> toDto(List<HistoricoFicha> listHistoricoFicha) {
         return listHistoricoFicha.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

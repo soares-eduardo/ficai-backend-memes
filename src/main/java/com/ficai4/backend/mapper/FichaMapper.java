@@ -27,9 +27,9 @@ public class FichaMapper {
     @Autowired
     AlunoRepository alunoRepository;
 
-    public Ficha toEntity (FichaDTO fichaDto) {
+    public Ficha toEntity(FichaDTO fichaDto) {
         Ficha ficha = new Ficha();
-        
+
         ficha.setAluno(alunoRepository.findById(fichaDto.getAluno()).get());
         ficha.setDataCadastro(fichaDto.getDataCadastro());
         ficha.setHistoricoFichas(historicoFichaMapper.toEntity(fichaDto.getHistoricoFichas()));
@@ -45,13 +45,13 @@ public class FichaMapper {
         return ficha;
     }
 
-    public List<Ficha> toEntity (List<FichaDTO> listFichaDto) {
+    public List<Ficha> toEntity(List<FichaDTO> listFichaDto) {
         return listFichaDto.stream().map(this::toEntity).collect(Collectors.toList());
     }
-    
-    public FichaDTO toDto (Ficha ficha) {
+
+    public FichaDTO toDto(Ficha ficha) {
         FichaDTO fichaDto = new FichaDTO();
-        
+
         fichaDto.setAluno(ficha.getAluno().getId());
         fichaDto.setDataCadastro(ficha.getDataCadastro());
         fichaDto.setHistoricoFichas(historicoFichaMapper.toDto(ficha.getHistoricoFichas()));
@@ -67,7 +67,7 @@ public class FichaMapper {
         return fichaDto;
     }
 
-    public List<FichaDTO> toDto (List<Ficha> listFicha) {
+    public List<FichaDTO> toDto(List<Ficha> listFicha) {
         return listFicha.stream().map(this::toDto).collect(Collectors.toList());
     }
 }

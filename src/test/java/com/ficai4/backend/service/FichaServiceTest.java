@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 
 import com.ficai4.backend.enums.SituacaoAluno;
 import com.ficai4.backend.enums.Status;
@@ -82,7 +83,7 @@ class FichaServiceTest {
         // given
         // when
         Mockito.when(fichaRepository.findAll()).thenReturn(List.of());
-        List<FichaDTO> expected = underTest.findAll();
+        Page<FichaDTO> expected = underTest.findAll();
 
         // then
         Assertions.assertThat(expected.isEmpty()).isTrue();
@@ -98,7 +99,8 @@ class FichaServiceTest {
 
         // when
         Mockito.when(escolaRepository.findById(fichaDto.getIdEscola())).thenReturn(Optional.of(escola));
-        Mockito.when(motivoInfrequenciaRepository.findById(fichaDto.getIdMotivoInfrequencia())).thenReturn(Optional.of(motivoInfrequencia));
+        Mockito.when(motivoInfrequenciaRepository.findById(fichaDto.getIdMotivoInfrequencia()))
+                .thenReturn(Optional.of(motivoInfrequencia));
         Mockito.when(fichaMapper.toEntity(fichaDto)).thenReturn(ficha);
         Mockito.when(fichaRepository.save(ficha)).thenReturn(ficha);
         Mockito.when(fichaMapper.toDto(ficha)).thenReturn(fichaDto);
@@ -112,29 +114,32 @@ class FichaServiceTest {
     @Test
     void itShouldReturnAnExceptionWhenAddingANonExistentIdEscola() {
         // given
-        FichaDTO fichaDto = createFichaDTO();
+        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
         Mockito.when(escolaRepository.findById(fichaDto.getIdEscola())).thenReturn(Optional.empty());
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
-        "Escola não encontrada com o id informado.");
+                "Escola não encontrada com o id informado.");
     }
 
     @Test
     void itShouldReturnAnExceptionWhenAddingANonExistentIdMotivoInfrequencia() {
         // given
-        FichaDTO fichaDto = createFichaDTO();
+        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
         Escola escola = createEscola();
 
         // when
         Mockito.when(escolaRepository.findById(fichaDto.getIdEscola())).thenReturn(Optional.of(escola));
-        Mockito.when(motivoInfrequenciaRepository.findById(fichaDto.getIdMotivoInfrequencia())).thenReturn(Optional.empty());
+        Mockito.when(motivoInfrequenciaRepository.findById(fichaDto.getIdMotivoInfrequencia()))
+                .thenReturn(Optional.empty());
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
-        "Motivo da infrequencia não encontrado com o id informado.");
+                "Motivo da infrequencia não encontrado com o id informado.");
     }
 
     @Test
@@ -158,14 +163,15 @@ class FichaServiceTest {
     @Test
     void itShouldThrowAnExceptionWhenFindingFichaByAlunoId() {
         // given
-        FichaDTO fichaDto = createFichaDTO();
+        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
         Mockito.when(fichaRepository.findFichaByAlunoId(fichaDto.getAluno())).thenReturn(List.of());
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
-        "Ficha não encontrada com o id informado.");
+                "Ficha não encontrada com o id informado.");
     }
 
     @Test
@@ -181,7 +187,7 @@ class FichaServiceTest {
         Mockito.when(fichaRepository.findById(visitaDto.getFichaId())).thenReturn(Optional.of(ficha));
         Mockito.when(visitaMapper.toEntity(visitaDto)).thenReturn(visita);
         Mockito.when(visitaMapper.toDto(visita)).thenReturn(visitaDto);
-        
+
         underTest.createVisita(visitaDto);
 
         // then
@@ -199,7 +205,7 @@ class FichaServiceTest {
 
         // then
         assertThrows(NotFoundException.class, () -> underTest.createVisita(visitaDto),
-        "Ficha não encontrada com o id informado.");
+                "Ficha não encontrada com o id informado.");
     }
 
     private Ficha createFicha() {

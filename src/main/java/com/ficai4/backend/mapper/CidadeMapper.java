@@ -10,8 +10,8 @@ import com.ficai4.backend.model.dto.CidadeDTO;
 
 @Component
 public class CidadeMapper {
-    
-    public Cidade toEntity (CidadeDTO cidadeDto) {
+
+    public Cidade toEntity(CidadeDTO cidadeDto) {
         Cidade cidade = new Cidade();
 
         cidade.setCodigoIbge(cidadeDto.getCodigoIbge());
@@ -21,7 +21,7 @@ public class CidadeMapper {
         return cidade;
     }
 
-    public CidadeDTO toDto (Cidade cidade) {
+    public CidadeDTO toDto(Cidade cidade) {
         CidadeDTO cidadeDto = new CidadeDTO();
 
         cidadeDto.setCodigoIbge(cidade.getCodigoIbge());

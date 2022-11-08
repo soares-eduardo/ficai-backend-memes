@@ -29,7 +29,7 @@ public class AlunoTest {
     Cidade cidade = new Cidade("5234565", "Porto Alegre", "RS");
 
     Endereco endereco = new Endereco("91360-220", "Rua Limoeiro", "135", "Bela Vista",
-                                        "AP 1709 B", aluno, cidade, "Ao lado da churrascaria Gauchinho");
+            "AP 1709 B", aluno, cidade, "Ao lado da churrascaria Gauchinho");
 
     @Test
     void itShouldSetFichas() {

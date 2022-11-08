@@ -74,7 +74,7 @@ public class FichaTest {
     void itShouldSetSituacaoAluno() {
         // given
         // when
-        ficha.setSituacaoAluno(SituacaoAluno. INFREQUENTE);
+        ficha.setSituacaoAluno(SituacaoAluno.INFREQUENTE);
         // then
         assertEquals(1, ficha.getSituacaoAluno().getCode());
     }

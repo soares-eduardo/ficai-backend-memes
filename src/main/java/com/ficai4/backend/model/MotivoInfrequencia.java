@@ -23,8 +23,6 @@ public class MotivoInfrequencia implements Serializable {
     @Column(nullable = false, name = "recorrencias_para_envio")
     private Integer recorrenciasParaEnvio;
 
-
-
     public MotivoInfrequencia() {
     }
 

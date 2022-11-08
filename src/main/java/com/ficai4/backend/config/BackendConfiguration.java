@@ -1,4 +1,4 @@
-package com.ficai4.backend;
+package com.ficai4.backend.config;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +16,8 @@ public class BackendConfiguration {
         @Bean
         CommandLineRunner commandLineRunner(AlunoRepository alunoRepository, CidadeRepository cidadeRepository,
                         EnderecoRepository enderecoRepository, TelefoneRepository telefoneRepository,
-                        FichaRepository fichaRepository, EscolaRepository escolaRepository, MotivoInfrequenciaRepository motivoInfrequenciaRepository) {
+                        FichaRepository fichaRepository, EscolaRepository escolaRepository,
+                        MotivoInfrequenciaRepository motivoInfrequenciaRepository) {
                 return args -> {
 
                         Aluno aluno1 = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
@@ -33,8 +34,8 @@ public class BackendConfiguration {
                         aluno2.getTelefones().add(telefone2);
 
                         Cidade cidade1 = new Cidade("5234565", "Porto Alegre", "RS");
-                        Cidade cidade2 = new Cidade("5234578", "Caxias Do Sul", "RS");
-                        Cidade cidade3 = new Cidade("5234574", "Anta Gorda", "RS");
+                        Cidade cidade2 = new Cidade("5234578", "Viamão", "RS");
+                        Cidade cidade3 = new Cidade("5234574", "Caxias", "RS");
 
                         Endereco endereco1 = new Endereco("91360-220", "Rua Limoeiro", "135", "Bela Vista",
                                         "AP 1709 B", aluno1, cidade1, "Ao lado da churrascaria Gauchinho");
@@ -47,13 +48,13 @@ public class BackendConfiguration {
                         Endereco endereco4 = new Endereco("91360-230", "Rua Jardineiro", "835", "Bela Vista",
                                         "AP 1709 B", aluno1, cidade1, "Em frente ao posto Ipiranga");
 
-                        //Escolas
+                        // Escolas
                         Escola escola1 = new Escola("12345678", "Dr. martins Costa Jr.", "91234332",
-                                "Rua das Andorinhas", "434", "Prédio", "Cascata", "Caxias do Sul", "RS");
+                                        "Rua das Andorinhas", "434", "Prédio", "Cascata", "Caxias do Sul", "RS");
 
                         escolaRepository.save(escola1);
 
-                        //motivoInfrequencia
+                        // motivoInfrequencia
                         MotivoInfrequencia motivoInfrequencia = new MotivoInfrequencia("Evasão", "Teste", 2);
 
                         motivoInfrequenciaRepository.save(motivoInfrequencia);
@@ -65,7 +66,6 @@ public class BackendConfiguration {
                         // historicoFicha
                         HistoricoFicha historicoFicha = new HistoricoFicha(LocalDate.now(), 2,
                                         1, ficha1);
-
 
                         ficha1.getHistoricoFichas().add(historicoFicha);
 
