@@ -25,6 +25,7 @@ import com.ficai4.backend.model.dto.AlunoDTO;
 import com.ficai4.backend.model.dto.CidadeDTO;
 import com.ficai4.backend.model.dto.EnderecoDTO;
 import com.ficai4.backend.model.dto.FichaDTO;
+import com.ficai4.backend.model.dto.FichaInsertDTO;
 import com.ficai4.backend.model.dto.TelefoneDTO;
 import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.service.AlunoService;
@@ -79,7 +80,7 @@ public class FichaControllerTest {
 
     @Test
     void itShouldReturnCreatedStatusWhenCreatingFicha() throws Exception {
-        FichaDTO fichaDTO = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+        FichaInsertDTO fichaDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         RequestBuilder request = MockMvcRequestBuilders.post("/ficha").contentType(MediaType.APPLICATION_JSON_VALUE)

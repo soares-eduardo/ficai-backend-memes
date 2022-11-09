@@ -103,10 +103,10 @@ class FichaServiceTest {
         MotivoInfrequencia motivoInfrequencia = createMotivoInfrequencia();
 
         // when
-        Mockito.when(escolaRepository.findById(fichaDto.getIdEscola())).thenReturn(Optional.of(escola));
-        Mockito.when(motivoInfrequenciaRepository.findById(fichaDto.getIdMotivoInfrequencia()))
+        Mockito.when(escolaRepository.findById(fichaInsertDTO.getIdEscola())).thenReturn(Optional.of(escola));
+        Mockito.when(motivoInfrequenciaRepository.findById(fichaInsertDTO.getIdMotivoInfrequencia()))
                 .thenReturn(Optional.of(motivoInfrequencia));
-        Mockito.when(fichaMapper.toEntity(fichaDto)).thenReturn(ficha);
+        Mockito.when(fichaInsertMapper.toEntity(fichaInsertDTO)).thenReturn(ficha);
         Mockito.when(fichaRepository.save(ficha)).thenReturn(ficha);
         Mockito.when(fichaInsertMapper.toDto(ficha)).thenReturn(fichaInsertDTO);
 
@@ -119,21 +119,21 @@ class FichaServiceTest {
     @Test
     void itShouldReturnAnExceptionWhenAddingANonExistentIdEscola() {
         // given
-        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+        FichaInsertDTO fichaInsertDto = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
         Mockito.when(escolaRepository.findById(fichaInsertDto.getIdEscola())).thenReturn(Optional.empty());
 
         // then
-        assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
+        assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaInsertDto),
                 "Escola não encontrada com o id informado.");
     }
 
     @Test
     void itShouldReturnAnExceptionWhenAddingANonExistentIdMotivoInfrequencia() {
         // given
-        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+        FichaInsertDTO fichaDto = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
         Escola escola = createEscola();
 
@@ -153,29 +153,31 @@ class FichaServiceTest {
         Ficha ficha = createFicha();
         FichaDTO fichaDto = createFichaDTO();
 
+        UUID randomUuid = UUID.randomUUID();
+        
         List<Ficha> listFicha = List.of(ficha);
 
         // when
-        Mockito.when(fichaRepository.findFichaByAlunoId(fichaDto.getAluno().getId())).thenReturn(listFicha);
+        Mockito.when(fichaRepository.findFichaByAlunoId(randomUuid)).thenReturn(listFicha);
         Mockito.when(fichaMapper.toDto(ficha)).thenReturn(fichaDto);
 
-        underTest.findFichaByAlunoId(fichaDto.getAluno().getId());
+        underTest.findFichaByAlunoId(randomUuid);
 
         // then
-        Mockito.verify(fichaRepository, Mockito.times(1)).findFichaByAlunoId(fichaDto.getAluno().getId());
+        Mockito.verify(fichaRepository, Mockito.times(1)).findFichaByAlunoId(randomUuid);
     }
 
     @Test
     void itShouldThrowAnExceptionWhenFindingFichaByAlunoId() {
         // given
-        FichaDTO fichaDto = new FichaDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
+        FichaInsertDTO fichaInsertDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
                 UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
         // when
         Mockito.when(fichaRepository.findFichaByAlunoId(fichaInsertDTO.getAluno())).thenReturn(List.of());
 
         // then
-        assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaDto),
+        assertThrows(NotFoundException.class, () -> underTest.createFicha(fichaInsertDTO),
                 "Ficha não encontrada com o id informado.");
     }
 
