@@ -55,8 +55,8 @@ public class FichaController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FichaInsertDTO> createFicha(@Valid @RequestBody FichaInsertDTO fichaInsertDTO) {
-       return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaInsertDTO)); 
+    public ResponseEntity<FichaInsertDTO> createFicha(@Valid @RequestBody FichaInsertDTO fichaDto) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto));
     }
 
     @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -64,9 +64,14 @@ public class FichaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createVisita(visitaDto));
     }
 
-    @PostMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FichaDTO> updateStatusFicha(@Valid @RequestParam UUID idFicha, Status statusFicha) {
-        return ResponseEntity.ok(fichaService.updateStatusFicha(idFicha, statusFicha));
+    @PatchMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaDTO> updateStatusFicha(@RequestParam("fichaId") UUID fichaId, @RequestParam("status") Status status) {
+        return ResponseEntity.ok(fichaService.updateStatusFicha(fichaId, status));
+    }
+
+    @PatchMapping(value = "/updateResponsavel", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaDTO> updateResponsavelFicha(@RequestParam("fichaId") UUID fichaId, @RequestParam("responsavel") Integer responsavel) {
+        return ResponseEntity.ok(fichaService.updateResponsavelFicha(fichaId, responsavel));
     }
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
