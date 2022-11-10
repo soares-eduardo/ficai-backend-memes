@@ -15,7 +15,7 @@ import java.util.UUID;
 public interface AlunoRepository extends JpaRepository<Aluno, UUID> {
 
         @Query("SELECT aluno FROM Aluno aluno WHERE aluno.cpf = :cpf ")
-        Optional<Aluno> findByCpf(String cpf);
+        Optional<Aluno> findByCpf(@Param("cpf") String cpf);
 
         @Query("SELECT distinct aluno FROM Aluno aluno " +
                         "inner join Endereco ende on ende.aluno.id = aluno.id " +

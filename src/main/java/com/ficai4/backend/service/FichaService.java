@@ -112,6 +112,21 @@ public class FichaService {
         return fichaMapper.toDto(ficha.get());
     }
 
+    @Transactional
+    public FichaDTO updateResponsavelFicha(UUID idFicha, Integer responsavel) {
+
+        Optional<Ficha> ficha = fichaRepository.findById(idFicha);
+
+        if (ficha.isEmpty()) {
+            throw new NotFoundException("Ficha não encontrada com o id informado.");
+        }
+
+        ficha.get().setResponsavel(responsavel);
+
+        return fichaMapper.toDto(ficha.get());
+
+    }
+
     public VisitaDTO createVisita(VisitaDTO visitaDto) {
 
         Ficha ficha = fichaRepository.findById(visitaDto.getFichaId())
