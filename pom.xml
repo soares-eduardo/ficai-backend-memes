@@ -75,6 +75,12 @@
             <properties>
                 <activatedProperties>local</activatedProperties>
             </properties>
+        </profile>
+		<profile>
+            <id>heroku</id>
+            <properties>
+                <activatedProperties>heroku</activatedProperties>
+            </properties>
 			<activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
