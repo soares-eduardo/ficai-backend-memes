@@ -34,7 +34,6 @@ public class Visita implements Serializable {
     private Ficha ficha;
 
     @Column(nullable = false, name = "data_visita")
-    @CreationTimestamp
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate dataVisita;
 
