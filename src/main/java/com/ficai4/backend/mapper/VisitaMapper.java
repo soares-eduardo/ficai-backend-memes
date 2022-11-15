@@ -30,6 +30,7 @@ public class VisitaMapper {
     public VisitaDTO toDto(Visita visita) {
         VisitaDTO visitaDto = new VisitaDTO();
 
+        visitaDto.setFichaId(visita.getFicha().getId());
         visitaDto.setDataVisita(visita.getDataVisita());
         visitaDto.setDescricao(visita.getDescricao());
         visitaDto.setId(visita.getId());
