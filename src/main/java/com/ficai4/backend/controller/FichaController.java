@@ -76,7 +76,7 @@ public class FichaController {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto));
     }
 
-    @PatchMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/visita", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VisitaDTO> createVisita(@Valid @RequestBody VisitaDTO visitaDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createVisita(visitaDto));
     }

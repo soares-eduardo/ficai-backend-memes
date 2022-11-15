@@ -56,6 +56,7 @@ public class FichaInsertMapper {
         fichaInsertDto.setDataCadastro(ficha.getDataCadastro());
         fichaInsertDto.setHistoricoFichas(historicoFichaMapper.toDto(ficha.getHistoricoFichas()));
         fichaInsertDto.setId(ficha.getId());
+        fichaInsertDto.setIdPublico(ficha.getIdPublico());
         fichaInsertDto.setIdEscola(ficha.getIdEscola());
         fichaInsertDto.setIdMotivoInfrequencia(ficha.getIdMotivoInfrequencia());
         fichaInsertDto.setMotivoComplemento(ficha.getMotivoComplemento());

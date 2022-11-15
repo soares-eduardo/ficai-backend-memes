@@ -122,7 +122,7 @@ public class FichaControllerTest {
                 VisitaDTO visitaDto = new VisitaDTO("Teste", "Teste", true, LocalDate.now());
 
                 Mockito.when(fichaService.createVisita(visitaDto)).thenReturn(new VisitaDTO());
-                RequestBuilder request = MockMvcRequestBuilders.patch("/ficha/visita")
+                RequestBuilder request = MockMvcRequestBuilders.post("/ficha/visita")
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                                 .content(objectMapper.writeValueAsString(visitaDto));
                 MvcResult result = mockMvc.perform(request).andReturn();
