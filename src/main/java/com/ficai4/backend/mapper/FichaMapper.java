@@ -34,6 +34,7 @@ public class FichaMapper {
         ficha.setDataCadastro(fichaDto.getDataCadastro());
         ficha.setHistoricoFichas(historicoFichaMapper.toEntity(fichaDto.getHistoricoFichas()));
         ficha.setId(fichaDto.getId());
+        ficha.setIdPublico(fichaDto.getIdPublico());
         ficha.setIdEscola(fichaDto.getIdEscola());
         ficha.setIdMotivoInfrequencia(fichaDto.getIdMotivoInfrequencia());
         ficha.setMotivoComplemento(fichaDto.getMotivoComplemento());
@@ -56,6 +57,7 @@ public class FichaMapper {
         fichaDto.setDataCadastro(ficha.getDataCadastro());
         fichaDto.setHistoricoFichas(historicoFichaMapper.toDto(ficha.getHistoricoFichas()));
         fichaDto.setId(ficha.getId());
+        fichaDto.setIdPublico(ficha.getIdPublico());
         fichaDto.setIdEscola(ficha.getIdEscola());
         fichaDto.setIdMotivoInfrequencia(ficha.getIdMotivoInfrequencia());
         fichaDto.setMotivoComplemento(ficha.getMotivoComplemento());

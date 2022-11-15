@@ -1,6 +1,7 @@
 package com.ficai4.backend.repository;
 
 import com.ficai4.backend.model.Ficha;
+import com.ficai4.backend.model.metrics.FichaMetric;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +34,21 @@ public interface FichaRepository extends JpaRepository<Ficha, UUID> {
         "ORDER BY ficha.status, ficha.aluno.nome"
         )
     Optional<List<Ficha>> findByAnyWord(@Param("word") String word);
+
+    @Query("SELECT ficha FROM Ficha ficha where ficha.status = 1 or ficha.status = 2 or ficha.status = 3 ")
+    Optional<List<Ficha>> findFichasAbertas();
+
+    @Query("SELECT ficha FROM Ficha ficha where ficha.status = 4 ")
+    Optional<List<Ficha>> findFichasArquivadas();
+
+    @Query("SELECT ficha FROM Ficha ficha where ficha.situacaoAluno = 1 ")
+    Optional<List<Ficha>> findALunosInfrequentesByFichas();
+
+    @Query("SELECT ficha FROM Ficha ficha where ficha.situacaoAluno = 2 ")
+    Optional<List<Ficha>> findALunosNaoMatriculadosByFichas();
+
+    @Query("SELECT ficha FROM Ficha ficha where ficha.situacaoAluno = 3 ")
+    Optional<List<Ficha>> findALunosEvadidosByFichas();
 
     @Query("SELECT distinct ficha FROM Ficha ficha " +
             "WHERE (ficha.aluno.cpf like %:word% " +

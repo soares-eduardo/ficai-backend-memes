@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import com.ficai4.backend.model.metrics.AlunoMetric;
+import com.ficai4.backend.model.metrics.FichaMetric;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -170,6 +172,24 @@ public class FichaService {
         return fichaMapper.toDto(fichas.get(fichas.size() - 1));
     }
 
+    @Transactional
+    public FichaMetric findFichaMetrics(){
+        FichaMetric fichaMetric = new FichaMetric();
+        fichaMetric.setOpenFichas(fichaRepository.findFichasAbertas().get().size());
+        fichaMetric.setClosedFichas(fichaRepository.findFichasArquivadas().get().size());
+        return fichaMetric;
+    }
+
+    @Transactional
+    public AlunoMetric findAlunoMetricsByFicha(){
+        AlunoMetric alunoMetric = new AlunoMetric();
+
+        alunoMetric.setInfrequente(fichaRepository.findALunosInfrequentesByFichas().get().size());
+        alunoMetric.setNaoMatriculado(fichaRepository.findALunosNaoMatriculadosByFichas().get().size());
+        alunoMetric.setEvasao(fichaRepository.findALunosEvadidosByFichas().get().size());
+
+        return alunoMetric;
+    }
     private void ordenarPorNomeAlunoAsc(List<FichaDTO> dtos) {
         dtos.sort(Comparator.comparing(fichaDTO -> fichaDTO.getAluno().getNome().toLowerCase()));
     }
