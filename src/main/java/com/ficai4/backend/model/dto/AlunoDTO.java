@@ -31,6 +31,8 @@ public class AlunoDTO {
 
     private String responsavelSecundario;
 
+    private String responsavelOpcional;
+
     @NotNull(message = "Beneficiario Renda " + NullMessages.NULL_NOT_ALLOWED)
     private Boolean beneficiarioRenda;
 
@@ -53,6 +55,7 @@ public class AlunoDTO {
     }
 
     public AlunoDTO(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
+            String responsavelOpcional,
             Boolean beneficiarioRenda, Boolean beneficiarioBpc, List<TelefoneDTO> telefones,
             List<EnderecoDTO> enderecos, LocalDate dataNascimento) {
         this.cpf = cpf;
@@ -104,6 +107,14 @@ public class AlunoDTO {
 
     public void setResponsavelSecundario(String responsavelSecundario) {
         this.responsavelSecundario = responsavelSecundario;
+    }
+
+    public String getResponsavelOpcional() {
+        return this.responsavelOpcional;
+    }
+
+    public void setResponsavelOpcional(String responsavelOpcional) {
+        this.responsavelOpcional = responsavelOpcional;
     }
 
     public Boolean isBeneficiarioRenda() {

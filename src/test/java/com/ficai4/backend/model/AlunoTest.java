@@ -17,7 +17,7 @@ import com.ficai4.backend.enums.Status;
 @DisplayName("Tests for Aluno model.")
 public class AlunoTest {
 
-    Aluno aluno = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
+    Aluno aluno = new Aluno("60076180050", "José Soares", "Vinicio Muller", "Maria Souto", "Maria Souto", true,
             true, LocalDate.now());
 
     Ficha ficha = new Ficha(SituacaoAluno.EVADIDO, Status.AGUARDANDO_VISITA, "Aluno falta demais", aluno,

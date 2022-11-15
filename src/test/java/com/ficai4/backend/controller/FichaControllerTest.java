@@ -101,7 +101,8 @@ public class FichaControllerTest {
                                 new CidadeDTO("5234565", "Porto Alegre", "RS"), "Perto da Elevato");
                 TelefoneDTO telefoneDto = new TelefoneDTO("051", "998732729", "Eduardo");
 
-                AlunoDTO alunoDto = new AlunoDTO("60076180050", "Jose  Soares", "Vinicio Muller", "Maria Souto", true,
+                AlunoDTO alunoDto = new AlunoDTO("60076180050", "Jose  Soares", "Vinicio Muller", "Maria Souto", "",
+                                true,
                                 true, List.of(telefoneDto), List.of(enderecoDto), LocalDate.now());
 
                 FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), alunoDto, UUID.randomUUID(),
