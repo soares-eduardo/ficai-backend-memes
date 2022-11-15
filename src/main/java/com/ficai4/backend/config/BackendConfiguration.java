@@ -23,44 +23,48 @@ public class BackendConfiguration {
                         // Alunos
 
                         Aluno aluno1 = new Aluno("60076180050", "Ana Clara Soares", "Vinicio Soares", "Maria Soares",
+                                        "Ana",
+                                        true, true, LocalDate.now());
+                        Aluno aluno2 = new Aluno("60076180051", "Artur Mendes", "Silvio Mendes", "Joaquina Mendes", "",
                                         true,
                                         true, LocalDate.now());
-                        Aluno aluno2 = new Aluno("60076180051", "Artur Mendes", "Silvio Mendes", "Joaquina Mendes",
-                                        true,
+                        Aluno aluno3 = new Aluno("67545633388", "Carolina da Silva", "Maria Muller", "", "", false,
                                         true, LocalDate.now());
-                        Aluno aluno3 = new Aluno("67545633388", "Carolina da Silva", "Maria Muller", "", false,
+                        Aluno aluno4 = new Aluno("90877834333", "Eduardo Gomes", "Luana Gomes", "Felipe Gomes",
+                                        "Joana Gomes", true,
                                         true, LocalDate.now());
-                        Aluno aluno4 = new Aluno("90877834333", "Eduardo Gomes", "Luana Gomes", "Felipe Gomes", true,
-                                        true, LocalDate.now());
-                        Aluno aluno5 = new Aluno("67393834476", "Gabriela Roques", "Joana Roques", "Carlos Roques",
+                        Aluno aluno5 = new Aluno("67393834476", "Gabriela Roques", "Joana Roques", "Carlos Roques", "",
                                         false,
                                         false, LocalDate.now());
-                        Aluno aluno6 = new Aluno("09878345678", "Henrique Medeiros", "Claudia Medeiros",
+                        Aluno aluno6 = new Aluno("09878345678", "Henrique Medeiros", "Claudia Medeiros", "",
                                         "Roberto Medeiros", false,
                                         false, LocalDate.now());
-                        Aluno aluno7 = new Aluno("78946278754", "Larissa Barros", "Maristela Silva", "Fábio Silva",
+                        Aluno aluno7 = new Aluno("78946278754", "Larissa Barros", "Maristela Silva", "", "Fábio Silva",
                                         true,
                                         false, LocalDate.now());
                         Aluno aluno8 = new Aluno("09823423465", "Manoella Lopes", "Karla Lopes", "Karina Padilha",
+                                        "Karla Lopes",
                                         false,
                                         false, LocalDate.now());
-                        Aluno aluno9 = new Aluno("73253405643", "Natália Galina", "Juliana Galina", "Henry Galina",
+                        Aluno aluno9 = new Aluno("73253405643", "Natália Galina", "Juliana Galina", "", "Henry Galina",
                                         false,
                                         true, LocalDate.now());
                         Aluno aluno10 = new Aluno("89903432333", "Pedro Silva", "Martina Silva", "João Carlos Silva",
+                                        "João",
                                         true,
                                         true, LocalDate.now());
                         Aluno aluno11 = new Aluno("66563418767", "Raissa Farias", "Armando Farias", "Juliano Farias",
-                                        false,
+                                        "", false,
                                         false, LocalDate.now());
                         Aluno aluno12 = new Aluno("87654390877", "Sabrina Julian Freitas", "Gabriela Freitas", "",
+                                        "", false,
+                                        false, LocalDate.now());
+                        Aluno aluno13 = new Aluno("65443378766", "Sofia Bento", "Maria Bento", "Vinicius Bento", "",
                                         false,
-                                        false, LocalDate.now());
-                        Aluno aluno13 = new Aluno("65443378766", "Sofia Bento", "Maria Bento", "Vinicius Bento", false,
                                         true, LocalDate.now());
-                        Aluno aluno14 = new Aluno("73253405643", "Vitor Lima", "Thiago Lima", "", false,
+                        Aluno aluno14 = new Aluno("73253405643", "Vitor Lima", "Thiago Lima", "", "", false,
                                         false, LocalDate.now());
-                        Aluno aluno15 = new Aluno("73253405643", "Yasmin Moraes", "Jaqueline Moraes", "", false,
+                        Aluno aluno15 = new Aluno("73253405643", "Yasmin Moraes", "Jaqueline Moraes", "", "", false,
                                         false, LocalDate.now());
 
                         // Telefones responsáveis

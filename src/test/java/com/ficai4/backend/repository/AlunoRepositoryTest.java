@@ -25,7 +25,7 @@ public class AlunoRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        Aluno aluno1 = new Aluno("60076180050", "jose  Soares", "Vinicio Muller", "Maria Souto", true,
+        Aluno aluno1 = new Aluno("60076180050", "José Soares", "Vinicio Muller", "", "Maria Souto", true,
                 true, LocalDate.now());
         Cidade cidade = new Cidade("52345", "Caxias Do Sul", "RS");
         Endereco endereco = new Endereco("91360220", "Rua Limoeiro", "135", "Bela Vista",

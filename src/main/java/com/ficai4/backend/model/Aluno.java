@@ -39,6 +39,9 @@ public class Aluno implements Serializable {
     @Column(name = "responsavel_secundario", length = 80)
     private String responsavelSecundario;
 
+    @Column(name = "responsavel_opcional", length = 80)
+    private String responsavelOpcional;
+
     @Column(nullable = false, name = "beneficiario_renda")
     private Boolean beneficiarioRenda;
 
@@ -61,11 +64,12 @@ public class Aluno implements Serializable {
     }
 
     public Aluno(String cpf, String nome, String responsavelPrimario, String responsavelSecundario,
-            Boolean beneficiarioRenda, Boolean beneficiarioBpc, LocalDate dataNascimento) {
+            String responsavelOpcional, Boolean beneficiarioRenda, Boolean beneficiarioBpc, LocalDate dataNascimento) {
         this.cpf = cpf;
         this.nome = nome;
         this.responsavelPrimario = responsavelPrimario;
         this.responsavelSecundario = responsavelSecundario;
+        this.responsavelOpcional = responsavelOpcional;
         this.beneficiarioRenda = beneficiarioRenda;
         this.beneficiarioBpc = beneficiarioBpc;
         this.dataNascimento = dataNascimento;
@@ -109,6 +113,14 @@ public class Aluno implements Serializable {
 
     public void setResponsavelSecundario(String responsavelSecundario) {
         this.responsavelSecundario = responsavelSecundario;
+    }
+
+    public String getResponsavelOpcional() {
+        return this.responsavelOpcional;
+    }
+
+    public void setResponsavelOpcional(String responsavelOpcional) {
+        this.responsavelOpcional = responsavelOpcional;
     }
 
     public Boolean isBeneficiarioRenda() {

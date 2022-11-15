@@ -27,6 +27,7 @@ public class AlunoMapper {
         aluno.setTelefones(telefoneMapper.toEntity(alunoDto.getTelefones()));
         aluno.setResponsavelPrimario(alunoDto.getResponsavelPrimario());
         aluno.setResponsavelSecundario(alunoDto.getResponsavelSecundario());
+        aluno.setResponsavelOpcional(alunoDto.getResponsavelOpcional());
         aluno.setBeneficiarioRenda(alunoDto.isBeneficiarioRenda());
         aluno.setBeneficiarioBpc(alunoDto.isBeneficiarioBpc());
         aluno.setEnderecos(enderecoMapper.toEntity(alunoDto.getEnderecos()));
@@ -44,6 +45,7 @@ public class AlunoMapper {
         alunoDto.setTelefones(telefoneMapper.toDto(aluno.getTelefones()));
         alunoDto.setResponsavelPrimario(aluno.getResponsavelPrimario());
         alunoDto.setResponsavelSecundario(aluno.getResponsavelSecundario());
+        alunoDto.setResponsavelOpcional(aluno.getResponsavelOpcional());
         alunoDto.setBeneficiarioRenda(aluno.isBeneficiarioRenda());
         alunoDto.setBeneficiarioBpc(aluno.isBeneficiarioBpc());
         alunoDto.setEnderecos(enderecoMapper.toDto(aluno.getEnderecos()));
