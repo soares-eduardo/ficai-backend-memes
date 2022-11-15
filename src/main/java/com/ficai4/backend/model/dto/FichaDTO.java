@@ -8,6 +8,7 @@ import java.util.UUID;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import com.ficai4.backend.model.IdPublico;
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -17,6 +18,7 @@ import com.ficai4.utils.NullMessages;
 public class FichaDTO {
 
     private UUID id;
+    private IdPublico idPublico;
 
     @NotNull(message = "Situação do aluno " + NullMessages.NULL_NOT_ALLOWED)
     private Integer situacaoAluno;
@@ -70,6 +72,14 @@ public class FichaDTO {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public IdPublico getIdPublico() {
+        return idPublico;
+    }
+
+    public void setIdPublico(IdPublico idPublico) {
+        this.idPublico = idPublico;
     }
 
     public Integer getSituacaoAluno() {

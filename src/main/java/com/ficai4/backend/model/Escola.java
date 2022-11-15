@@ -45,7 +45,7 @@ public class Escola implements Serializable {
     }
 
     public Escola(String escolaInep, String nome, String cep, String logradouro, String numero, String complemento,
-            String bairro, String cidade, String estado) {
+                  String bairro, String cidade, String estado) {
         this.escolaInep = escolaInep;
         this.nome = nome;
         this.cep = cep;

@@ -27,7 +27,7 @@ public class Aluno implements Serializable {
     @Column(name = "id")
     private UUID id;
 
-    @Column(nullable = false, name = "cpf", length = 11)
+    @Column(nullable = true, name = "cpf", length = 11)
     private String cpf;
 
     @Column(nullable = false, name = "nome", length = 80)

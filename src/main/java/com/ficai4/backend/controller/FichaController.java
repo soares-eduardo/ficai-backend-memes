@@ -6,6 +6,8 @@ import java.util.UUID;
 
 import javax.validation.Valid;
 
+import com.ficai4.backend.model.metrics.AlunoMetric;
+import com.ficai4.backend.model.metrics.FichaMetric;
 import org.springframework.validation.FieldError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -59,6 +61,16 @@ public class FichaController {
         return ResponseEntity.ok(fichaService.findFichaByAlunoId(alunoId));
     }
 
+    @GetMapping(value = "/fichaMetrics", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaMetric> FindFichaMetrics() {
+        return ResponseEntity.ok(fichaService.findFichaMetrics());
+    }
+
+    @GetMapping(value = "/alunoMetricsByFicha", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AlunoMetric> findAlunoMetricsByFicha() {
+        return ResponseEntity.ok(fichaService.findAlunoMetricsByFicha());
+    }
+
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<FichaInsertDTO> createFicha(@Valid @RequestBody FichaInsertDTO fichaDto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(fichaService.createFicha(fichaDto));
@@ -80,6 +92,8 @@ public class FichaController {
             @RequestParam("responsavel") Integer responsavel) {
         return ResponseEntity.ok(fichaService.updateResponsavelFicha(fichaId, responsavel));
     }
+
+
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

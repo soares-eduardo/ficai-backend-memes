@@ -3,9 +3,11 @@ package com.ficai4.backend.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ficai4.backend.enums.SituacaoAluno;
 import com.ficai4.backend.enums.Status;
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +22,10 @@ public class Ficha implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
+
+
+    @OneToOne(cascade=CascadeType.ALL)
+    private IdPublico idPublico = new IdPublico();
 
     @Column(nullable = false, name = "situacao_Aluno")
     private Integer situacaoAluno;
@@ -66,6 +72,7 @@ public class Ficha implements Serializable {
         this.idEscola = idEscola;
         this.idMotivoInfrequencia = idMotivoInfrequencia;
         this.responsavel = responsavel;
+       // this.idPublico
     }
 
     public UUID getId() {
@@ -75,6 +82,15 @@ public class Ficha implements Serializable {
     public void setId(UUID id) {
         this.id = id;
     }
+
+   public IdPublico getIdPublico() {
+        return idPublico;
+    }
+
+    public void setIdPublico(IdPublico idPublico) {
+        this.idPublico = idPublico;
+    }
+
 
     public SituacaoAluno getSituacaoAluno() {
         return SituacaoAluno.valueOf(situacaoAluno);
