@@ -20,7 +20,7 @@ public interface FichaRepository extends JpaRepository<Ficha, UUID> {
         "SELECT ficha " +
         "FROM Ficha ficha " +
         "WHERE (ficha.aluno.cpf like %:word% " +
-           "or ficha.aluno.nome like %:word%) " +
+           "or lower(ficha.aluno.nome) like %:word%) " +
         "ORDER BY ficha.status, ficha.aluno.nome"
         )
     Optional<List<Ficha>> findByAnyWord(@Param("word") String word);
