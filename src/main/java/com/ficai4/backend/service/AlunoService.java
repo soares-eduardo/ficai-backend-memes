@@ -79,7 +79,8 @@ public class AlunoService {
 
         return new PageImpl<>(
                 alunoMapper.toDto(response.get().stream().collect(Collectors.toList())),
-                pageRequest, response.get().getSize());
+                response.get().getPageable(),
+                response.get().getTotalElements());
     }
 
     public AlunoDTO update(AlunoDTO alunoDto) {

@@ -57,8 +57,8 @@ public class AlunoController {
     public ResponseEntity<Page<AlunoDTO>> findByAnyWord(@RequestParam("palavra") String palavra,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "size", required = false, defaultValue = "10") int size,
-            @RequestParam("direction") Sort.Direction direction,
-            @RequestParam("atributo") String atributo) {
+            @RequestParam(value = "direction", required = false, defaultValue = "ASC") Sort.Direction direction,
+            @RequestParam(value = "atributo", required = false, defaultValue = "nome") String atributo) {
 
         return ResponseEntity.ok()
                 .body(alunoService.findByAnyWord(palavra.toLowerCase(), page, size, direction, atributo));

@@ -37,89 +37,94 @@ import org.springframework.data.domain.*;
 @WebMvcTest(FichaController.class)
 public class FichaControllerTest {
 
-    @MockBean
-    private AlunoService alunoService;
+        @MockBean
+        private AlunoService alunoService;
 
-    @MockBean
-    private FichaService fichaService;
+        @MockBean
+        private FichaService fichaService;
 
-    @MockBean
-    private FichaMapper fichaMapper;
+        @MockBean
+        private FichaMapper fichaMapper;
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+        @Autowired
+        private ObjectMapper objectMapper;
 
-    @Test
-    void itShouldReturnOkStatusWhenFindingAllFichas() throws Exception {
+        @Test
+        void itShouldReturnOkStatusWhenFindingAllFichas() throws Exception {
 
-        int page = 0;
-        int size = 10;
+                int page = 0;
+                int size = 10;
 
-        PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
+                PageRequest pageRequest = PageRequest.of(page, size, Sort.Direction.ASC, "name");
 
-        Mockito.when(fichaService.findAll()).thenReturn(new PageImpl<>(
-                List.of(new FichaDTO()),
-                pageRequest, size));
-        RequestBuilder request = MockMvcRequestBuilders.get("/ficha");
-        MvcResult result = mockMvc.perform(request).andReturn();
-        assertEquals(200, result.getResponse().getStatus());
-    }
+                Mockito.when(fichaService.findAll()).thenReturn(new PageImpl<>(
+                                List.of(new FichaDTO()),
+                                pageRequest, size));
+                RequestBuilder request = MockMvcRequestBuilders.get("/ficha");
+                MvcResult result = mockMvc.perform(request).andReturn();
+                assertEquals(200, result.getResponse().getStatus());
+        }
 
-    @Test
-    void itShouldReturnOkStatusWhenFindingFichaByAlunoId() throws Exception {
-        UUID id = UUID.randomUUID();
+        @Test
+        void itShouldReturnOkStatusWhenFindingFichaByAlunoId() throws Exception {
+                UUID id = UUID.randomUUID();
 
-        Mockito.when(fichaService.findFichaByAlunoId(id)).thenReturn(new FichaDTO());
-        RequestBuilder request = MockMvcRequestBuilders.get("/ficha/alunoId").param("alunoId", String.valueOf(id));
-        MvcResult result = mockMvc.perform(request).andReturn();
-        assertEquals(200, result.getResponse().getStatus());
-    }
+                Mockito.when(fichaService.findFichaByAlunoId(id)).thenReturn(new FichaDTO());
+                RequestBuilder request = MockMvcRequestBuilders.get("/ficha/alunoId").param("alunoId",
+                                String.valueOf(id));
+                MvcResult result = mockMvc.perform(request).andReturn();
+                assertEquals(200, result.getResponse().getStatus());
+        }
 
-    @Test
-    void itShouldReturnCreatedStatusWhenCreatingFicha() throws Exception {
-        FichaInsertDTO fichaDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(), UUID.randomUUID(),
-                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
+        @Test
+        void itShouldReturnCreatedStatusWhenCreatingFicha() throws Exception {
+                FichaInsertDTO fichaInsertDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(),
+                                UUID.randomUUID(),
+                                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/ficha").contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(fichaDTO));
+                RequestBuilder request = MockMvcRequestBuilders.post("/ficha")
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .content(objectMapper.writeValueAsString(fichaInsertDTO));
 
-        MvcResult result = mockMvc.perform(request).andReturn();
+                MvcResult result = mockMvc.perform(request).andReturn();
 
-        assertEquals(201, result.getResponse().getStatus());
-    }
+                assertEquals(201, result.getResponse().getStatus());
+        }
 
-    @Test
-    void itShouldReturnBadRequestStatusWhenCreatingFicha() throws Exception {
-        EnderecoDTO enderecoDto = new EnderecoDTO("91360-220", "Rua Limoeiro", "135", "Cristo Redentor", "AP 1608",
-                new CidadeDTO("5234565", "Porto Alegre", "RS"), "Perto da Elevato");
-        TelefoneDTO telefoneDto = new TelefoneDTO("051", "998732729", "Eduardo");
+        @Test
+        void itShouldReturnBadRequestStatusWhenCreatingFicha() throws Exception {
+                EnderecoDTO enderecoDto = new EnderecoDTO("91360-220", "Rua Limoeiro", "135", "Cristo Redentor",
+                                "AP 1608",
+                                new CidadeDTO("5234565", "Porto Alegre", "RS"), "Perto da Elevato");
+                TelefoneDTO telefoneDto = new TelefoneDTO("051", "998732729", "Eduardo");
 
-        AlunoDTO alunoDto = new AlunoDTO("60076180050", "Jose  Soares", "Vinicio Muller", "Maria Souto", true,
-                true, List.of(telefoneDto), List.of(enderecoDto), LocalDate.now());
+                AlunoDTO alunoDto = new AlunoDTO("60076180050", "Jose  Soares", "Vinicio Muller", "Maria Souto", true,
+                                true, List.of(telefoneDto), List.of(enderecoDto), LocalDate.now());
 
-        FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), alunoDto, UUID.randomUUID(),
-                UUID.randomUUID(), null, null, 1);
+                FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), alunoDto, UUID.randomUUID(),
+                                UUID.randomUUID(), null, null, 1);
 
-        RequestBuilder request = MockMvcRequestBuilders.post("/ficha").contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(fichaDTO));
+                RequestBuilder request = MockMvcRequestBuilders.post("/ficha")
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .content(objectMapper.writeValueAsString(fichaDTO));
 
-        MvcResult result = mockMvc.perform(request).andReturn();
+                MvcResult result = mockMvc.perform(request).andReturn();
 
-        assertEquals(400, result.getResponse().getStatus());
-    }
+                assertEquals(400, result.getResponse().getStatus());
+        }
 
-    @Test
-    void itShouldReturnCreatedStatusWhenCreatingVisita() throws Exception {
-        VisitaDTO visitaDto = new VisitaDTO("Teste", "Teste", true, LocalDate.now());
+        @Test
+        void itShouldReturnCreatedStatusWhenCreatingVisita() throws Exception {
+                VisitaDTO visitaDto = new VisitaDTO("Teste", "Teste", true, LocalDate.now());
 
-        Mockito.when(fichaService.createVisita(visitaDto)).thenReturn(new VisitaDTO());
-        RequestBuilder request = MockMvcRequestBuilders.patch("/ficha/visita")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .content(objectMapper.writeValueAsString(visitaDto));
-        MvcResult result = mockMvc.perform(request).andReturn();
-        assertEquals(201, result.getResponse().getStatus());
-    }
+                Mockito.when(fichaService.createVisita(visitaDto)).thenReturn(new VisitaDTO());
+                RequestBuilder request = MockMvcRequestBuilders.patch("/ficha/visita")
+                                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                                .content(objectMapper.writeValueAsString(visitaDto));
+                MvcResult result = mockMvc.perform(request).andReturn();
+                assertEquals(201, result.getResponse().getStatus());
+        }
 }
