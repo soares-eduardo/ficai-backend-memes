@@ -3,13 +3,12 @@ package com.ficai4.backend.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import com.ficai4.backend.enums.Status;
 import com.ficai4.backend.exceptions.EntityNotFoundException;
@@ -26,6 +25,8 @@ import com.ficai4.backend.model.dto.VisitaDTO;
 import com.ficai4.backend.repository.EscolaRepository;
 import com.ficai4.backend.repository.FichaRepository;
 import com.ficai4.backend.repository.MotivoInfrequenciaRepository;
+
+import java.util.*;
 
 @Service
 public class FichaService {
@@ -62,15 +63,30 @@ public class FichaService {
     }
 
     @Transactional
-    public List<FichaDTO> findByAnyWord(String word) {
+    public Page<FichaDTO> findByAnyWord(String word, int page, int size, Sort.Direction direction, String atributo,
+            int[] status) {
 
-        Optional<List<Ficha>> response = fichaRepository.findByAnyWord(word);
-
-       if(response.isEmpty() || response.get().isEmpty()){
-          throw new EntityNotFoundException("Ficha não encontrada.");
+        if (status.length > 0) {
+            return pagePorStatus(word, page, size, status);
         }
 
-        return fichaMapper.toDto(response.get());
+        if (atributo.toLowerCase().equals("nome")) {
+            return pagePorNome(word, page, size, direction, atributo);
+        } else if (atributo.toLowerCase().equals("cpf")) {
+            return pagePorCPF(word, page, size, direction, atributo);
+        }
+
+        PageRequest pageRequest = PageRequest.of(page, size, direction, atributo);
+
+        Optional<Page<Ficha>> response = fichaRepository.findByAnyWord(word, pageRequest);
+
+        if (response.isEmpty() || response.get().isEmpty()) {
+            throw new EntityNotFoundException("Ficha não encontrada.");
+        }
+        List<FichaDTO> dto = fichaMapper.toDto(response.get().stream().collect(Collectors.toList()));
+
+        return new PageImpl<>(dto, response.get().getPageable(),
+                response.get().getTotalElements());
     }
 
     @Transactional
@@ -153,4 +169,79 @@ public class FichaService {
 
         return fichaMapper.toDto(fichas.get(fichas.size() - 1));
     }
+
+    private void ordenarPorNomeAlunoAsc(List<FichaDTO> dtos) {
+        dtos.sort(Comparator.comparing(fichaDTO -> fichaDTO.getAluno().getNome().toLowerCase()));
+    }
+
+    private void ordenarPorNomeAlunoDesc(List<FichaDTO> dtos) {
+        dtos.sort(Comparator.comparing(fichaDTO -> fichaDTO.getAluno().getNome().toLowerCase()));
+        Collections.reverse(dtos);
+    }
+
+    private void ordenarPorCPFAlunoAsc(List<FichaDTO> dtos) {
+        dtos.sort(Comparator.comparing(fichaDTO -> fichaDTO.getAluno().getCpf()));
+    }
+
+    private void ordenarPorCPFAlunoDesc(List<FichaDTO> dtos) {
+        dtos.sort(Comparator.comparing(fichaDTO -> fichaDTO.getAluno().getCpf()));
+        Collections.reverse(dtos);
+    }
+
+    private Page<FichaDTO> pagePorNome(String palavra, int page, int size, Sort.Direction direction, String atributo) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+
+        Optional<Page<Ficha>> response = fichaRepository.findByAnyWord(palavra, pageRequest);
+        if (response.isEmpty() || response.get().isEmpty()) {
+            throw new EntityNotFoundException("Ficha não encontrada.");
+        }
+        List<FichaDTO> dto = fichaMapper.toDto(response.get().stream().collect(Collectors.toList()));
+        if (direction.isAscending()) {
+            ordenarPorNomeAlunoAsc(dto);
+        } else {
+            ordenarPorNomeAlunoDesc(dto);
+        }
+
+        return new PageImpl<>(
+                dto,
+                response.get().getPageable(),
+                response.get().getTotalElements());
+    }
+
+    private Page<FichaDTO> pagePorStatus(String palavra, int page, int size, int[] status) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+
+        Optional<Page<Ficha>> response = fichaRepository.findFichaByStatus(palavra, status, pageRequest);
+        if (response.isEmpty() || response.get().isEmpty()) {
+            throw new EntityNotFoundException("Ficha não encontrada.");
+        }
+        List<FichaDTO> dto = fichaMapper.toDto(response.get().stream().collect(Collectors.toList()));
+
+        return new PageImpl<>(
+                dto,
+                response.get().getPageable(),
+                response.get().getTotalElements());
+    }
+
+    private Page<FichaDTO> pagePorCPF(String palavra, int page, int size, Sort.Direction direction, String atributo) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+
+        Optional<Page<Ficha>> response = fichaRepository.findByAnyWord(palavra, pageRequest);
+        if (response.isEmpty() || response.get().isEmpty()) {
+            throw new EntityNotFoundException("Ficha não encontrada.");
+        }
+
+        List<FichaDTO> dto = fichaMapper.toDto(response.get().stream().collect(Collectors.toList()));
+        if (direction.isAscending()) {
+            ordenarPorCPFAlunoAsc(dto);
+        } else {
+            ordenarPorCPFAlunoDesc(dto);
+        }
+
+        return new PageImpl<>(
+                dto,
+                response.get().getPageable(),
+                response.get().getTotalElements());
+    }
+
 }

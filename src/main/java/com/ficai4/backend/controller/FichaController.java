@@ -1,7 +1,6 @@
 package com.ficai4.backend.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -10,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.validation.FieldError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +44,14 @@ public class FichaController {
     }
 
     @GetMapping(value = "/buscarFicha", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<FichaDTO>> findByAnyWord(@RequestParam("palavra") String palavra) {
-        String wordLowerCase = palavra.toLowerCase();
-        return ResponseEntity.ok().body(fichaService.findByAnyWord(wordLowerCase));
+    public ResponseEntity<Page<FichaDTO>> findAll(
+            @RequestParam(value = "palavra", required = false, defaultValue = "") String palavra,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            @RequestParam(value = "status", required = false, defaultValue = "") int[] status,
+            @RequestParam(value = "direction", required = false, defaultValue = "ASC") Sort.Direction direction,
+            @RequestParam(value = "atributo", required = false, defaultValue = "nome") String atributo) {
+        return ResponseEntity.ok(fichaService.findByAnyWord(palavra, page, size, direction, atributo, status));
     }
 
     @GetMapping(value = "/alunoId", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,12 +70,14 @@ public class FichaController {
     }
 
     @PatchMapping(value = "/updateStatus", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FichaDTO> updateStatusFicha(@RequestParam("fichaId") UUID fichaId, @RequestParam("status") Status status) {
+    public ResponseEntity<FichaDTO> updateStatusFicha(@RequestParam("fichaId") UUID fichaId,
+            @RequestParam("status") Status status) {
         return ResponseEntity.ok(fichaService.updateStatusFicha(fichaId, status));
     }
 
     @PatchMapping(value = "/updateResponsavel", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FichaDTO> updateResponsavelFicha(@RequestParam("fichaId") UUID fichaId, @RequestParam("responsavel") Integer responsavel) {
+    public ResponseEntity<FichaDTO> updateResponsavelFicha(@RequestParam("fichaId") UUID fichaId,
+            @RequestParam("responsavel") Integer responsavel) {
         return ResponseEntity.ok(fichaService.updateResponsavelFicha(fichaId, responsavel));
     }
 
