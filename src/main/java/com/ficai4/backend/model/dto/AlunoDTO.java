@@ -17,7 +17,6 @@ public class AlunoDTO {
 
     private UUID id;
 
-    @NotNull(message = "CPF " + NullMessages.NULL_NOT_ALLOWED)
     @Length(max = 11, min = 11, message = LengthMessages.CPF_LENGTH_VALIDATION)
     private String cpf;
 
