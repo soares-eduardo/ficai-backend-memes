@@ -25,7 +25,7 @@ public class FichaRepositoryTest {
         Aluno aluno = new Aluno("60076180050", "José Soares", "Vinicio Muller", "", "Maria Souto", true,
                 true, LocalDate.now());
         Ficha ficha = new Ficha(SituacaoAluno.EVADIDO, Status.AGUARDANDO_VISITA, "Aluno falta demais",
-                aluno, UUID.randomUUID(), UUID.randomUUID(), 1);
+                aluno, UUID.randomUUID(), 1L, 1);
 
         underTest.save(ficha);
     }

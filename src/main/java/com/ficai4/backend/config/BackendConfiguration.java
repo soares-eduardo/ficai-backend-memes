@@ -158,8 +158,74 @@ public class BackendConfiguration {
                         escolaRepository.save(escola1);
 
                         // motivoInfrequencia
-                        MotivoInfrequencia motivoInfrequencia = new MotivoInfrequencia("Evasão", "Teste", 2);
+                        // MotivoInfrequencia motivoInfrequencia = new MotivoInfrequencia("Evasão",
+                        // "Teste", 2);
+                        // MotivoInfrequencia motivoInfrequencia2 = new MotivoInfrequencia("Evasão",
+                        // "Teste 2", 2);
 
+                        // motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        // motivoInfrequenciaRepository.save(motivoInfrequencia2);
+
+                        MotivoInfrequencia motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Falta de vaga (especificar creche, pré-escola, EF (AI), EF (AF), EM, EJA)", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Falta de recursos para frequentar a escola (didático, vestuário)", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Falta de políticas transversais na escola (alimentação, higiene íntima, entre outras)",
+                                        1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Não oferta de educação especial na perspectiva da educação inclusiva", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Falta de acesso a transporte público para a escola (política de isenção para a família inclusive)",
+                                        1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural", "Trabalho", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural", "Falta de transporte escolar", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Estrutural",
+                                        "Necessidade de cuidados com membros da família", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+
+                        motivoInfrequencia = new MotivoInfrequencia("Saúde Física/Mental",
+                                        "Saúde mental/física família (não é necessário documento ou diagnóstico)", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Saúde Física/Mental",
+                                        "Saúde mental/física do estudante (não é necessário documento ou diagnóstico)",
+                                        1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Ensino-aprendizagem",
+                                        "Dificuldade no ensino-aprendizagem", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Ensino-aprendizagem", "Distorção idade-ano", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Ensino-aprendizagem",
+                                        "Reprovação ou perspectiva de reprovação", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+
+                        motivoInfrequencia = new MotivoInfrequencia("Paternidade/Maternidade", "Gestação", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Paternidade/Maternidade",
+                                        "Maternidade/paternidade do/a adolescente", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Paternidade/Maternidade",
+                                        "Filho pequeno, sem creche", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+
+                        motivoInfrequencia = new MotivoInfrequencia("Violências", "Violência no entorno da escola", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Violências",
+                                        "Preconceito (racismo, homofobia, não autorização de uso de nome social pela família, entre outros) com subdivisões",
+                                        1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Violências",
+                                        "Relacionamento na escola (bullying, conflitivas em geral)", 1);
+                        motivoInfrequenciaRepository.save(motivoInfrequencia);
+                        motivoInfrequencia = new MotivoInfrequencia("Violências", "Suspeita de violência doméstica", 1);
                         motivoInfrequenciaRepository.save(motivoInfrequencia);
 
                         // Ficha

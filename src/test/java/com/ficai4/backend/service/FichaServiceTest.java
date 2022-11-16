@@ -121,7 +121,7 @@ class FichaServiceTest {
                 // given
                 FichaInsertDTO fichaInsertDto = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(),
                                 UUID.randomUUID(),
-                                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
+                                UUID.randomUUID(), 1L, null, null, 1);
 
                 // when
                 Mockito.when(escolaRepository.findById(fichaInsertDto.getIdEscola())).thenReturn(Optional.empty());
@@ -136,7 +136,7 @@ class FichaServiceTest {
                 // given
                 FichaInsertDTO fichaDto = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(),
                                 UUID.randomUUID(),
-                                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
+                                UUID.randomUUID(), 1L, null, null, 1);
                 Escola escola = createEscola();
 
                 // when
@@ -174,7 +174,7 @@ class FichaServiceTest {
                 // given
                 FichaInsertDTO fichaInsertDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(),
                                 UUID.randomUUID(),
-                                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
+                                UUID.randomUUID(), 1L, null, null, 1);
 
                 // when
                 Mockito.when(fichaRepository.findFichaByAlunoId(fichaInsertDTO.getAluno())).thenReturn(List.of());
@@ -223,7 +223,7 @@ class FichaServiceTest {
                                 true,
                                 true, LocalDate.now());
                 Ficha ficha = new Ficha(SituacaoAluno.EVADIDO, Status.AGUARDANDO_VISITA, "Aluno falta demais",
-                                aluno, UUID.randomUUID(), UUID.randomUUID(), 1);
+                                aluno, UUID.randomUUID(), 1L, 1);
 
                 return ficha;
         }

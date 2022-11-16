@@ -83,7 +83,7 @@ public class FichaControllerTest {
         void itShouldReturnCreatedStatusWhenCreatingFicha() throws Exception {
                 FichaInsertDTO fichaInsertDTO = new FichaInsertDTO(1, 2, "Aluno não vai na aula.", LocalDate.now(),
                                 UUID.randomUUID(),
-                                UUID.randomUUID(), UUID.randomUUID(), null, null, 1);
+                                UUID.randomUUID(), 1L, null, null, 1);
 
                 RequestBuilder request = MockMvcRequestBuilders.post("/ficha")
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)
@@ -106,7 +106,7 @@ public class FichaControllerTest {
                                 true, List.of(telefoneDto), List.of(enderecoDto), LocalDate.now());
 
                 FichaDTO fichaDTO = new FichaDTO(1, 2, null, LocalDate.now(), alunoDto, UUID.randomUUID(),
-                                UUID.randomUUID(), null, null, 1);
+                                2L, null, null, 1);
 
                 RequestBuilder request = MockMvcRequestBuilders.post("/ficha")
                                 .contentType(MediaType.APPLICATION_JSON_VALUE)

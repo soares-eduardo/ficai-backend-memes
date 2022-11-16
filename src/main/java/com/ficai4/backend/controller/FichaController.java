@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import com.ficai4.backend.model.metrics.AlunoMetric;
 import com.ficai4.backend.model.metrics.FichaMetric;
 import org.springframework.validation.FieldError;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -93,6 +94,10 @@ public class FichaController {
         return ResponseEntity.ok(fichaService.updateResponsavelFicha(fichaId, responsavel));
     }
 
+    @PatchMapping(value = "/updateMotivo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FichaDTO> updateMotivoInfrequencia(@RequestParam("fichaId") UUID fichaId, @RequestParam("idMotivoInfrequencia") Long idMotivoInfrequencia) {
+        return ResponseEntity.ok(fichaService.updateMotivoInfrequencia(fichaId, idMotivoInfrequencia));
+    }
 
 
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)

@@ -41,7 +41,7 @@ public class FichaInsertDTO {
 
     private UUID idEscola;
 
-    private UUID idMotivoInfrequencia;
+    private Long idMotivoInfrequencia;
 
     @Valid
     private List<VisitaDTO> visitas = new ArrayList<>();
@@ -53,7 +53,7 @@ public class FichaInsertDTO {
     }
 
     public FichaInsertDTO(Integer situacaoAluno, Integer status, String motivoComplemento, LocalDate dataCadastro,
-            UUID aluno, UUID idEscola, UUID idMotivoInfrequencia, List<VisitaDTO> visitas,
+            UUID aluno, UUID idEscola, Long idMotivoInfrequencia, List<VisitaDTO> visitas,
             List<HistoricoFichaDTO> historicoFichas, Integer responsavel) {
         this.situacaoAluno = situacaoAluno;
         this.status = status;
@@ -131,11 +131,11 @@ public class FichaInsertDTO {
         this.idEscola = idEscola;
     }
 
-    public UUID getIdMotivoInfrequencia() {
+    public Long getIdMotivoInfrequencia() {
         return this.idMotivoInfrequencia;
     }
 
-    public void setIdMotivoInfrequencia(UUID idMotivoInfrequencia) {
+    public void setIdMotivoInfrequencia(Long idMotivoInfrequencia) {
         this.idMotivoInfrequencia = idMotivoInfrequencia;
     }
 

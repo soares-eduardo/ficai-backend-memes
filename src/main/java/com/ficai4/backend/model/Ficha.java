@@ -49,7 +49,7 @@ public class Ficha implements Serializable {
     private UUID idEscola;
 
     @Column(nullable = true, name = "id_motivo_infrequencia")
-    private UUID idMotivoInfrequencia;
+    private Long idMotivoInfrequencia;
 
     @OneToMany(mappedBy = "ficha", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private List<Visita> visitas = new ArrayList<>();
@@ -61,7 +61,7 @@ public class Ficha implements Serializable {
     }
 
     public Ficha(SituacaoAluno situacaoAluno, Status status, String motivoComplemento, Aluno aluno, UUID idEscola,
-            UUID idMotivoInfrequencia, Integer responsavel) {
+            Long idMotivoInfrequencia, Integer responsavel) {
         setSituacaoAluno(situacaoAluno);
         setStatus(status);
         this.motivoComplemento = motivoComplemento;
@@ -125,11 +125,11 @@ public class Ficha implements Serializable {
         this.dataCadastro = dataCadastro;
     }
 
-    public UUID getIdMotivoInfrequencia() {
+    public Long getIdMotivoInfrequencia() {
         return idMotivoInfrequencia;
     }
 
-    public void setIdMotivoInfrequencia(UUID idMotivoInfrequencia) {
+    public void setIdMotivoInfrequencia(Long idMotivoInfrequencia) {
         this.idMotivoInfrequencia = idMotivoInfrequencia;
     }
 

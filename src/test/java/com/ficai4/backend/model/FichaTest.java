@@ -24,7 +24,7 @@ public class FichaTest {
 
     Ficha ficha = new Ficha(SituacaoAluno.EVADIDO, Status.AGUARDANDO_VISITA, "Aluno falta demais", aluno,
             UUID.fromString("3fa85f64-5717-4562-b3fc-2c963f66afa6"),
-            UUID.fromString("4fa85f64-5717-4562-b3fc-2c963f66afa6"), 1);
+            1L, 1);
 
     HistoricoFicha historicoFicha = new HistoricoFicha(LocalDate.now(), 2,
             1, ficha);

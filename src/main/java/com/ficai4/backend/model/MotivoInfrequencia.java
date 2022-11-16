@@ -10,14 +10,14 @@ public class MotivoInfrequencia implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id")
-    private UUID id;
+    private Long id;
 
-    @Column(nullable = false, name = "tipo", length = 50)
+    @Column(nullable = false, name = "tipo", length = 150)
     private String tipo;
 
-    @Column(nullable = false, name = "subtipo", length = 50)
+    @Column(nullable = false, name = "subtipo", length = 150)
     private String subTipo;
 
     @Column(nullable = false, name = "recorrencias_para_envio")
@@ -32,11 +32,11 @@ public class MotivoInfrequencia implements Serializable {
         this.recorrenciasParaEnvio = recorrenciasParaEnvio;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

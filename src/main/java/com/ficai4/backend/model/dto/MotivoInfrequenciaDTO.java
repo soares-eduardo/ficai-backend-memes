@@ -11,14 +11,14 @@ import com.ficai4.utils.NullMessages;
 
 public class MotivoInfrequenciaDTO {
 
-    private UUID id;
+    private Long id;
 
     @NotNull(message = "Tipo " + NullMessages.NULL_NOT_ALLOWED)
-    @Length(max = 50, message = LengthMessages.TIPO_VALIDATION)
+    @Length(max = 150, message = LengthMessages.TIPO_VALIDATION)
     private String tipo;
 
     @NotNull(message = "Subtipo " + NullMessages.NULL_NOT_ALLOWED)
-    @Length(max = 50, message = LengthMessages.SUBTIPO_VALIDATION)
+    @Length(max = 150, message = LengthMessages.SUBTIPO_VALIDATION)
     private String subTipo;
 
     @NotNull(message = "Recorrencias para envio " + NullMessages.NULL_NOT_ALLOWED)
@@ -33,11 +33,11 @@ public class MotivoInfrequenciaDTO {
         this.recorrenciasParaEnvio = recorrenciasParaEnvio;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -267,4 +267,15 @@ public class FichaService {
                 response.get().getTotalElements());
     }
 
+    public FichaDTO updateMotivoInfrequencia(UUID fichaId, Long idMotivoInfrequencia) {
+
+        Ficha ficha = fichaRepository.findById(fichaId)
+                .orElseThrow(() -> new NotFoundException("Ficha não encontrada com o id informado."));
+
+        ficha.setIdMotivoInfrequencia(idMotivoInfrequencia);
+
+        fichaRepository.save(ficha);
+
+        return fichaMapper.toDto(ficha);
+    }
 }

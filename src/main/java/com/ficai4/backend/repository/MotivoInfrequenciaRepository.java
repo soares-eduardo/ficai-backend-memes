@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import com.ficai4.backend.model.MotivoInfrequencia;
 
 @Repository
-public interface MotivoInfrequenciaRepository extends JpaRepository<MotivoInfrequencia, UUID> {
+public interface MotivoInfrequenciaRepository extends JpaRepository<MotivoInfrequencia, Long> {
 
 }
