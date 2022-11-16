@@ -124,22 +124,6 @@ class AlunoServiceTest {
     }
 
     @Test
-    void itShouldThrowAnExceptionWhenCreatingAluno() {
-        // given
-        AlunoDTO alunoDto = createAlunoDTO();
-
-        // when
-        Aluno aluno = createAluno();
-
-        Mockito.when(alunoRepository.findByCpf(
-                alunoDto.getCpf())).thenReturn(Optional.of(aluno));
-
-        // than
-        assertThrows(BusinessException.class, () -> underTest.createAluno(alunoDto),
-                "Aluno já cadastrado.");
-    }
-
-    @Test
     void itShouldUpdateAnAluno() {
         // given
         AlunoDTO alunoDto = createAlunoDTO();
