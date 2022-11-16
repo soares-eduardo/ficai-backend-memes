@@ -3,11 +3,9 @@ package com.ficai4.backend.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ficai4.backend.enums.SituacaoAluno;
 import com.ficai4.backend.enums.Status;
-import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -22,7 +20,6 @@ public class Ficha implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
 
     @OneToOne(cascade=CascadeType.ALL)
     private IdPublico idPublico = new IdPublico();

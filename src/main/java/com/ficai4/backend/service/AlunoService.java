@@ -50,12 +50,15 @@ public class AlunoService {
 
     @Transactional
     public AlunoDTO createAluno(AlunoDTO alunoDto) {
-        Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
 
-        if (optionalAluno.isPresent()) {
-            throw new BusinessException("Aluno já cadastrado.");
+        if (alunoDto.getCpf() != null) {
+            Optional<Aluno> optionalAluno = alunoRepository.findByCpf(alunoDto.getCpf());
+
+            if (optionalAluno.isPresent()) {
+                throw new BusinessException("Aluno já cadastrado.");
+            }
         }
-
+        
         Aluno aluno = alunoMapper.toEntity(alunoDto);
 
         alunoRepository.save(aluno);
