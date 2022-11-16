@@ -145,6 +145,7 @@ public class FichaService {
 
     }
 
+    @Transactional
     public VisitaDTO createVisita(VisitaDTO visitaDto) {
 
         Ficha ficha = fichaRepository.findById(visitaDto.getFichaId())
@@ -157,6 +158,8 @@ public class FichaService {
         if (sizeVisitaList == 1) {
             ficha.setStatus(Status.EM_VISITACAO);
         }
+
+        fichaRepository.save(ficha);
 
         return visitaMapper.toDto(ficha.getVisitas().get(sizeVisitaList - 1));
     }
