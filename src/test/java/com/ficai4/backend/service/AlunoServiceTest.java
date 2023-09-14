@@ -28,7 +28,7 @@ import org.springframework.data.domain.*;
 
 @SpringBootTest(properties = "spring.main.lazy-initialization=true", classes = { AlunoService.class })
 @AutoConfigureMockMvc
-@Disabled
+
 class AlunoServiceTest {
 
     @MockBean

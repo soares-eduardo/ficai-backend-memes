@@ -36,7 +36,7 @@ import org.springframework.data.domain.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(FichaController.class)
-@Disabled
+
 public class FichaControllerTest {
 
         @MockBean

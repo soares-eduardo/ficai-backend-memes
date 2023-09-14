@@ -16,7 +16,7 @@ import com.ficai4.backend.model.Ficha;
 
 @DataJpaTest
 @DisplayName("Tests for FichaRepository")
-@Disabled
+
 public class FichaRepositoryTest {
 
     @Autowired

@@ -35,7 +35,7 @@ import org.springframework.data.domain.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(AlunoController.class)
-@Disabled
+
 public class AlunoControllerTest {
 
         @Autowired

@@ -16,7 +16,7 @@ import com.ficai4.backend.enums.Status;
 
 @DataJpaTest
 @DisplayName("Tests for Aluno model.")
-@Disabled
+
 public class AlunoTest {
 
     Aluno aluno = new Aluno("60076180050", "José Soares", "Vinicio Muller", "Maria Souto", "Maria Souto", true,

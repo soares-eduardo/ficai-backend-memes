@@ -39,7 +39,7 @@ import com.ficai4.backend.repository.VisitaRepository;
 
 @SpringBootTest(properties = "spring.main.lazy-initialization=true", classes = { FichaService.class })
 @AutoConfigureMockMvc
-@Disabled
+
 class FichaServiceTest {
 
         @MockBean
