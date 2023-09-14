@@ -146,6 +146,10 @@
 				</configuration>
         	</plugin> -->
 		</plugins>
+	    	<configuration>
+                	<source>17</source>
+                	<target>17</target>
+            	</configuration>
 	</build>
 
 </project>
