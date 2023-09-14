@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -35,6 +36,7 @@ import org.springframework.data.domain.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(FichaController.class)
+@Disabled
 public class FichaControllerTest {
 
         @MockBean

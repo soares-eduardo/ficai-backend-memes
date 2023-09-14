@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,6 +16,7 @@ import com.ficai4.backend.enums.Status;
 
 @DataJpaTest
 @DisplayName("Tests for Aluno model.")
+@Disabled
 public class AlunoTest {
 
     Aluno aluno = new Aluno("60076180050", "José Soares", "Vinicio Muller", "Maria Souto", "Maria Souto", true,

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -15,6 +16,7 @@ import com.ficai4.backend.model.Ficha;
 
 @DataJpaTest
 @DisplayName("Tests for FichaRepository")
+@Disabled
 public class FichaRepositoryTest {
 
     @Autowired

@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.ficai4.backend.model.Cidade;
 import com.ficai4.backend.model.Endereco;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
