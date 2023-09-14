@@ -19,6 +19,9 @@ jobs:
         java-version: '17'  # Change to your desired Java version
         distribution: 'temurin'
         
+    - name: Grant execute permission to mvnw
+      run: chmod +x mvnw
+      
     - name: Build the Spring Boot application
       run: |
         sudo ./mvnw clean install -DskipTests=true
