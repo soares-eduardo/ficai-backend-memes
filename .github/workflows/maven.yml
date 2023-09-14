@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: ESPECIFICAÇÃO COM GHERKI - MEMES 2023/2
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 17
+    - name: CONFIGURANDO JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
@@ -31,7 +31,7 @@ jobs:
     - name: TESTE AUTOMATIZADO
       run: mvn test
       
-    - name: AUTOMAÇÂO DE CONSTRUÇÃO
+    - name: AUTOMAÇÃO DE CONSTRUÇÃO
       run: mvn -B package --file pom.xml
 
 
